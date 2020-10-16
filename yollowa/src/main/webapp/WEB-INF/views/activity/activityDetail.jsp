@@ -644,6 +644,7 @@
 				<!-- 객실예약 -->
 				<div class="row">
 					<div id="category" class="col-md-12">
+						<form action="reservation" method="POST">
 						<div class="row">
 							<div class="filter-result col-md-7">
 								<div class="option-content">
@@ -666,13 +667,16 @@
 										</div>
 										<div class="optionInfo">
 											<input class="amount btn btn-primary" onclick="optionMinus(this);" value="-" readonly />
-											<input type="text" class="btn btn-secondary priceInput" value="0" readonly />
+											<input type="text" name="AReservInfo_amount" class="btn btn-secondary priceInput" value="0" readonly />
 											<input class="amount btn btn-primary" onclick="optionPlus(this);" value="+" readonly />
 											<span class="optionPrice">${bean.activityOption_price }</span>
 										</div>
 									</div>
 									
-									<input type="hidden" name="AResertvInfo_articleNumber" />
+									<input type="hidden" name="AReservInfo_userNumber" value="${userNumber }" />
+									<input type="hidden" name="AReservInfo_articleNumber" value="${bean.activityOption_articleNumber }" />
+									<input type="hidden" name="AReservInfo_optionNumber" value="${bean.activityOption_optionNumber }" />
+									<input type="hidden" name="AReservInfo_unitPrice" value="${bean.activityOption_price }" />
 									
 								</c:forEach>
 								</div>
@@ -681,19 +685,18 @@
 							</div>
 							<div class="col-md-4">
 								<div class="option-reservDiv jumbotron">
-									<form action="" method="post">
-										<div class="appendOptionDiv">
-										<!-- 이 부분에 append -->
-										
-										</div>
-										<div class="resultOption">
-											<span>총 결제 금액 : </span><span class="appendPrice">0</span><span>원</span>
-											<button type="submit" class="btn btn-lg btn-warning btn-block reservBtn">예약페이지 이동</button>
-										</div>
-									</form>
+									<div class="appendOptionDiv">
+									<!-- 이 부분에 append -->
+									
+									</div>
+									<div class="resultOption">
+										<span>총 결제 금액 : </span><span class="appendPrice">0</span><span>원</span>
+										<button type="submit" class="btn btn-lg btn-warning btn-block reservBtn">예약페이지 이동</button>
+									</div>
 								</div>
 							</div>
 						</div>
+						</form>
 					</div>
 				</div>
 				<div class="row">

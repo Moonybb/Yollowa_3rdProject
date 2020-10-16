@@ -46,5 +46,14 @@ public interface ActivityDao {
 	// 액티비티 디테일 기본정보
 	public List<InformationVo> activityInfo(@Param("number") int activity_number,@Param("type") int type);
 	
+	// 먼저 userNumber로 본인 wish 리스트를 가져와 null이면 그냥 번호만 이미 있는 찜목록이 있으면 & 붙여 update
+	public String activityUserWishSelect(int userNumber);
+
+	// 기존에 등록된 wish가 없을 때
+	public void notExistWishUpdate(@Param("activityNumber") int activityNumber, @Param("userNumber") int userNumber);
+	
+	// 기존에 등록된 찜 목록이 있을 때 기존 + & 숙박글번호
+	public void afterWishUpdate(@Param("afterWish") String afterWish,@Param("userNumber") int userNumber);
+	
 	
 }

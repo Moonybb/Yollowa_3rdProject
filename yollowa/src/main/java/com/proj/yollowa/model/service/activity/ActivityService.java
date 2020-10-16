@@ -35,4 +35,7 @@ public interface ActivityService {
 	
 	// 디테일 기본정보
 	void activityInfo(int activity_number, int type, Model model);
+	
+	// 디테일 찜목록 
+	void activityWishUpdate(int activityNumber, int userNumber);
 }
