@@ -46,6 +46,17 @@ public class MypageController {
 		return "mypage/completed";
 	}
 	@Auth
+	@RequestMapping(value = "/completed/overHistory",method = RequestMethod.GET)
+	public String overHistory(@AuthUser UserVo userVo,Model model) throws SQLException {
+		UserVo user=myPageService.userDetailService(model,userVo.getUser_number());
+		String service=null;
+		if(user==null) {
+			return "redirect:../";
+		}
+		myPageService.getActivityOverHistory(model, userVo.getUser_number(),service);
+		return "mypage/overHistory";
+	}
+	@Auth
 	@RequestMapping(value = "/cart/{service}",method = RequestMethod.GET)
 	public String cart(@AuthUser UserVo userVo,Model model,@PathVariable("service") String service) throws SQLException {
 		UserVo user=myPageService.userDetailService(model,userVo.getUser_number());
@@ -77,5 +88,23 @@ public class MypageController {
 		return "mypage/userinfo";
 	}
 	
+	@Auth
+	@RequestMapping(value = "/cart/delete/",method=RequestMethod.GET)
+	public String deleteCart(HttpServletRequest req,@AuthUser UserVo userVo,Model model) {
+		
+		
+		try {
+			int result=myPageService.cartDeleteService(req.getParameter("service"), Integer.parseInt(req.getParameter("reservNumber")), userVo.getUser_number());
+			if(result>0) {
+				return "mypage/cart";
+			}
+			
+		} catch (Exception e) {
+			return "";
+		}
+		
+		
+		return null;
+	}
 	
 }

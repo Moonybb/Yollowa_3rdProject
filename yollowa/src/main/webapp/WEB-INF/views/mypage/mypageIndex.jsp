@@ -60,7 +60,7 @@ ul {
 	<%@ include file="../template/menu.jspf"%>
 	<%@ include file="../template/mypagemenu1.jspf" %>
 	<div class="col-md-9">
-			<h2>${user.user_name }님의 예약 현황 입니다!</h2>
+			<h2>${user.user_name }님의 숙박 예약 현황 입니다!</h2>
 			<c:forEach items="${rsvinfo }" var="info">
 				<div class="jumbotron">
 				<!-- 룸정보는 rsvinfo에 들어있는 게시물넘버와 숙박 게시물번호와 같을때 출력 -->

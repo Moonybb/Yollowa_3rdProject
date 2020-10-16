@@ -4,36 +4,57 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="com.proj.yollowa.model.activity.ActivityDao">
-	<!-- 액티비티 승낙된 리스트  -->
-	<select id="activitySelectAll" resultType="com.proj.yollowa.model.entity.activity.ActivityVo">
+	<!-- 액티비티 승인된 리스트  -->
+	<select id="activityListAll" resultType="com.proj.yollowa.model.entity.activity.ActivityVo">
 		select * from activity where activity_temp=1
 	</select>
 	
-	<!-- 액티비티 클릭시 디테일 -->
-	<select id="activityDetail" resultType="com.proj.yollowa.model.entity.activity.ActivityVo">
-		select * from activity where activity_number=#{val}
-	</select>
-
 	<!-- 액티비티 리스트 카운트 -->	
-	<select id="activityCount" resultType="Integer">
+	<select id="activityListCnt" resultType="Integer">
 		select count(*) from activity where activity_temp=1
 	</select>
-
-	<!-- 액티비티 옵션 칸 -->
-	<select id="activityOption" resultType="com.proj.yollowa.model.entity.activity.ActivityDetailPageDto">
-		select * from activityoption as AO join aoinfo as AI on AO.activityOption_optionNumber = AI.AOInfo_optionNumber where AO.activityOption_articleNumber=#{val}
+	
+	<!-- 액티비티 리스트 가격ajax -->
+	<select id="priceSelect" resultType="com.proj.yollowa.model.entity.activity.ActivityOptionVo">
+		select activityOption_optionNumber, activityOption_name ,activityOption_price from activityOption where activityOption_articleNumber = #{activityNumber}
 	</select>
+	
+	<!-- 액티비티 리스트 검색  -->
+	<select id="activitySearch" resultType="com.proj.yollowa.model.entity.activity.ActivityVo">
+		select * from activity where activity_temp=1 
+	<if test="#{search}!=''">
+		and activity_title like CONCAT('%',#{search},'%')
+	</if>
+	</select>
+	
+	<!-- 액티비티 리스트 지역 필터 -->
+	<select id="selectLocationFilterOne" resultType="com.proj.yollowa.model.entity.activity.ActivityVo">
+		select * from activity where activity_temp=1 and activity_location like CONCAT('%',#{locationFilter},'%')
+	</select>
+	<select id="selectLocationFilterOneCnt" resultType="int">
+		select count(*) from activity where activity_temp=1 and activity_location like CONCAT('%',#{locationFilter},'%')
+	</select>
+	
 	
 	<!-- 리뷰 리스트 --> 
 	<select id="reviewList" resultType="com.proj.yollowa.model.entity.activity.ReviewVo">
 		select * from review where (review_articleNumber=#{articleNumber} and review_category=#{category})
 	</select>
+
+
+	<!-- 액티비티 디테일 페이지 start -->
+	<select id="activityDetail" resultType="com.proj.yollowa.model.entity.activity.ActivityDetailPageDto">
+		select * from activity as A join activityOption as O on A.activity_number=O.activityOption_articleNumber where A.activity_number = #{activity_number}
+	</select>	
 	
-	<!-- 리뷰 카운트 -->
-	<select id="activityReviewCount" resultType="Integer">
-		select count(*) from review where (review_articleNumber=#{articleNumber} and review_category=#{category})
+	<select id="activityImgSelect" resultType="String">
+		select activity_img from activity where activity_number = #{activity_number}
 	</select>
 	
+	<select id="activityInfo" resultType="com.proj.yollowa.model.entity.lodgement.InformationVo">
+		select * from information where information_number = #{number} and information_type=#{type}
+	</select>
+	<!-- 액티비티 디테일 페이지 end -->	
 </mapper>
 
 

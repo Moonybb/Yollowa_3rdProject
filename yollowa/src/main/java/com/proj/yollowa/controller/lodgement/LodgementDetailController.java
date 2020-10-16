@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,6 +23,7 @@ import com.proj.yollowa.model.entity.UserVo;
 import com.proj.yollowa.model.entity.lodgement.InformationVo;
 import com.proj.yollowa.model.entity.lodgement.LodgementDetailPageDto;
 import com.proj.yollowa.model.entity.lodgement.LodgementRoomInfoVo;
+import com.proj.yollowa.model.entity.mypage.LReservInfoDto;
 import com.proj.yollowa.model.service.activity.ActivityService;
 import com.proj.yollowa.model.service.lodgement.LodgementService;
 
@@ -81,10 +83,13 @@ public class LodgementDetailController {
 	/////////////////////////// 예약 페이지
 	
 	//숙박 예약페이지
-	//@Auth ,@AuthUser UserVo user
+	@Auth 
 	@RequestMapping(value =  "detail/reservation/{lodgement_number}")
-	public String lodgementReservation(@PathVariable("lodgement_number") int articleNumber, HttpServletRequest req,Model model) throws SQLException, ParseException{
-		
+	public String lodgementReservation(@PathVariable("lodgement_number") int articleNumber, HttpServletRequest req,Model model,@AuthUser UserVo user,@ModelAttribute("LReservInfoDto") LReservInfoDto LRDto) throws SQLException, ParseException{
+
+		String cart = req.getParameter("cart");
+		model.addAttribute("cart", cart);
+		System.out.println("cart::::::"+cart);
 		// 예약할 숙소정보
 		String roomNumber =req.getParameter("roomNumber");
 		String sdate =req.getParameter("sdate");
@@ -113,9 +118,9 @@ public class LodgementDetailController {
 		model.addAttribute("roomDetail", detailList);
 		
 		// 로그인한 유저 정보
-		//UserVo userBean = lodgementService.lodgementReserUser(user,model);
+		UserVo userBean = lodgementService.lodgementReserUser(user,model);
 		
-		//model.addAttribute("userName", userBean.getUser_name());
+		model.addAttribute("userName", userBean.getUser_name());
 		
 		// 총 결제금액
 		int peakPrice=detailList.get(0).getRoomInfo_peakPrice();		// 성수기 가격
@@ -259,9 +264,9 @@ public class LodgementDetailController {
 	/////////////// 이니시스 페이지
 	
 	// 숙박 결제
-	//@Auth ,@AuthUser UserVo user
+	@Auth
 	@RequestMapping(value = "detail/Inicis/",method = RequestMethod.POST)
-	public String lodgementInicis(Model model,HttpServletRequest req) throws SQLException {
+	public String lodgementInicis(Model model,HttpServletRequest req,@AuthUser UserVo user) throws SQLException {
 		String articleNumber= req.getParameter("articleNumber");
 		String companyName= req.getParameter("companyName");
 		String roomNumber= req.getParameter("roomNumber");
@@ -270,6 +275,10 @@ public class LodgementDetailController {
 		String checkOut= req.getParameter("checkOut");
 		String resultPrice= req.getParameter("resultPrice");
 		
+		String userName =user.getUser_name();
+		String userPhoneNumber = user.getUser_phoneNumber();
+		
+		
 		model.addAttribute("articleNumber", articleNumber);
 		model.addAttribute("companyName", companyName);
 		model.addAttribute("roomNumber", roomNumber);
@@ -277,10 +286,64 @@ public class LodgementDetailController {
 		model.addAttribute("checkIn", checkIn);
 		model.addAttribute("checkOut", checkOut);
 		model.addAttribute("resultPrice", resultPrice);
+		model.addAttribute("userName", userName);
+		model.addAttribute("userPhoneNumber", userPhoneNumber);
 		
+		String cart = req.getParameter("cart");
+		model.addAttribute("cart", cart);
+		System.out.println("이니시스 페이지 카트::"+cart);
 		
 		return "lodgement/lodgementInicis";
 	}
+	
+	// 결제 완료시 ajax
+	@Auth
+	@RequestMapping(value = "detail/InicisAjax",method = RequestMethod.POST)
+	public void InicisAjax(HttpServletRequest req,@AuthUser UserVo user) throws SQLException, ParseException {
+		String articleNumber= req.getParameter("articleNumber");
+		String companyName= req.getParameter("companyName");
+		String roomNumber= req.getParameter("roomNumber");
+		String roomName= req.getParameter("roomName");
+		String checkI= req.getParameter("checkIn");
+		String checkO= req.getParameter("checkOut");
+		String resultPrice= req.getParameter("resultPrice");
+		int userNumber =user.getUser_number();
+		String userPhoneNumber =user.getUser_phoneNumber();
+		
+		String cart=req.getParameter("cart");
+		System.out.println("결제완료 ajax:::"+cart);
+		
+		
+		java.sql.Date checkIn=java.sql.Date.valueOf(checkI);
+		java.sql.Date checkOut=java.sql.Date.valueOf(checkO);
+		
+		if(cart.isEmpty()) {
+			System.out.println("바로 결제");
+			//유저넘버 , 글번호 , 방번호 , 체크인 , 체크아웃 , 폰번 , 예약한 날짜 , 결제금액 , 예약 상태 , 장바구니 상태
+			lodgementService.LReservInfoInsert(userNumber,Integer.parseInt(articleNumber),Integer.parseInt(roomNumber),checkIn,checkOut,userPhoneNumber,Integer.parseInt(resultPrice));
+		}else {
+			System.out.println("바구니결제");
+			int c = Integer.parseInt(cart);
+			lodgementService.LReservInfoUpdate(c);
+		}
+		
+		
+	}
+	
+	// 예약완료 페이지
+	@RequestMapping(value = "detail/ReservationResult/")
+	public String lodgementReservationResult(Model model,HttpServletRequest req) throws SQLException{
+		
+		return "lodgement/lodgementReservationResult";
+	}
+	
+	// 환불 이니시스
+	@RequestMapping("test")
+	public String canclePay() throws SQLException{
+		
+		return "lodgement/test";
+	}
+	
 	
 	// 장바구니 ajax controller
 	@Auth

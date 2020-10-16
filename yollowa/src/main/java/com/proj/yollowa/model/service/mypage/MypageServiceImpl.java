@@ -15,8 +15,9 @@ import com.proj.yollowa.model.entity.ReviewVo;
 import com.proj.yollowa.model.entity.UserVo;
 import com.proj.yollowa.model.entity.activity.ActivityVo;
 import com.proj.yollowa.model.entity.lodgement.LodgementVo;
+import com.proj.yollowa.model.entity.mypage.AReservInfoDto;
 import com.proj.yollowa.model.entity.mypage.LReservInfoDto;
-import com.proj.yollowa.model.entity.mypage.ReviewDto;
+import com.proj.yollowa.model.entity.mypage.LReviewDto;
 import com.proj.yollowa.model.mypage.MypageDao;
 @Service
 public class MypageServiceImpl implements MypageService{
@@ -34,11 +35,14 @@ public class MypageServiceImpl implements MypageService{
 	}
 	//유저 예약 현황
 	@Override
-	public List<LReservInfoDto> lReservationInfoService(Model model, int user_number,String service)
+	public List lReservationInfoService(Model model, int user_number,String service)
 			throws SQLException {
 		MypageDao mypageDao = sqlSession.getMapper(MypageDao.class);
+		// 액티비티 일때
 		if(service.equals("1")) {
-		}else {
+			
+			
+		}else if(service.equals("2")) {
 			List<LReservInfoDto> reservInfo=mypageDao.getLreservationInfo(user_number);
 			model.addAttribute("service",service);
 			model.addAttribute("rsvinfo",reservInfo);
@@ -50,17 +54,27 @@ public class MypageServiceImpl implements MypageService{
 	}
 	//유저 이용내역
 	@Override
-	public List<LReservInfoDto> lUserCompletedInfoService(Model model, int user_number,String service)
+	public List lUserCompletedInfoService(Model model, int user_number,String service)
 			throws SQLException {
 		MypageDao mypageDao = sqlSession.getMapper(MypageDao.class);
 		if(service.equals("1")) {
-		}else {
+			List<AReservInfoDto> reservInfo=mypageDao.getAreservationInfo(user_number);
+			List<Integer> count = new ArrayList<Integer>();
+			for(AReservInfoDto dto : reservInfo) {
+				count.add(mypageDao.getAExistReview(dto.getaReservInfo_number()));
+			}
+			System.out.println(count);
+			model.addAttribute("existReview",count);
+			model.addAttribute("service",service);
+			model.addAttribute("usedinfo",reservInfo);
+			return reservInfo;
+		}else if(service.equals("2")) {
 			//숙박일때
 			model.addAttribute("service",service);
 			List<LReservInfoDto> list=mypageDao.getLuserCompletedInfo(user_number);
 			List<Integer> count = new ArrayList<Integer>();
 			for(LReservInfoDto dto : list) {
-				count.add(mypageDao.getExistReview(dto.getlReservInfo_number()));
+				count.add(mypageDao.getLExistReview(dto.getlReservInfo_number()));
 			}
 			model.addAttribute("existReview",count);
 			model.addAttribute("usedinfo",list);
@@ -68,12 +82,32 @@ public class MypageServiceImpl implements MypageService{
 		}
 		return null;
 	}
+	//유저 액티비티 이용내역지난거
+	public List<AReservInfoDto> getActivityOverHistory(Model model,int user_number,String service) throws SQLException{
+		MypageDao mypageDao = sqlSession.getMapper(MypageDao.class);
+		
+			service="1";
+			model.addAttribute("service",service);
+			List<AReservInfoDto> list= mypageDao.getOverHistory(user_number);
+			List<Integer> count = new ArrayList<Integer>();
+			for(AReservInfoDto dto : list) {
+				count.add(mypageDao.getAExistReview(dto.getaReservInfo_number()));
+			}
+			model.addAttribute("existReview",count);
+			model.addAttribute("usedinfo",list);
+			return list;
+	}
+	
 	//유저 장바구니 목록
 	@Override
-	public List<LReservInfoDto> lUserCartInfoService(Model model, int user_number,String service)
+	public List lUserCartInfoService(Model model, int user_number,String service)
 			throws SQLException {
 		MypageDao mypageDao = sqlSession.getMapper(MypageDao.class);
 		if(service.equals("1")) {
+			List<AReservInfoDto> list=mypageDao.getAuserCartInfo(user_number);
+			model.addAttribute("service",service);
+			model.addAttribute("cartinfo",list);
+			return list;
 		}else {
 			List<LReservInfoDto> list=mypageDao.getLuserCartInfo(user_number);
 			model.addAttribute("service",service);
@@ -81,7 +115,6 @@ public class MypageServiceImpl implements MypageService{
 			return list;
 		}
 			
-		return null;
 	}
 	//유저 찜목록
 	@Override
@@ -161,35 +194,66 @@ public class MypageServiceImpl implements MypageService{
 		
 	}
 	
-	public ReviewDto getReviewInfoService(Model model,String service,int reservNumber) throws SQLException{
+	public LReviewDto getReviewInfoService(Model model,String service,int reservNumber) throws SQLException{
 		MypageDao myPageDao = sqlSession.getMapper(MypageDao.class);
-		ReviewDto reviewDto =null;
 		//액티비티일때
+		LReviewDto reviewDto =null;
 		if(service.equals("1")) {
+			AReservInfoDto dto=myPageDao.getAReviewInfo(reservNumber);
+			model.addAttribute("reviewInfo",dto);
 			
 		}else {
-			reviewDto = myPageDao.getReviewInfo(reservNumber);
+			reviewDto = myPageDao.getLReviewInfo(reservNumber);
 			model.addAttribute("reviewInfo",reviewDto);
 		}
+		
 		return reviewDto;
 		
 	}
 	
-	public void insertReviewService(ReviewVo reviewVo,int user_Number) throws SQLException {
-		MypageDao myPageDao = sqlSession.getMapper(MypageDao.class);
-		reviewVo.setReview_content(reviewVo.getReview_content().replace("\r\n", " "));
-		myPageDao.insertReview(reviewVo, user_Number);
-		int reviewCount = myPageDao.getReviewCount(reviewVo.getReview_articleNumber());
-		int[] list = myPageDao.getStarPoint(reviewVo.getReview_articleNumber());
+	public void insertReviewService(ReviewVo reviewVo,int user_Number,String service) throws SQLException {
 		
-		double reviewGradeRate=0;
-		for(int i=0;i<list.length;i++) {
-			reviewGradeRate+=list[i];
+		MypageDao myPageDao = sqlSession.getMapper(MypageDao.class);
+		if(service.equals("2")) {
+			reviewVo.setReview_content(reviewVo.getReview_content().replace("\r\n", " "));
+			myPageDao.insertReview(reviewVo, user_Number);
+			int reviewCount = myPageDao.getLReviewCount(reviewVo.getReview_articleNumber());
+			int[] list = myPageDao.getLStarPoint(reviewVo.getReview_articleNumber());
+			
+			double reviewGradeRate=0;
+			for(int i=0;i<list.length;i++) {
+				reviewGradeRate+=list[i];
+			}
+			//소수점 2째자리까지
+			reviewGradeRate=(int)(reviewGradeRate/list.length*10)/10.0;
+			myPageDao.updateLReviewInfo(reviewVo.getReview_articleNumber(), reviewGradeRate, reviewCount);
+		}else  {
+			reviewVo.setReview_content(reviewVo.getReview_content().replace("\r\n", " "));
+			myPageDao.insertReview(reviewVo, user_Number);
+			int reviewCount = myPageDao.getAReviewCount(reviewVo.getReview_articleNumber());
+			int[] list = myPageDao.getAStarPoint(reviewVo.getReview_articleNumber());
+			
+			double reviewGradeRate=0;
+			for(int i=0;i<list.length;i++) {
+				reviewGradeRate+=list[i];
+			}
+			//소수점 2째자리까지
+			reviewGradeRate=(int)(reviewGradeRate/list.length*10)/10.0;
+			myPageDao.updateAReviewInfo(reviewVo.getReview_articleNumber(), reviewGradeRate, reviewCount);
 		}
-		//소수점 2째자리까지
-		reviewGradeRate=(int)(reviewGradeRate/list.length*10)/10.0;
-		myPageDao.updateReviewInfo(reviewVo.getReview_articleNumber(), reviewGradeRate, reviewCount);
 		
 	}
+	@Override
+	public int cartDeleteService(String service, int reservnumber, int user_number) throws SQLException {
+		MypageDao myPageDao = sqlSession.getMapper(MypageDao.class);
+		if(service.equals("1")) {
+			return myPageDao.deleteAcartInfo(reservnumber, user_number);
+		}else if(service.equals("2")) {
+			return myPageDao.deleteLcartInfo(reservnumber, user_number);
+		}
+		
+		return -1;
+	}
+	
 	
 }

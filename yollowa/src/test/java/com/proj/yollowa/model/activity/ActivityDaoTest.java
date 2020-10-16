@@ -23,8 +23,6 @@ public class ActivityDaoTest {
 	
 	@Test
 	public void testActivitySelectAll() throws SQLException {
-		ActivityDao dao=sqlSession.getMapper(ActivityDao.class);
-		System.out.println(dao.activitySelectAll());
 		
 	}
 //	

@@ -64,11 +64,11 @@ ul {
 	<%@ include file="../template/header.jspf"%>
 	<%@ include file="../template/menu.jspf"%>
 	<%@ include file="../template/mypagemenu1.jspf"%>
-	<div class="col-md-9">
+	<!-- <div class="col-md-9">
 		
 	
 	
-	</div>
+	</div> -->
 	<%@ include file="../template/mypagemenu2.jspf"%>
 	<%@ include file="../template/footer.jspf"%>
 </body>

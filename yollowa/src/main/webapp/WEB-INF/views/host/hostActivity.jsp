@@ -346,11 +346,11 @@
 		closeOnCancel : true
 	}, function(isConfirm) {
 		if (isConfirm) {
-			swal('', '방 삭제가 완료되었습니다.', "success");
+			swal('', '옵션 삭제가 완료되었습니다.', "success");
 			
 			setTimeout(function(){
 				location.href="/yollowa/host/activityDelete/"+number;
-			},1500);
+			},1000);
 		}else{
 			return false;
 		}

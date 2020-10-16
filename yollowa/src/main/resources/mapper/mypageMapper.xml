@@ -6,12 +6,36 @@
 	<select id="userDetail" resultType="com.proj.yollowa.model.entity.UserVo">
 		select * from user where user_number=#{user_number}
 	</select>
-	<!--select * from lreservinfo where LReservInfo_userNumber=24 and LReservInfo_acticleNumber=1 and LReservInfo_cartStatus=0 and LReservInfo_reservStatus=1 and date(LReservInfo_checkIn)<date(now()) and date(LReservInfo_checkOut)<=date(now()); 
-	이용내역-->
-	<!--select * from lreservinfo where LReservInfo_userNumber=24 and LReservInfo_acticleNumber=1 and LReservInfo_cartStatus=0 and LReservInfo_reservStatus=1 and date(LReservInfo_checkIn)>=date(now()) and date(LReservInfo_checkOut)>date(now());
-	예약현황-->
-	
-	<!--SELECT * FROM LRESERVINFO WHERE LRESERVINFO_USERNUMBER=24 AND LRESERVINFO_RESERVSTATUS=0 AND LRESERVINFO_CARTSTATUS=1 and date(LReservInfo_checkIn)>=date(now()) and date(lreservinfo_checkOut)>date(now()); 장바구니-->
+	<select id="getAreservationInfo" resultType="com.proj.yollowa.model.entity.mypage.AReservInfoDto">
+		<![CDATA[
+		select * from areservinfo as ai join activity as a join activityoption as ao
+		on(ai.areservinfo_articleNumber=a.activity_number and ai.AReservinfo_optionNumber=ao.activityOption_optionNumber)
+		where ai.areservinfo_reservStatus=1
+		and ai.AReservInfo_cartStatus=0
+		and DATE(now())<=DATE(ai.areservInfo_checkOut)
+		and ai.AReservInfo_userNumber=#{user_number}
+		]]>
+	</select>
+	<select id="getOverHistory" resultType="com.proj.yollowa.model.entity.mypage.AReservInfoDto">
+		<![CDATA[
+		select * from areservinfo as ai join activity as a join activityoption as ao
+		on(ai.areservinfo_articleNumber=a.activity_number and ai.AReservinfo_optionNumber=ao.activityOption_optionNumber)
+		where ai.areservinfo_reservStatus=1
+		and ai.AReservInfo_cartStatus=0
+		and DATE(now())>DATE(ai.areservInfo_checkOut)
+		and ai.AReservInfo_userNumber=#{user_number}
+		]]>
+	</select>
+	<select id="getAuserCartInfo" resultType="com.proj.yollowa.model.entity.mypage.AReservInfoDto">
+		<![CDATA[
+		select * from areservinfo as ai join activity as a join activityoption as ao
+		on(ai.areservinfo_articleNumber=a.activity_number and ai.AReservinfo_optionNumber=ao.activityOption_optionNumber)
+		where ai.areservinfo_reservStatus=0
+		and ai.AReservInfo_cartStatus=1
+		and DATE(now())<DATE(ai.areservInfo_checkOut)
+		and ai.AReservInfo_userNumber=#{user_number};
+		]]>
+	</select>
 	<select id="getLreservationInfo" resultType="com.proj.yollowa.model.entity.mypage.LReservInfoDto">
 		<![CDATA[
 		SELECT *
@@ -70,31 +94,56 @@
 		select * from lodgement
 		where lodgement_number=#{lodgement_number}
 	</select>
-	<select id="getReviewInfo" resultType="com.proj.yollowa.model.entity.mypage.ReviewDto">
+	<select id="getLReviewInfo" resultType="com.proj.yollowa.model.entity.mypage.LReviewDto">
 		SELECT * FROM LRESERVINFO AS LI JOIN LODGEMENT AS L JOIN ROOMINFO AS RI ON(LI.LRESERVINFO_ACTICLENUMBER=L.LODGEMENT_NUMBER AND LI.LRESERVINFO_ACTICLENUMBER=RI.ROOMINFO_ARTICLENUMBER)
 		WHERE LI.LRESERVINFO_ROOMNUMBER=RI.ROOMINFO_ROOMNUMBER
-		AND LI.LRESERVINFO_NUMBER=#{LODGEMENT_NUMBER}
+		AND LI.LRESERVINFO_NUMBER=#{LRESERVINFO_NUMBER}
+	</select>
+	<select id="getAReviewInfo" resultType="com.proj.yollowa.model.entity.mypage.AReservInfoDto">
+		select * from areservinfo as ai join activity as a join activityoption as ao
+		on(ai.areservinfo_articleNumber=a.activity_number and ai.AReservinfo_optionNumber=ao.activityOption_optionNumber)
+		where ai.AReservInfo_number=#{ARESERVINFO_NUMBER}
 	</select>
 	<insert id="insertReview" parameterType="com.proj.yollowa.model.entity.ReviewVo">
 		INSERT INTO review (review_articleNumber, review_title, review_userNumber, review_reservNumber, review_category, review_starPoint, review_writedDate, review_content, review_writer)
 		 VALUES (#{review.review_articleNumber}, #{review.review_title}, #{user_Number}, #{review.review_reservNumber}, #{review.review_category}, #{review.review_starPoint}, now(), #{review.review_content}, #{review.review_writer});
 	</insert>
-	<select id="getReviewCount" resultType="int">
-		select count(*) from review where review_articleNumber=#{review_articleNumber}
+	<select id="getLReviewCount" resultType="int">
+		select count(*) from review where review_articleNumber=#{review_articleNumber} and review_category=2;
 	</select>
-	<select id="getStarPoint" resultType="int">
-		select review_starPoint from review where review_articleNumber=#{review_articleNumber}
+	<select id="getAReviewCount" resultType="int">
+		select count(*) from review where review_articleNumber=#{review_articleNumber} and review_category=1;
 	</select>
-	<update id="updateReviewInfo" parameterType="com.proj.yollowa.model.entity.ReviewVo">
+	<select id="getLStarPoint" resultType="int">
+		select review_starPoint from review where review_articleNumber=#{review_articleNumber} and review_category=2;
+	</select>
+	<select id="getAStarPoint" resultType="int">
+		select review_starPoint from review where review_articleNumber=#{review_articleNumber} and review_category=1;
+	</select>
+	<update id="updateLReviewInfo">
 		UPDATE lodgement
 		SET lodgement_reviewGradeRate =#{reviewGradeRate},
 		lodgement_reviewCount =#{reviewCount} 
 		WHERE lodgement_number = #{review_articleNumber}
 	</update>
-	<select id="getExistReview" resultType="int">
+	<update id="updateAReviewInfo">
+		UPDATE activity
+		SET activity_reviewGradeRate =#{reviewGradeRate},
+		activity_reviewCount =#{reviewCount} 
+		WHERE activity_number = #{review_articleNumber}
+	</update>
+	<select id="getLExistReview" resultType="int">
 		select count(*) from review
-		where review_reservNumber=#{lreservInfo_number}
+		where review_reservNumber=#{lreservInfo_number} and review_category=2
 	</select>
-	
-	
+	<select id="getAExistReview" resultType="int">
+		select count(*) from review
+		where review_reservNumber=#{areservInfo_number} and review_category=1;
+	</select>
+	<delete id="deleteLcartInfo">
+		DELETE FROM lreservinfo WHERE LReservInfo_number =#{LReservInfo_number} and LReservInfo_cartStatus=1 and LReservInfo_userNumber=#{user_number}
+	</delete>
+	<delete id="deleteAcartInfo">
+		DELETE FROM areservinfo WHERE AReservInfo_number =#{AReservInfo_number} and AReservInfo_cartStatus=1 and AReservInfo_userNumber=#{user_number}
+	</delete>
 </mapper>

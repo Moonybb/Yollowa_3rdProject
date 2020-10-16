@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.proj.yollowa.interceptor.Auth;
 import com.proj.yollowa.interceptor.AuthUser;
 import com.proj.yollowa.model.entity.UserVo;
+import com.proj.yollowa.model.entity.host.ActivityOptionVo;
 import com.proj.yollowa.model.entity.host.ActivityUpdatePageDto;
 import com.proj.yollowa.model.entity.host.ActivityVo;
 import com.proj.yollowa.model.entity.host.AddActivityPageDto;
@@ -157,6 +159,35 @@ public class HostActivityController {
 		return "redirect:/host/activityOptions/"+articleNumber;
 	}
 	
+	// 액티비티 옵션 등록 페이지
+	@Auth
+	@RequestMapping(value="/addOption/{activity_number}", method=RequestMethod.GET)
+	public String addOption(@PathVariable("activity_number") int activity_number, @AuthUser UserVo userVo, Model model) {
+		// host/addOption -> 유저넘버를 보내 activity table에 해당 유저번호로 등록 된 글이 있으면 lodgement_number return
+		ArrayList<ActivityVo> matchUserNumber = hostService.hostNumberMatch(userVo.getUser_number());
+		if(matchUserNumber!=null) {
+			model.addAttribute("hostName", userVo.getUser_name());
+			model.addAttribute("activity_number", activity_number);
+			hostService.selectActivityName(activity_number, model);
+			
+			return "/host/addOption";
+		}else {
+			return "home";
+		}
+	}
+	
+	
+	// 액티비티 옵션 등록 Action Post
+	@Auth
+	@RequestMapping(value="/addOption/addOptionAction/{activity_number}", method=RequestMethod.POST)
+	public String addOptionAction(@PathVariable("activity_number") int activity_number, ActivityOptionVo optionBean) {
+		// 받아온 activity_number를 optionBean.articleNumber에 set해주고한꺼번에 던져준다.
+		optionBean.setActivityOption_articleNumber(activity_number);
+		
+		hostService.insertActivityOption(optionBean);
+		
+		return "redirect:/host/activityOptions/"+activity_number;
+	}
 	
 	
 //	host/activityOption/ end ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.proj.yollowa.model.entity.UserVo;
+import com.proj.yollowa.model.entity.host.ActivityOptionVo;
 import com.proj.yollowa.model.entity.host.ActivityUpdatePageDto;
 import com.proj.yollowa.model.entity.host.ActivityVo;
 import com.proj.yollowa.model.entity.host.AddActivityPageDto;
@@ -59,6 +60,10 @@ public interface HostActivityService {
 
 	// removeOption/{activity_articleNumber}/{activity_optionNumber} -> 액티비티 옵션 삭제
 	void deleteOption(int articleNumber, int optionNumber);
+
+
+	// /addOption/addOptionAction/ -> 액티비티 옵션 등록
+	void insertActivityOption(ActivityOptionVo optionBean);
 	
 	
 }

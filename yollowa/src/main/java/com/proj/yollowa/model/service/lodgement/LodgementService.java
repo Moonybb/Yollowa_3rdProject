@@ -18,6 +18,12 @@ public interface LodgementService {
 	List<LodgementVo> lodgementListAll(Model model) throws SQLException;
 	// 숙박 리스트 temp=1인 전체 개수
 	int lodgementListCnt() throws SQLException;
+	// ajax select Price (lodgement list page)
+	int priceSelect(int lodgementNumber);
+
+	
+	
+	
 	
 	//숙박 디테일 
 	List<LodgementDetailPageDto> lodgementDetail(int articleNumber, Model model) throws SQLException;
@@ -25,8 +31,6 @@ public interface LodgementService {
 	// 숙박 타이틀 이미지 select
 	void lodgementImgSelect(int number, Model model);
 
-	// ajax select Price (lodgement list page)
-	int priceSelect(int lodgementNumber);
 	
 	// lodgement list page search
 	void lodgementSearch(String search, Model model);
@@ -59,5 +63,12 @@ public interface LodgementService {
 	
 	// 지역 필터
 	void lodgementLocationFilterSelect(String locationFilter, Model model);
+	
+	// 결제 성공시 예약정보에 insert (바로구매)
+	void LReservInfoInsert(int userNumber, int articleNumber, int roomNumber, java.sql.Date checkIn, java.sql.Date checkOut,
+			String userPhoneNumber, int resultPrice);
+	
+	//결제 성공시 예약정보 update (장바구니결제)
+	void LReservInfoUpdate(int c);
 
 }

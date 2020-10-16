@@ -162,7 +162,6 @@ public class HostLodgementController {
 		}else {
 			return "home";
 		}
-		
 	}
 	
 	// 방 추가 post

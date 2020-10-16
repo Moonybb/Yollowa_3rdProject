@@ -300,6 +300,13 @@ pointer-events:auto;
 <script type="text/javascript">
 	$(document).ready(function(){
 		
+		var filterCnt = $('#filterCnt').val();
+		
+		if(filterCnt!=''){
+			$('.cntSpan').text(filterCnt);
+		}
+		
+		
 		// Inspiration: https://tympanus.net/codrops/2012/10/04/custom-drop-down-list-styling/
 
 		function DropDown(el) {
@@ -527,7 +534,7 @@ pointer-events:auto;
 		$('.resort').show();
 		$('.guest').show();
 		
-		$('h3').text($('.allList').length+"건의 검색결과");
+		$('.cntSpan').text($('.allList').length);
 	};
 	
 	function hotelR(){
@@ -537,7 +544,7 @@ pointer-events:auto;
 		$('.guest').hide();
 		$('.hotel').show();
 		
-		$('h3').text($('.hotel').length+"건의 검색결과");
+		$('.cntSpan').text($('.hotel').length);
 	};
 	
 	
@@ -548,7 +555,7 @@ pointer-events:auto;
 		$('.guest').hide();
 		$('.motel').show();
 		
-		$('h3').text($('.motel').length+"건의 검색결과");
+		$('.cntSpan').text($('.motel').length);
 	};
 	
 	
@@ -559,7 +566,7 @@ pointer-events:auto;
 		$('.guest').hide();
 		$('.pension').show();
 		
-		$('h3').text($('.pension').length+"건의 검색결과");
+		$('.cntSpan').text($('.pension').length);
 	};
 	function resortR(){
 		$('.hotel').hide();
@@ -568,7 +575,7 @@ pointer-events:auto;
 		$('.guest').hide();
 		$('.resort').show();
 		
-		$('h3').text($('.resort').length+"건의 검색결과");
+		$('.cntSpan').text($('.resort').length);
 	};
 	function guestR(){
 		$('.hotel').hide();
@@ -577,7 +584,7 @@ pointer-events:auto;
 		$('.resort').hide();
 		$('.guest').show();
 		
-		$('h3').text($('.guest').length+"건의 검색결과");
+		$('.cntSpan').text($('.guest').length);
 	};
 	
 	// 관련도 순 선택
@@ -673,7 +680,7 @@ pointer-events:auto;
 		var locationFilter = $(me).text();
 		
 		window.location.href="./filter?locationFilter="+locationFilter;
-
+		
 		
 		/*
 		var locationFilter = locationFilter+"="+$(me).text()+;
@@ -783,7 +790,8 @@ pointer-events:auto;
 						<li onclick="locationFilterSel(this);">옹진/영흥도</li>
 					</ul>
 					<ul class="chungcheong">
-						<li onclick="locationFilterSel(this);">충청 전체</li>
+						<li onclick="locationFilterSel(this);">충북 전체</li>
+						<li onclick="locationFilterSel(this);">충남 전체</li>
 						<li onclick="locationFilterSel(this);">만리포/태안</li>
 						<li onclick="locationFilterSel(this);">꽃지/안면도</li>
 						<li onclick="locationFilterSel(this);">대천/보령</li>
@@ -792,7 +800,8 @@ pointer-events:auto;
 						<li onclick="locationFilterSel(this);">공주/보은/청주/금산</li>
 					</ul>
 					<ul class="gyeongsang">
-						<li onclick="locationFilterSel(this);">경상 전체</li>
+						<li onclick="locationFilterSel(this);">경북 전체</li>
+						<li onclick="locationFilterSel(this);">경남 전체</li>
 						<li onclick="locationFilterSel(this);">거제</li>
 						<li onclick="locationFilterSel(this);">통영/고성</li>
 						<li onclick="locationFilterSel(this);">남해</li>
@@ -811,7 +820,8 @@ pointer-events:auto;
 						<li onclick="locationFilterSel(this);">강서</li>
 					</ul>
 					<ul class="jeonla">
-						<li onclick="locationFilterSel(this);">전라 전체</li>
+						<li onclick="locationFilterSel(this);">전북 전체</li>
+						<li onclick="locationFilterSel(this);">전남 전체</li>
 						<li onclick="locationFilterSel(this);">여수</li>
 						<li onclick="locationFilterSel(this);">순천/광양/영광/구례</li>
 						<li onclick="locationFilterSel(this);">변산반도/전주/무주</li>
@@ -858,7 +868,8 @@ pointer-events:auto;
 			<div class="col-md-9">
 			<div class="con">
 				<h3 id="locFilterName">${locationFilter }</h3>
-				<h3>${cnt}건의 검색결과</h3>
+				<h3><span class="cntSpan">${cnt}</span>건의 검색 결과</h3>
+				<input type="hidden" id="filterCnt" value="${filterCnt }">
 				<div class="row filterDiv">
 					<div class="col-md-8">
 						  <!-- 검색 form -->

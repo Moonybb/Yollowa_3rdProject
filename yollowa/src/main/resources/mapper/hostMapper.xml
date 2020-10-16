@@ -134,6 +134,11 @@
 		delete from activityOption where activityOption_articleNumber = #{articleNumber} and activityOption_optionNumber = #{optionNumber}
 	</delete> 
 	
+	<insert id="insertActivityOption" parameterType="com.proj.yollowa.model.entity.host.ActivityOptionVo">
+		insert into activityOption (activityOption_articleNumber, activityOption_name, activityOption_subName, activityOption_price) 
+		values (#{bean.activityOption_articleNumber}, #{bean.activityOption_name}, #{bean.activityOption_subName}, #{bean.activityOption_price})
+	</insert>
+	
 	
 	<!-- 호스트 액티비티 start ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 	<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->

@@ -692,7 +692,7 @@
 																<input class="paymentOffPeak${status.index}" name="roomNumber" type="hidden" value="${bean.roomInfo_roomNumber}" />
 																<input type="hidden" name="sdate" class="sdateVal"/>
 																<input type="hidden" name="edate" class="edateVal"/>
-																
+
 																<div class="roomPrice"> 가격 (비성수기)
 																	<span class="offPeakPrice${status.index }" style="display: inline-block; float: right;">${bean.roomInfo_offPeakPrice }</span>
 																</div>
@@ -758,7 +758,6 @@
 																<input class="paymentPeak${status.index}" name="roomNumber" type="hidden" value="${bean.roomInfo_roomNumber}" />
 																<input type="hidden" name="sdate" class="sdateVal"/>
 																<input type="hidden" name="edate" class="edateVal"/>
-																
 																<div class="roomPrice"> 가격 (성수기)
 																	<span class="peakPrice${status.index }" style="display: inline-block; float: right;">${bean.roomInfo_peakPrice }</span>
 																</div>

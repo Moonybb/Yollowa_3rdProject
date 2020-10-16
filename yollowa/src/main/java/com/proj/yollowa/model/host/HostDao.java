@@ -118,6 +118,9 @@ public interface HostDao {
 
 	// removeOption/{activity_articleNumber}/{activity_optionNumber} -> 액티비티 옵션 삭제
 	public void deleteOption(@Param("articleNumber") int articleNumber,@Param("optionNumber") int optionNumber);
+
+	// 액티비티 옵션 등록
+	public void insertActivityOption(@Param("bean") ActivityOptionVo optionBean);
 	
 	
 

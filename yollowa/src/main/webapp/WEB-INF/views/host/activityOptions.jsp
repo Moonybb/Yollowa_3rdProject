@@ -196,7 +196,7 @@ var confirm = function(msg, title, resvNum, articleNumber, optionNumber) {
 }
 
 function Confirm(articleNumber, optionNumber) {
-	confirm('해당 방에대한 모든 정보가 삭제됩니다. 그래도 삭제하시겠습니까?', '방을 삭제하시겠습니까?','' ,articleNumber , optionNumber);
+	confirm('해당 옵션에대한 모든 정보가 삭제됩니다. 그래도 삭제하시겠습니까?', '옵션을 삭제하시겠습니까?','' ,articleNumber , optionNumber);
 }
 
 
@@ -257,13 +257,13 @@ function Confirm(articleNumber, optionNumber) {
 						
 					    <div class="row">
 					      <div class="col">
-						 	 <label for="activityOption_name" class="label_title">업체명</label>
+						 	 <label for="activityOption_name" class="label_title">옵션 이름</label>
 							  <div>
 							    <input type="text" class="form-control inputs title${num.index }" name="activityOption_name" value="${bean.activityOption_name }" readonly />
 							  </div>
 					      </div>
 					      <div class="col">
-							  <label for="activityOption_subName" class="label_title">옵션명</label>
+							  <label for="activityOption_subName" class="label_title">옵션 종류</label>
 							  <div>
 							    <input type="text" class="form-control inputs optionName${num.index }" name="activityOption_subName" value="${bean.activityOption_subName }" readonly />
 							  </div>

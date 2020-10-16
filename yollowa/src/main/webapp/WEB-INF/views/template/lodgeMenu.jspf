@@ -40,7 +40,7 @@
    		<li class="nav-item dropdown userinfo">
         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="font-size: 16px; color:white;">${user.user_name }님</a>
         <div class="dropdown-menu">
-          <a class="dropdown-item" href="${pageContext.request.contextPath }/mypage/2">숙박 예약 현황</a>
+          <a class="dropdown-item" href="${pageContext.request.contextPath }/mypage/2">예약 현황</a>
           <a class="dropdown-item" href="${pageContext.request.contextPath }/mypage/completed/2">구매 내역</a>
           <a class="dropdown-item" href="${pageContext.request.contextPath }/mypage/cart/2">장바구니</a>
           <a class="dropdown-item" href="${pageContext.request.contextPath }/mypage/wishlist/2">찜 목록</a>

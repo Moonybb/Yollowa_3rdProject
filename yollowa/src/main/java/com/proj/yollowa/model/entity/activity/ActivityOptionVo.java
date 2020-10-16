@@ -4,7 +4,8 @@ public class ActivityOptionVo {
 	private int activityOption_optionNumber;
 	private int activityOption_articleNumber;
 	private String activityOption_name;
-	private int activityOption_max;
+	private String activityOption_subName;
+	private int activityOption_price;
 	
 	public ActivityOptionVo() {
 	}
@@ -33,12 +34,20 @@ public class ActivityOptionVo {
 		this.activityOption_name = activityOption_name;
 	}
 
-	public int getActivityOption_max() {
-		return activityOption_max;
+	public String getActivityOption_subName() {
+		return activityOption_subName;
 	}
 
-	public void setActivityOption_max(int activityOption_max) {
-		this.activityOption_max = activityOption_max;
+	public void setActivityOption_subName(String activityOption_subName) {
+		this.activityOption_subName = activityOption_subName;
+	}
+
+	public int getActivityOption_price() {
+		return activityOption_price;
+	}
+
+	public void setActivityOption_price(int activityOption_price) {
+		this.activityOption_price = activityOption_price;
 	}
 
 	@Override
@@ -46,9 +55,10 @@ public class ActivityOptionVo {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + activityOption_articleNumber;
-		result = prime * result + activityOption_max;
 		result = prime * result + ((activityOption_name == null) ? 0 : activityOption_name.hashCode());
 		result = prime * result + activityOption_optionNumber;
+		result = prime * result + activityOption_price;
+		result = prime * result + ((activityOption_subName == null) ? 0 : activityOption_subName.hashCode());
 		return result;
 	}
 
@@ -63,8 +73,6 @@ public class ActivityOptionVo {
 		ActivityOptionVo other = (ActivityOptionVo) obj;
 		if (activityOption_articleNumber != other.activityOption_articleNumber)
 			return false;
-		if (activityOption_max != other.activityOption_max)
-			return false;
 		if (activityOption_name == null) {
 			if (other.activityOption_name != null)
 				return false;
@@ -72,24 +80,34 @@ public class ActivityOptionVo {
 			return false;
 		if (activityOption_optionNumber != other.activityOption_optionNumber)
 			return false;
+		if (activityOption_price != other.activityOption_price)
+			return false;
+		if (activityOption_subName == null) {
+			if (other.activityOption_subName != null)
+				return false;
+		} else if (!activityOption_subName.equals(other.activityOption_subName))
+			return false;
 		return true;
+	}
+
+	public ActivityOptionVo(int activityOption_optionNumber, int activityOption_articleNumber,
+			String activityOption_name, String activityOption_subName, int activityOption_price) {
+		super();
+		this.activityOption_optionNumber = activityOption_optionNumber;
+		this.activityOption_articleNumber = activityOption_articleNumber;
+		this.activityOption_name = activityOption_name;
+		this.activityOption_subName = activityOption_subName;
+		this.activityOption_price = activityOption_price;
 	}
 
 	@Override
 	public String toString() {
 		return "ActivityOptionVo [activityOption_optionNumber=" + activityOption_optionNumber
 				+ ", activityOption_articleNumber=" + activityOption_articleNumber + ", activityOption_name="
-				+ activityOption_name + ", activityOption_max=" + activityOption_max + "]";
+				+ activityOption_name + ", activityOption_subName=" + activityOption_subName + ", activityOption_price="
+				+ activityOption_price + "]";
 	}
 
-	public ActivityOptionVo(int activityOption_optionNumber, int activityOption_articleNumber,
-			String activityOption_name, int activityOption_max) {
-		super();
-		this.activityOption_optionNumber = activityOption_optionNumber;
-		this.activityOption_articleNumber = activityOption_articleNumber;
-		this.activityOption_name = activityOption_name;
-		this.activityOption_max = activityOption_max;
-	}
 	
 	
 }

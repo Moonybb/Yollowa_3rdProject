@@ -33,7 +33,7 @@
 		</select>
 		<insert id="insertUser" parameterType="com.proj.yollowa.model.entity.UserVo">
 			INSERT INTO user (user_nickName, user_name, user_gender, user_address, user_id, user_password, user_likes,user_phoneNumber)
-			VALUES (#{user.user_nickName}, #{user.user_name}, #{user.user_gender}, #{user.user_address}, #{user.user_id}, #{user.user_password}, #{user.user_likes}.#{user.user_phoneNumber})
+			VALUES (#{user.user_nickName}, #{user.user_name}, #{user.user_gender}, #{user.user_address}, #{user.user_id}, #{user.user_password}, #{user.user_likes},#{user.user_phoneNumber})
 		</insert>
 		<insert id="insertKakaoUser" parameterType="com.proj.yollowa.model.entity.UserVo">
 			INSERT INTO user (user_nickName, user_name, user_gender, user_address, user_id, user_password, user_likes,user_kakaoId,user_phoneNumber)

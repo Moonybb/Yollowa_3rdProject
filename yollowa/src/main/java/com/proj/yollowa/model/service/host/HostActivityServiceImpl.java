@@ -280,6 +280,14 @@ public class HostActivityServiceImpl implements HostActivityService{
 		hostDao.deleteOption(articleNumber, optionNumber);
 			
 	}
+	
+	// addOption/addOptionAction -> 액티비티 옵션 등록
+	@Override
+	public void insertActivityOption(ActivityOptionVo optionBean) {
+		HostDao hostDao = sqlSession.getMapper(HostDao.class);
+		hostDao.insertActivityOption(optionBean);
+	}
+	
 /*  host/activityOptions page end **********************************************************************************************************/
 	
 }

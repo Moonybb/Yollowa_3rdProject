@@ -2,7 +2,7 @@ package com.proj.yollowa.model.entity.mypage;
 
 import java.sql.Date;
 
-public class ReviewDto {
+public class LReviewDto {
 	private int lReservInfo_number;
 	private int lReservInfo_userNumber;
 	private int lReservInfo_acticleNumber;
@@ -22,10 +22,10 @@ public class ReviewDto {
 	private String lodgement_location;
 	private String lodgement_LatLng;
 	
-	public ReviewDto() {
+	public LReviewDto() {
 	}
 
-	public ReviewDto(int lReservInfo_number, int lReservInfo_userNumber, int lReservInfo_acticleNumber,
+	public LReviewDto(int lReservInfo_number, int lReservInfo_userNumber, int lReservInfo_acticleNumber,
 			int lReservInfo_roomNumber, Date lReservInfo_checkIn, Date lReservInfo_checkOut,
 			String lReservInfo_phoneNumber, Date lReservInfo_reservDate, int lReservInfo_payment,
 			int lReservInfo_reservStatus, int lReservInfo_cartStatus, int roomInfo_roomNumber,
@@ -244,7 +244,7 @@ public class ReviewDto {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		ReviewDto other = (ReviewDto) obj;
+		LReviewDto other = (LReviewDto) obj;
 		if (lReservInfo_acticleNumber != other.lReservInfo_acticleNumber)
 			return false;
 		if (lReservInfo_cartStatus != other.lReservInfo_cartStatus)

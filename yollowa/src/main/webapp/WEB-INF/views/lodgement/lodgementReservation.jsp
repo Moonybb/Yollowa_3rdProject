@@ -170,6 +170,8 @@
 					<input type="hidden" name="checkIn" value="${sdate}"/>
 					<input type="hidden" name="checkOut" value="${edate}"/>
 					<input type="hidden" name="resultPrice" value="${resultPrice}"/>
+					<input type="hidden" name="cart" value="${cart }" /> 
+					
 				</form>
 				<div>
 					<p style="color: black;">총 결제 금액</p>

@@ -32,6 +32,7 @@ public class LodgementListController {
 		return "lodgement/lodgementList";
 	}
 	
+	// 검색
 	@RequestMapping(value="lodgeSearch", method=RequestMethod.GET)
 	public String lodgementSearch(HttpServletRequest req, Model model) {
 		String search = req.getParameter("searchQuery");

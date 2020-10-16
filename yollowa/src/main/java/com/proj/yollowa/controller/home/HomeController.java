@@ -44,12 +44,15 @@ public class HomeController {
 		return "review";
 	}
 	@Auth
-	@RequestMapping(value = "/review_write" ,method=RequestMethod.POST)
-	public String wRiteReview(Model model,@AuthUser UserVo userVo,@ModelAttribute ReviewVo reviewVo) throws SQLException {
+	@RequestMapping(value = "/review_write/{service}" ,method=RequestMethod.POST)
+	public String wRiteReview(Model model,@AuthUser UserVo userVo,@ModelAttribute ReviewVo reviewVo,@PathVariable("service") String service) throws SQLException {
+		
+		
+		
 		if(userVo==null) {
 			return "../";
 		}
-		myPageService.insertReviewService(reviewVo, userVo.getUser_number());
+		myPageService.insertReviewService(reviewVo, userVo.getUser_number(), service);
 		return "redirect:/mypage/completed/"+reviewVo.getReview_category();
 	}
 }

@@ -55,18 +55,25 @@ public class MypageDaoTest {
 	@Test
 	public void testReviewInfo() throws SQLException{
 		MypageDao myPageDao = sqlSession.getMapper(MypageDao.class);
-		System.out.println(myPageDao.getReviewInfo(1));
+		System.out.println(myPageDao.getLReviewInfo(1));
 	}
 	@Test
 	public void testAverageStar() throws SQLException{
 		MypageDao myPageDao = sqlSession.getMapper(MypageDao.class);
-		int[] list = myPageDao.getStarPoint(15);
+		int[] list = myPageDao.getLStarPoint(15);
 		double sum=0;
 		for(int i=0;i<list.length;i++) {
 			sum+=list[i];
 		}
 		sum=(int)(sum/list.length*10)/10.0;
 		System.out.println(sum+" "+list.length+" ");
+	}
+	@Test
+	public void testActivity() throws SQLException{
+		MypageDao myPageDao = sqlSession.getMapper(MypageDao.class);
+		System.out.println(myPageDao.getAreservationInfo(24));
+		System.out.println(myPageDao.getAuserCartInfo(24));
+		System.out.println(myPageDao.getAuserCartInfo(24));
 	}
 }
 
