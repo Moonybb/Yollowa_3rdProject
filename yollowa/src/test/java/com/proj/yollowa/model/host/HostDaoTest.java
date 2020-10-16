@@ -34,7 +34,7 @@ public class HostDaoTest {
 		dto.setLodgement_category("pension");
 		dto.setLodgement_hashTag("태그1&태그2");
 		dto.setLodgement_img("hotel1.jpg&hotel2.jpg");
-		dto.setLodgement_LatLng("경도 위도");
+		//dto.setLodgement_LatLng("경도 위도");
 		dto.setLodgement_location("위치");
 		dto.setLodgement_companyName("신라호텔");
 		System.out.println(dto);

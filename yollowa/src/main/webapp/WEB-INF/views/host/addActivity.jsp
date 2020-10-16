@@ -347,6 +347,8 @@ function submitClick(){
 						<div>		
 							<input type="text" class="location form-control" name="activity_location" id="sample5_address" placeholder="주소">
 							<input type="button" class="btn btn-primary" onclick="sample5_execDaumPostcode()" value="주소 검색"><br>
+							<input type="hidden" class="Lat" name="activity_Lat" value="위도"/>
+							<input type="hidden" class="Lng" name="activity_Lng" value="경도"/>
 							<div id="map" style="width:100%;height:300px;margin-top:10px;display:none"></div>
 						</div>
 					</div>
@@ -461,6 +463,10 @@ function submitClick(){
 
                         // 해당 주소에 대한 좌표를 받아서
                         var coords = new daum.maps.LatLng(result.y, result.x);
+                        
+                        $(".Lat").val(coords["Ga"]);
+                        $(".Lng").val(coords["Ha"]);
+                        
                         // 지도를 보여준다.
                         mapContainer.style.display = "block";
                         map.relayout();

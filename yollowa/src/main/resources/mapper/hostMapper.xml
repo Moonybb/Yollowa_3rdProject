@@ -28,8 +28,8 @@
 	
 	<!--host/ladd start -->
 	<insert id="insertLodgement" parameterType="com.proj.yollowa.model.entity.host.LodgementVo">
-		insert into lodgement (lodgement_userNumber, lodgement_companyName, lodgement_location, lodgement_LatLng, lodgement_category, lodgement_hashTag) values 
-							  (#{lodgement_userNumber}, #{lodgement.lodgement_companyName}, #{lodgement.lodgement_location}, #{lodgement.lodgement_LatLng}, #{lodgement.lodgement_category}, #{lodgement.lodgement_hashTag})
+		insert into lodgement (lodgement_userNumber, lodgement_companyName, lodgement_location, lodgement_Lat,lodgement_Lng, lodgement_category, lodgement_hashTag) values 
+							  (#{lodgement_userNumber}, #{lodgement.lodgement_companyName}, #{lodgement.lodgement_location}, #{lodgement.lodgement_Lat},#{lodgement.lodgement_Lng}, #{lodgement.lodgement_category}, #{lodgement.lodgement_hashTag})
 	</insert>
 	<select id="selectLodgementNum" resultType="int">
 		select lodgement_number from lodgement where lodgement_userNumber=#{lodgement_userNumber} and lodgement_companyName=#{lodgement.lodgement_companyName} and lodgement_location=#{lodgement.lodgement_location}
@@ -87,8 +87,8 @@
 	<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 	<!-- 호스트 액티비티 start ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 	<insert id="insertActivity">
-		insert into activity (activity_userNumber, activity_title, activity_location, activity_LatLng,  activity_category, activity_hashTag) 
-		values (#{activity_userNumber}, #{activity.activity_title}, #{activity.activity_location}, #{activity.activity_LatLng}, #{activity.activity_category}, #{activity.activity_hashTag})
+		insert into activity (activity_userNumber, activity_title, activity_location, activity_Lat,activity_Lng,  activity_category, activity_hashTag) 
+		values (#{activity_userNumber}, #{activity.activity_title}, #{activity.activity_location},#{activity.activity_Lat}, #{activity.activity_Lng}, #{activity.activity_category}, #{activity.activity_hashTag})
 	</insert>
 	<select id="selectActivityNum" resultType="int">
 		select activity_number from activity where activity_userNumber = #{activity_userNumber} and activity_location = #{activity.activity_location} and activity_title = #{activity.activity_title}
