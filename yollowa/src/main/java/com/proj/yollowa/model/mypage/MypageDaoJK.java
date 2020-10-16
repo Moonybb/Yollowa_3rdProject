@@ -6,11 +6,12 @@ import java.util.List;
 import com.proj.yollowa.model.entity.ReviewVo;
 import com.proj.yollowa.model.entity.SearchVo;
 import com.proj.yollowa.model.entity.UserVo;
+import com.proj.yollowa.model.entity.admin.HostrqnApprovalVo;
 import com.proj.yollowa.model.entity.mypage.ActivityReviewVo;
 import com.proj.yollowa.model.entity.mypage.LodgementReviewVo;
 
 public interface MypageDaoJK {
-	void updateToStandByHost(UserVo userVo) throws SQLException;
+	void insertHostrqn(HostrqnApprovalVo hostrqnApprovalVo) throws SQLException;
 	int getReviewCount(SearchVo searchVo) throws SQLException;
 	List<ReviewVo> getReviewList(SearchVo searchVo) throws SQLException;
 	LodgementReviewVo getLodgementReview(int reviewno) throws SQLException;

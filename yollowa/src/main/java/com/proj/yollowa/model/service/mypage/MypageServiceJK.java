@@ -6,12 +6,13 @@ import java.util.List;
 import com.proj.yollowa.model.entity.ReviewVo;
 import com.proj.yollowa.model.entity.SearchVo;
 import com.proj.yollowa.model.entity.UserVo;
+import com.proj.yollowa.model.entity.admin.HostrqnApprovalVo;
 import com.proj.yollowa.model.entity.mypage.ActivityReviewVo;
 import com.proj.yollowa.model.entity.mypage.AllReviewViewVo;
 import com.proj.yollowa.model.entity.mypage.LodgementReviewVo;
 
 public interface MypageServiceJK {
-	void updateToStandByHostService(UserVo userVo) throws SQLException;
+	void insertHostrqnServise(HostrqnApprovalVo hostrqnApprovalVo) throws SQLException;
 	int getReviewCountService(SearchVo searchVo) throws SQLException;
 	List<ReviewVo> getReviewListService(SearchVo searchVo) throws SQLException;
 	LodgementReviewVo getLodgementReviewService(int reviewno) throws SQLException;
