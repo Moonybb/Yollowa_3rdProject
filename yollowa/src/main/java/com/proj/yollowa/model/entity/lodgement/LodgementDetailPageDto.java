@@ -8,7 +8,8 @@ public class LodgementDetailPageDto {
 	private int lodgement_userNumber;
 	private String lodgement_companyName;
 	private String lodgement_location;
-	private String lodgement_LatLng;
+	private String lodgement_Lat;
+	private String lodgement_Lng;
 	private String lodgement_category;
 	private String lodgement_hashTag;
 	private int lodgement_goodCount;
@@ -64,12 +65,20 @@ public class LodgementDetailPageDto {
 		this.lodgement_location = lodgement_location;
 	}
 
-	public String getLodgement_LatLng() {
-		return lodgement_LatLng;
+	public String getLodgement_Lat() {
+		return lodgement_Lat;
 	}
 
-	public void setLodgement_LatLng(String lodgement_LatLng) {
-		this.lodgement_LatLng = lodgement_LatLng;
+	public void setLodgement_Lat(String lodgement_Lat) {
+		this.lodgement_Lat = lodgement_Lat;
+	}
+
+	public String getLodgement_Lng() {
+		return lodgement_Lng;
+	}
+
+	public void setLodgement_Lng(String lodgement_Lng) {
+		this.lodgement_Lng = lodgement_Lng;
 	}
 
 	public String getLodgement_category() {
@@ -220,7 +229,8 @@ public class LodgementDetailPageDto {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((lodgement_LatLng == null) ? 0 : lodgement_LatLng.hashCode());
+		result = prime * result + ((lodgement_Lat == null) ? 0 : lodgement_Lat.hashCode());
+		result = prime * result + ((lodgement_Lng == null) ? 0 : lodgement_Lng.hashCode());
 		result = prime * result + ((lodgement_category == null) ? 0 : lodgement_category.hashCode());
 		result = prime * result + ((lodgement_companyName == null) ? 0 : lodgement_companyName.hashCode());
 		result = prime * result + lodgement_goodCount;
@@ -257,10 +267,15 @@ public class LodgementDetailPageDto {
 		if (getClass() != obj.getClass())
 			return false;
 		LodgementDetailPageDto other = (LodgementDetailPageDto) obj;
-		if (lodgement_LatLng == null) {
-			if (other.lodgement_LatLng != null)
+		if (lodgement_Lat == null) {
+			if (other.lodgement_Lat != null)
 				return false;
-		} else if (!lodgement_LatLng.equals(other.lodgement_LatLng))
+		} else if (!lodgement_Lat.equals(other.lodgement_Lat))
+			return false;
+		if (lodgement_Lng == null) {
+			if (other.lodgement_Lng != null)
+				return false;
+		} else if (!lodgement_Lng.equals(other.lodgement_Lng))
 			return false;
 		if (lodgement_category == null) {
 			if (other.lodgement_category != null)
@@ -341,11 +356,11 @@ public class LodgementDetailPageDto {
 	public String toString() {
 		return "LodgementDetailPageDto [lodgement_number=" + lodgement_number + ", lodgement_userNumber="
 				+ lodgement_userNumber + ", lodgement_companyName=" + lodgement_companyName + ", lodgement_location="
-				+ lodgement_location + ", lodgement_LatLng=" + lodgement_LatLng + ", lodgement_category="
-				+ lodgement_category + ", lodgement_hashTag=" + lodgement_hashTag + ", lodgement_goodCount="
-				+ lodgement_goodCount + ", lodgement_reviewGradeRate=" + lodgement_reviewGradeRate
-				+ ", lodgement_reviewCount=" + lodgement_reviewCount + ", lodgement_img=" + lodgement_img
-				+ ", lodgement_temp=" + lodgement_temp + ", roomInfo_roomNumber=" + roomInfo_roomNumber
+				+ lodgement_location + ", lodgement_Lat=" + lodgement_Lat + ", lodgement_Lng=" + lodgement_Lng
+				+ ", lodgement_category=" + lodgement_category + ", lodgement_hashTag=" + lodgement_hashTag
+				+ ", lodgement_goodCount=" + lodgement_goodCount + ", lodgement_reviewGradeRate="
+				+ lodgement_reviewGradeRate + ", lodgement_reviewCount=" + lodgement_reviewCount + ", lodgement_img="
+				+ lodgement_img + ", lodgement_temp=" + lodgement_temp + ", roomInfo_roomNumber=" + roomInfo_roomNumber
 				+ ", roomInfo_articleNumber=" + roomInfo_articleNumber + ", roomInfo_name=" + roomInfo_name
 				+ ", roomInfo_peakPrice=" + roomInfo_peakPrice + ", roomInfo_offPeakPrice=" + roomInfo_offPeakPrice
 				+ ", roomInfo_peakStartDate=" + roomInfo_peakStartDate + ", roomInfo_peakEndDate="
@@ -355,17 +370,19 @@ public class LodgementDetailPageDto {
 	}
 
 	public LodgementDetailPageDto(int lodgement_number, int lodgement_userNumber, String lodgement_companyName,
-			String lodgement_location, String lodgement_LatLng, String lodgement_category, String lodgement_hashTag,
-			int lodgement_goodCount, double lodgement_reviewGradeRate, int lodgement_reviewCount, String lodgement_img,
-			int lodgement_temp, int roomInfo_roomNumber, int roomInfo_articleNumber, String roomInfo_name,
-			int roomInfo_peakPrice, int roomInfo_offPeakPrice, Date roomInfo_peakStartDate, Date roomInfo_peakEndDate,
-			int roomInfo_minPeople, int roomInfo_maxPeople, int roomInfo_extraPrice, String roomInfo_img) {
+			String lodgement_location, String lodgement_Lat, String lodgement_Lng, String lodgement_category,
+			String lodgement_hashTag, int lodgement_goodCount, double lodgement_reviewGradeRate,
+			int lodgement_reviewCount, String lodgement_img, int lodgement_temp, int roomInfo_roomNumber,
+			int roomInfo_articleNumber, String roomInfo_name, int roomInfo_peakPrice, int roomInfo_offPeakPrice,
+			Date roomInfo_peakStartDate, Date roomInfo_peakEndDate, int roomInfo_minPeople, int roomInfo_maxPeople,
+			int roomInfo_extraPrice, String roomInfo_img) {
 		super();
 		this.lodgement_number = lodgement_number;
 		this.lodgement_userNumber = lodgement_userNumber;
 		this.lodgement_companyName = lodgement_companyName;
 		this.lodgement_location = lodgement_location;
-		this.lodgement_LatLng = lodgement_LatLng;
+		this.lodgement_Lat = lodgement_Lat;
+		this.lodgement_Lng = lodgement_Lng;
 		this.lodgement_category = lodgement_category;
 		this.lodgement_hashTag = lodgement_hashTag;
 		this.lodgement_goodCount = lodgement_goodCount;
@@ -385,6 +402,7 @@ public class LodgementDetailPageDto {
 		this.roomInfo_extraPrice = roomInfo_extraPrice;
 		this.roomInfo_img = roomInfo_img;
 	}
+
 	
 	
 	

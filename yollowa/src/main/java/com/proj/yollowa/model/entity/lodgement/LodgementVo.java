@@ -1,12 +1,15 @@
 package com.proj.yollowa.model.entity.lodgement;
 
+import java.util.Arrays;
+
 public class LodgementVo {
 
 	private int lodgement_number;
 	private int lodgement_userNumber;
 	private String lodgement_companyName;
 	private String lodgement_location;
-	private String lodgement_LatLng;
+	private String lodgement_Lat;
+	private String lodgement_Lng;
 	private String lodgement_category;
 	private String lodgement_hashTag;
 	private int lodgement_goodCount;
@@ -16,16 +19,8 @@ public class LodgementVo {
 	private int lodgement_temp;
 	private String[] hashTag;
 	
-	
-	public String[] getHashTag() {
-		return hashTag;
-	}
-
-	public void setHashTag(String[] hashTag) {
-		this.hashTag = hashTag;
-	}
-
 	public LodgementVo() {
+		// TODO Auto-generated constructor stub
 	}
 
 	public int getLodgement_number() {
@@ -60,12 +55,20 @@ public class LodgementVo {
 		this.lodgement_location = lodgement_location;
 	}
 
-	public String getLodgement_LatLng() {
-		return lodgement_LatLng;
+	public String getLodgement_Lat() {
+		return lodgement_Lat;
 	}
 
-	public void setLodgement_LatLng(String lodgement_LatLng) {
-		this.lodgement_LatLng = lodgement_LatLng;
+	public void setLodgement_Lat(String lodgement_Lat) {
+		this.lodgement_Lat = lodgement_Lat;
+	}
+
+	public String getLodgement_Lng() {
+		return lodgement_Lng;
+	}
+
+	public void setLodgement_Lng(String lodgement_Lng) {
+		this.lodgement_Lng = lodgement_Lng;
 	}
 
 	public String getLodgement_category() {
@@ -124,12 +127,23 @@ public class LodgementVo {
 		this.lodgement_temp = lodgement_temp;
 	}
 
+	public String[] getHashTag() {
+		return hashTag;
+	}
+
+	public void setHashTag(String[] hashTag) {
+		this.hashTag = hashTag;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((lodgement_LatLng == null) ? 0 : lodgement_LatLng.hashCode());
+		result = prime * result + Arrays.hashCode(hashTag);
+		result = prime * result + ((lodgement_Lat == null) ? 0 : lodgement_Lat.hashCode());
+		result = prime * result + ((lodgement_Lng == null) ? 0 : lodgement_Lng.hashCode());
 		result = prime * result + ((lodgement_category == null) ? 0 : lodgement_category.hashCode());
+		result = prime * result + ((lodgement_companyName == null) ? 0 : lodgement_companyName.hashCode());
 		result = prime * result + lodgement_goodCount;
 		result = prime * result + ((lodgement_hashTag == null) ? 0 : lodgement_hashTag.hashCode());
 		result = prime * result + ((lodgement_img == null) ? 0 : lodgement_img.hashCode());
@@ -140,7 +154,6 @@ public class LodgementVo {
 		temp = Double.doubleToLongBits(lodgement_reviewGradeRate);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + lodgement_temp;
-		result = prime * result + ((lodgement_companyName == null) ? 0 : lodgement_companyName.hashCode());
 		result = prime * result + lodgement_userNumber;
 		return result;
 	}
@@ -154,15 +167,27 @@ public class LodgementVo {
 		if (getClass() != obj.getClass())
 			return false;
 		LodgementVo other = (LodgementVo) obj;
-		if (lodgement_LatLng == null) {
-			if (other.lodgement_LatLng != null)
+		if (!Arrays.equals(hashTag, other.hashTag))
+			return false;
+		if (lodgement_Lat == null) {
+			if (other.lodgement_Lat != null)
 				return false;
-		} else if (!lodgement_LatLng.equals(other.lodgement_LatLng))
+		} else if (!lodgement_Lat.equals(other.lodgement_Lat))
+			return false;
+		if (lodgement_Lng == null) {
+			if (other.lodgement_Lng != null)
+				return false;
+		} else if (!lodgement_Lng.equals(other.lodgement_Lng))
 			return false;
 		if (lodgement_category == null) {
 			if (other.lodgement_category != null)
 				return false;
 		} else if (!lodgement_category.equals(other.lodgement_category))
+			return false;
+		if (lodgement_companyName == null) {
+			if (other.lodgement_companyName != null)
+				return false;
+		} else if (!lodgement_companyName.equals(other.lodgement_companyName))
 			return false;
 		if (lodgement_goodCount != other.lodgement_goodCount)
 			return false;
@@ -190,11 +215,6 @@ public class LodgementVo {
 			return false;
 		if (lodgement_temp != other.lodgement_temp)
 			return false;
-		if (lodgement_companyName == null) {
-			if (other.lodgement_companyName != null)
-				return false;
-		} else if (!lodgement_companyName.equals(other.lodgement_companyName))
-			return false;
 		if (lodgement_userNumber != other.lodgement_userNumber)
 			return false;
 		return true;
@@ -204,23 +224,24 @@ public class LodgementVo {
 	public String toString() {
 		return "LodgementVo [lodgement_number=" + lodgement_number + ", lodgement_userNumber=" + lodgement_userNumber
 				+ ", lodgement_companyName=" + lodgement_companyName + ", lodgement_location=" + lodgement_location
-				+ ", lodgement_LatLng=" + lodgement_LatLng + ", lodgement_category=" + lodgement_category
-				+ ", lodgement_hashTag=" + lodgement_hashTag + ", lodgement_goodCount=" + lodgement_goodCount
-				+ ", lodgement_reviewGradeRate=" + lodgement_reviewGradeRate + ", lodgement_reviewCount="
-				+ lodgement_reviewCount + ", lodgement_img=" + lodgement_img + ", lodgement_temp=" + lodgement_temp
-				+ "]";
+				+ ", lodgement_Lat=" + lodgement_Lat + ", lodgement_Lng=" + lodgement_Lng + ", lodgement_category="
+				+ lodgement_category + ", lodgement_hashTag=" + lodgement_hashTag + ", lodgement_goodCount="
+				+ lodgement_goodCount + ", lodgement_reviewGradeRate=" + lodgement_reviewGradeRate
+				+ ", lodgement_reviewCount=" + lodgement_reviewCount + ", lodgement_img=" + lodgement_img
+				+ ", lodgement_temp=" + lodgement_temp + ", hashTag=" + Arrays.toString(hashTag) + "]";
 	}
 
 	public LodgementVo(int lodgement_number, int lodgement_userNumber, String lodgement_companyName,
-			String lodgement_location, String lodgement_LatLng, String lodgement_category, String lodgement_hashTag,
-			int lodgement_goodCount, double lodgement_reviewGradeRate, int lodgement_reviewCount, String lodgement_img,
-			int lodgement_temp) {
+			String lodgement_location, String lodgement_Lat, String lodgement_Lng, String lodgement_category,
+			String lodgement_hashTag, int lodgement_goodCount, double lodgement_reviewGradeRate,
+			int lodgement_reviewCount, String lodgement_img, int lodgement_temp, String[] hashTag) {
 		super();
 		this.lodgement_number = lodgement_number;
 		this.lodgement_userNumber = lodgement_userNumber;
 		this.lodgement_companyName = lodgement_companyName;
 		this.lodgement_location = lodgement_location;
-		this.lodgement_LatLng = lodgement_LatLng;
+		this.lodgement_Lat = lodgement_Lat;
+		this.lodgement_Lng = lodgement_Lng;
 		this.lodgement_category = lodgement_category;
 		this.lodgement_hashTag = lodgement_hashTag;
 		this.lodgement_goodCount = lodgement_goodCount;
@@ -228,7 +249,9 @@ public class LodgementVo {
 		this.lodgement_reviewCount = lodgement_reviewCount;
 		this.lodgement_img = lodgement_img;
 		this.lodgement_temp = lodgement_temp;
+		this.hashTag = hashTag;
 	}
+	
 	
 	
 	
