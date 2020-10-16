@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.proj.yollowa.interceptor.Auth;
 import com.proj.yollowa.interceptor.AuthUser;
@@ -102,6 +104,32 @@ public class MypageController {
 			return "";
 		}
 		return null;
+	}
+	
+	@Auth
+	@RequestMapping(value = "/userinfo/searchpw",method = RequestMethod.POST)
+	@ResponseBody
+	public Object searchPw(@AuthUser UserVo userVo,@RequestParam String password) throws SQLException {
+		
+		System.out.println(password);
+		
+		return myPageService.searchPassword(userVo.getUser_id(), password);
+	}
+	
+	
+	@Auth
+	@RequestMapping(value = "/userinfo/changepw",method = RequestMethod.GET)
+	public String changePw() {
+		return "mypage/changepw";
+	}
+	@Auth
+	@RequestMapping(value = "/userinfo/changepw",method = RequestMethod.POST)
+	@ResponseBody
+	public String changePw(@AuthUser UserVo userVo,@RequestParam String password) throws SQLException {
+		System.out.println(password);
+		myPageService.changePasswordService(userVo.getUser_number(),password);
+		
+		return "success";
 	}
 	
 }
