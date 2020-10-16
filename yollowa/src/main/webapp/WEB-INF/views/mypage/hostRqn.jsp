@@ -57,66 +57,7 @@ ul {
 <body>
 	<%@ include file="../template/header.jspf"%>
 	<%@ include file="../template/menu.jspf"%>
-	<div class="container">
-		<div class="page-header">
-			<p>메인 페이지 > 마이 페이지 > 사업자 등록</p>
-			<h1>
-				<a class="mypageLink"
-					href="${pageContext.request.contextPath }/mypage/">사업자 등록</a> <small>
-					욜로와가 여러분을 도와드리겠습니다</small>
-			</h1>
-		</div>
-
-		<div class="row">
-			<div class="col-md-3">
-				<div class="card border-primary mb-3" style="max-width: 20rem;">
-					<div class="card-header bg-primary">
-						<a class="card-link" style="color: white;"
-							href="${pageContext.request.contextPath }/mypage/">> 마이페이지</a>
-					</div>
-					<div class="card-body">
-						<p class="card-text">
-							<a class="card-link"
-								href="${pageContext.request.contextPath }/mypage/">예약 현황</a>
-						</p>
-						<p class="card-text">
-							<a class="card-link"
-								href="${pageContext.request.contextPath }/mypage/completed">이용
-								내역</a>
-						</p>
-						<p class="card-text">
-							<a class="card-link"
-								href="${pageContext.request.contextPath }/mypage/cart">장바구니</a>
-						</p>
-						<p class="card-text">
-							<a class="card-link"
-								href="${pageContext.request.contextPath }/mypage/wishlist">찜
-								목록</a>
-						</p>
-					</div>
-				</div>
-				<div class="card border-secondary mb-3" style="max-width: 20rem;">
-					<div class="card-header bg-secondary" style="color: white;">>
-						내가 쓴 글</div>
-					<div class="card-body">
-						<p class="card-text">
-							<a class="card-link"
-								href="${pageContext.request.contextPath }/mypage/myreview">내가
-								쓴 리뷰</a>
-						</p>
-						<p class="card-text">
-							<a class="card-link"
-								href="${pageContext.request.contextPath }/mypage/qna">내가 쓴
-								Q&A</a>
-						</p>
-						<p class="card-text">
-							<a class="card-link"
-								href="${pageContext.request.contextPath }/mypage/userinfo">내
-								정보</a>
-						</p>
-					</div>
-				</div>
-			</div>
+	<%@ include file="../template/mypagemenu1.jspf" %>
 			<div class="col-md-9">
 				<div class="jumbotron">
 					<h3>사업자 여러분을 환영합니다!!</h3>
@@ -140,7 +81,7 @@ ul {
 					<form method="post" action="${pageContext.request.contextPath }/mypage/hostRqn/applyed">
 						<div class="form-group">
 						  <fieldset disabled="disabled">
-						    <label class="control-label" for="disabledInput">신청자${bean.user_number }</label>
+						    <label class="control-label" for="disabledInput">신청자</label>
 						    <input class="form-control" id="disabledInput" type="text" placeholder="신청인을 입력하세요" disabled="disabled" value="${bean.user_name }"/>
 						  </fieldset>
 						</div>
@@ -170,9 +111,7 @@ ul {
 					</form>
 				</div>
 			</div>
-		</div>
-
-	</div>
+	<%@ include file="../template/mypagemenu2.jspf" %>
 	<%@ include file="../template/footer.jspf"%>
 </body>
 </html>
