@@ -38,6 +38,10 @@ ul {
 .card-link:hover {
 	color: #433387;
 }
+	#radios span {
+	    margin-right: 30px;
+	    display: inline-block;
+	}
 </style>
 <script type="text/javascript">
 	$(function() {
@@ -114,7 +118,6 @@ ul {
 				</div>
 			</div>
 			<div class="col-md-9">
-				<c:if test="${bean.user_level eq 0}">
 				<div class="jumbotron">
 					<h3>사업자 여러분을 환영합니다!!</h3>
 					<p class="lead">
@@ -137,43 +140,35 @@ ul {
 					<form method="post" action="${pageContext.request.contextPath }/mypage/hostRqn/applyed">
 						<div class="form-group">
 						  <fieldset disabled="disabled">
-						    <label class="control-label" for="disabledInput">신청자</label>
+						    <label class="control-label" for="disabledInput">신청자${bean.user_number }</label>
 						    <input class="form-control" id="disabledInput" type="text" placeholder="신청인을 입력하세요" disabled="disabled" value="${bean.user_name }"/>
 						  </fieldset>
 						</div>
-					 	<input type="hidden" name="user_number" value="${bean.user_number }" />
 						<div class="form-group">
-						  <label class="col-form-label" for="user_companyNumber">사업자 번호</label>
-						  <input type="text" name="user_companyNumber" class="form-control" placeholder="사업자 번호를 입력하세요" id="user_companyNumber">
+							 <label class="control-label" for="disabledInput">유형</label>
+							 <div class="custom-control custom-radio" id="radios">
+							 	<span>
+								   <input type="radio" id="customRadio1" name="hostrqn_info" class="custom-control-input" checked="checked" value="1">
+								   <label class="custom-control-label" for="customRadio1">숙박</label>
+							    </span>
+							 	<span>
+								   <input type="radio" id="customRadio2" name="hostrqn_info" class="custom-control-input" value="2">
+								   <label class="custom-control-label" for="customRadio2">액티비티</label>
+							    </span>
+							 </div>
 						</div>
 						<div class="form-group">
-						  <label class="col-form-label" for="user_companyName">업소명</label>
-						  <input type="text" name="user_companyName" class="form-control" placeholder="영업소 이름을 입력하세요" id="user_companyName">
+						  <label class="col-form-label" for="hostrqn_companyNumber">사업자 번호</label>
+						  <input type="hidden" name="hostrqn_userNo" value="${bean.user_number }" />
+						  <input type="text" name="hostrqn_companyNumber" class="form-control" placeholder="사업자 번호를 입력하세요" id="hostrqn_companyNumber">
+						</div>
+						<div class="form-group">
+						  <label class="col-form-label" for="hostrqn_companyName">업소명</label>
+						  <input type="text" name="hostrqn_companyName" class="form-control" placeholder="영업소 이름을 입력하세요" id="hostrqn_companyName">
 						</div>
 						<button type="submit" class="btn btn-primary btn-lg">신청하기</button>
-					
 					</form>
 				</div>
-				</c:if>
-				<c:if test="${user_level eq 9}">>
-					<div class="jumbotron">
-					<h3>신청이 완료되었습니다!!</h3>
-					<p class="lead">
-					@@@@@@
-					</p>
-					<hr class="my-4">
-					<p>
-					<h4>@@@@@@</h4>
-					<p class="lead">
-					<br/>
-					신청 처리에는 1~3일이 소요됩니다. 파트너 센터: 02-3486-0000
-					</p>
-					<p class="lead">
-						<a class="btn btn-primary btn-lg" href="#" role="button">Learn
-							more</a>
-					</p>
-				</div>
-				</c:if>
 			</div>
 		</div>
 

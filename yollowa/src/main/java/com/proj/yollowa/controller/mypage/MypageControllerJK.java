@@ -16,6 +16,7 @@ import com.proj.yollowa.interceptor.Auth;
 import com.proj.yollowa.interceptor.AuthUser;
 import com.proj.yollowa.model.entity.SearchVo;
 import com.proj.yollowa.model.entity.UserVo;
+import com.proj.yollowa.model.entity.admin.HostrqnApprovalVo;
 import com.proj.yollowa.model.service.cs.QnaReplyService;
 import com.proj.yollowa.model.service.cs.QnaService;
 import com.proj.yollowa.model.service.mypage.MypageService;
@@ -50,12 +51,14 @@ public class MypageControllerJK {
 	//사업자 권한을 신청한다
 	@Auth
 	@RequestMapping(value = "/hostRqn/applyed",method = RequestMethod.POST)
-	public String hostRqnApplyed(@AuthUser UserVo userVo,Model model, @ModelAttribute UserVo paramUserVo) throws SQLException {
+	public String hostRqnApplyed(@AuthUser UserVo userVo,Model model, @ModelAttribute HostrqnApprovalVo paramVo) throws SQLException {
+		System.out.println("is Working");
 		UserVo user=myPageService.userDetailService(model,userVo.getUser_number());
 		if(user==null) {
 			return "redirect:../";
 		}
-		mypageServiceJK.updateToStandByHostService(paramUserVo);
+		System.out.println("@@@@@@@@@@@@"+paramVo);
+		mypageServiceJK.insertHostrqnServise(paramVo);
 		return "redirect:../hostRqn";
 	}
 	//사용자가 작성한 리뷰를 표시한다

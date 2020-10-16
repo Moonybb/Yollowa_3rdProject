@@ -15,9 +15,10 @@ import org.springframework.web.servlet.ModelAndView;
 import com.proj.yollowa.interceptor.Auth;
 import com.proj.yollowa.interceptor.Auth.Role;
 import com.proj.yollowa.interceptor.AuthManager;
-import com.proj.yollowa.model.adminpage.AdminpageDao;
+import com.proj.yollowa.model.adminpage.AdminDao;
 import com.proj.yollowa.model.entity.ManagerVo;
 import com.proj.yollowa.model.entity.UserVo;
+import com.proj.yollowa.model.entity.admin.HostrqnApprovalVo;
 import com.proj.yollowa.model.entity.cs.NoticeVo;
 import com.proj.yollowa.model.service.admin.AdminpageService;
 
@@ -45,9 +46,14 @@ public class AdminpageController {
 	}
 	
 	//호스트 권한을 부여한다
-	@RequestMapping(value = "/hostApprovalStandbyList/hostApproval/userNum={user_number},userLevel={user_level}", method = RequestMethod.GET)
-	public String hostApproval(@PathVariable("user_number") int user_number, @PathVariable("user_level") int user_level) throws SQLException {
-		adminpageService.updateUserLevelToHostService(user_number, user_level);
+	@RequestMapping(value = "/hostApprovalStandbyList/hostApproval/hostrqn_no={hostrqn_no},userLevel={user_level}", method = RequestMethod.GET)
+	public String hostApproval(@PathVariable("hostrqn_no") int hostrqn_no, @PathVariable("user_level") int user_level) throws SQLException {
+		System.out.println(hostrqn_no+"&"+user_level);
+		HostrqnApprovalVo hostrqnApprovalVo = adminpageService.getHostApprovalStandbyService(hostrqn_no);
+		UserVo userVo=adminpageService.updateHostPreProcessService(hostrqnApprovalVo.getHostrqn_userNo(), hostrqn_no);
+		userVo.setUser_level(user_level);
+		adminpageService.updateUserLevelToHostService(userVo, hostrqnApprovalVo.getHostrqn_info());
+		adminpageService.deleteOneHostrqnService(hostrqn_no);
 		return "redirect:../";
 	}
 	
