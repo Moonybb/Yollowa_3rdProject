@@ -95,9 +95,9 @@
 <%@ include file="../template/header.jspf" %>
 <%@ include file="../template/menu.jspf" %>
 <div class="container">
-		<div class="page-header">
-		<p> <a href="../">메인 페이지</a> > 고객센터 > Q&amp;A </p>
-		<h1>Q&amp;A <small> 이 곳은 고객님들의 질문에 답변해드리는 공간입니다.</small></h1>
+	<div class="page-header">
+		<p> <a href="../">메인 페이지</a> > 고객센터 > Faq</p>
+		<h1>Faq <small> 고객님들께서 자주 물으시는 사항에 대해 알려드립니다.</small></h1>
 	</div>
 	<div class="row">
 		<div id="category" class="col-md-2">

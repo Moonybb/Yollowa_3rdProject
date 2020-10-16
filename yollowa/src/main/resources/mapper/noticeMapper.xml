@@ -6,7 +6,7 @@
 	<select id="getNoticeList" resultType="com.proj.yollowa.model.entity.cs.NoticeVo">
 		<![CDATA[
 		SELECT 
-			NOTICENO, TITLE, WRITER, CONTENT, WRITEDDATE, CNT 
+			NOTICENO, TITLE, WRITER, CONTENT, WRITEDDATE 
 		FROM NOTICE 
 		WHERE NOTICENO>0
 		]]>

@@ -8,19 +8,17 @@ public class FaqVo {
 	private String writer;
 	private String content;
 	private Date writeddate;
-	private int cnt;
 	
 	public FaqVo() {
 	}
 
-	public FaqVo(int faqno, String title, String writer, String content, Date writeddate, int cnt) {
+	public FaqVo(int faqno, String title, String writer, String content, Date writeddate) {
 		super();
 		this.faqno = faqno;
 		this.title = title;
 		this.writer = writer;
 		this.content = content;
 		this.writeddate = writeddate;
-		this.cnt = cnt;
 	}
 
 	public int getFaqno() {
@@ -63,19 +61,10 @@ public class FaqVo {
 		this.writeddate = writeddate;
 	}
 
-	public int getCnt() {
-		return cnt;
-	}
-
-	public void setCnt(int cnt) {
-		this.cnt = cnt;
-	}
-
 	@Override
 	public String toString() {
 		return "FaqVo [faqno=" + faqno + ", title=" + title + ", writer=" + writer + ", content=" + content
-				+ ", writeddate=" + writeddate + ", cnt=" + cnt + "]";
+				+ ", writeddate=" + writeddate + "]";
 	}
-	
 	
 }
