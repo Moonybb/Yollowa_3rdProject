@@ -158,37 +158,33 @@ $(document).ready(function() {
 			<table class="table">
 			  <thead class="thead-light">
 			    <tr>
-			      <th>회원번호</th>
-			      <th>아이디</th>
-			      <th>이름</th>
+			      <th>신청자</th>
 			      <th>전화번호</th>
 			      <th>이메일</th>
 			      <th>사업자등록번호</th>
 			      <th>상호</th>
-			      <th>권한</th>
+			      <th>현재 권한</th>
 			      <th>부여할 권한</th>
 			      <th>승인</th>
 			    </tr>
 			  </thead>
 			  <tbody>
-			  <c:forEach items="${list }" var="user" varStatus="status">
+			  <c:forEach items="${list }" var="list" varStatus="status">
 			    <tr>
-			      <td>${user.user_number }</td>
-			      <td>${user.user_id }</td>
-			      <td>${user.user_name }</td>
-			      <td>${user.user_phoneNumber }</td>
-			      <td>${user.user_email }</td>
-			      <td>${user.user_companyNumber }</td>
-			      <td>${user.user_companyName }</td>
+			      <td>${list.user_name }</td>
+			      <td>${list.user_phoneNumber }</td>
+			      <td>${list.user_email }</td>
+			      <td>${list.hostrqn_companyNumber }</td>
+			      <td>${list.hostrqn_companyName }</td>
 			      <td>
-			      	일반
+			      	${list.user_level }
 			      </td>
 			      <td>
 	 				<select id="userType${status.count }" class="selectors">
-						<option value="userNum=${user.user_number },userLevel=0">일반</option>
-						<option value="userNum=${user.user_number },userLevel=11">숙박</option>
-						<option value="userNum=${user.user_number },userLevel=12">액티비티</option>
-						<option value="userNum=${user.user_number },userLevel=13">복수 사업자</option>
+						<option value="hostrqn_no=${list.hostrqn_no },userLevel=0">일반</option>
+						<option value="hostrqn_no=${list.hostrqn_no },userLevel=11">숙박</option>
+						<option value="hostrqn_no=${list.hostrqn_no },userLevel=12">액티비티</option>
+						<option value="hostrqn_no=${list.hostrqn_no },userLevel=13">복수 사업자</option>
 					</select>
 				  </td>
 		      	 	<td><a id="a${status.count }" href="">승인</a></td>

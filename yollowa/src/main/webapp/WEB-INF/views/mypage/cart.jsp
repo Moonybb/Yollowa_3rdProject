@@ -40,6 +40,11 @@ ul {
 	color: #433387;
 }
 </style>
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath }/resources/vendor/bootstrap/js/bootstrap.js" />
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
 <script type="text/javascript">
 	$(function() {
 		$('.card-body p>a').on('mouseenter', function() {
@@ -65,7 +70,7 @@ ul {
 			<a style="margin-bottom:10px;"
 				href="${pageContext.request.contextPath }/mypage/cart/1"
 				class="btn btn-primary">액티비티 보기</a>
-			<c:forEach items="${cartinfo }" var="info">
+			<c:forEach items="${cartinfo }" var="info" varStatus="status">
 				<div class="jumbotron">
 				<!-- 룸정보는 rsvinfo에 들어있는 게시물넘버와 숙박 게시물번호와 같을때 출력 -->
 					<h3>${info.lodgement_companyName }</h3>
@@ -86,6 +91,60 @@ ul {
 					<hr class="my-4">	
 						<a class="btn btn-lg lodgeDetail" href="${pageContext.request.contextPath }/lodgement/detail/${info.lReservInfo_acticleNumber}" role="button" style="display: block;" >숙박 업체 자세히 보기</a>
 					</p>
+					<p class="lead"  style="text-align: right;">
+						<button class="btn btn-danger delete" >삭제</button>
+					</p>
+					<script type="text/javascript">
+						$('.delete').on('click',function(){
+							swal({
+								title:"정말 삭제 하시겠습니까?",
+							    icon: "warning",
+						    	buttons :{
+							    	confirm:{
+							    		text:'확인',
+							    		value:true,
+							    		className:'btn btn-danger'
+							    	},
+							    	cancle:{
+							    		text:'취소',
+							    	 	value:false,
+							    	 	className:'btn btn-primary'
+							    	}
+							    }
+							}).then((result) =>{
+								if(result){
+									 $.ajax({
+										method:"GET",
+										url: "./delete/",
+										data:{ 
+												service:"${service}",
+												reservNumber:"${info.lReservInfo_number}"
+										},
+									 	success:function(){
+									 		swal({
+												title:"삭제 되었습니다.",
+											    icon: "success",
+										    	buttons :{
+											    	confirm:{
+											    		text:'확인',
+											    		value:true,
+											    		className:'btn btn-primary'
+											    	}
+											    }
+									 		}).then((result) =>{
+									 			if(result){
+											 		window.location.href="../cart/${service}";
+									 			}
+									 		});
+									 	}
+									}); 
+									//ajax끝
+								}else{
+									
+								}
+							});
+						});
+					</script>
 				</div>
 				</c:forEach>
 			</c:if>
@@ -109,6 +168,60 @@ ul {
 					<hr class="my-4">	
 						<a class="btn btn-lg lodgeDetail" href="${pageContext.request.contextPath }/activity/detail/${info.aReservInfo_articleNumber}" role="button" style="display: block;" >업체 자세히 보기</a>
 					</p>
+					<p class="lead" style="text-align: right;">
+						<button class="btn btn-danger delete" >삭제</button>
+					</p>
+					<script type="text/javascript">
+						$('.delete').on('click',function(){
+							swal({
+								title:"정말 삭제 하시겠습니까?",
+							    icon: "warning",
+						    	buttons :{
+							    	confirm:{
+							    		text:'확인',
+							    		value:true,
+							    		className:'btn btn-danger'
+							    	},
+							    	cancle:{
+							    		text:'취소',
+							    	 	value:false,
+							    	 	className:'btn btn-primary'
+							    	}
+							    }
+							}).then((result) =>{
+								if(result){
+									 $.ajax({
+										method:"GET",
+										url: "./delete/",
+										data:{ 
+												service:"${service}",
+												reservNumber:"${info.aReservInfo_number}"
+										},
+									 	success:function(){
+									 		swal({
+												title:"삭제 되었습니다.",
+											    icon: "success",
+										    	buttons :{
+											    	confirm:{
+											    		text:'확인',
+											    		value:true,
+											    		className:'btn btn-primary'
+											    	}
+											    }
+									 		}).then((result) =>{
+									 			if(result){
+											 		window.location.href="../cart/${service}";
+									 			}
+									 		});
+									 	}
+									}); 
+									//ajax끝
+								}else{
+									
+								}
+							});
+						});
+					</script>
 				</div>
 				</c:forEach>
 			</c:if>

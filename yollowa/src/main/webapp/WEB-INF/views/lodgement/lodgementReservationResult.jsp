@@ -28,7 +28,6 @@
 			location.href="${pageContext.request.contextPath}";
 			
 		}
-		
 		count--;
 	}
 </script>

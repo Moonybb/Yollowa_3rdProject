@@ -3,15 +3,14 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.proj.yollowa.model.mypage.MypageDaoJK">
-	<!--사업자 권한 신청자를 승인 대기 중인 상태로 만든다  -->	
-	<update id="updateToStandByHost">
-	UPDATE USER 
-	SET 
-		USER_COMPANYNUMBER = #{user_companyNumber}, 
-		USER_COMPANYNAME = #{user_companyName}, 
-		USER_LEVEL = 9 
-	WHERE (USER_NUMBER = #{user_number})
-	</update>
+	<!-- hostrqn 삽입 -->
+	<insert id="insertHostrqn">
+	INSERT INTO HOSTRQN 
+		(HOSTRQN_USERNO, HOSTRQN_COMPANYNUMBER, HOSTRQN_COMPANYNAME, HOSTRQN_INFO) 
+	VALUES 
+		(#{hostrqn_userNo}, #{hostrqn_companyNumber}, #{hostrqn_companyName}, #{hostrqn_info})
+	</insert>
+	
 	
 	<!-- 사용자의 모든 리뷰 개수를 반환한다 -->
 	<select id="getReviewCount" resultType="int">

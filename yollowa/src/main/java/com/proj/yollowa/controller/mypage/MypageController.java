@@ -88,5 +88,23 @@ public class MypageController {
 		return "mypage/userinfo";
 	}
 	
+	@Auth
+	@RequestMapping(value = "/cart/delete/",method=RequestMethod.GET)
+	public String deleteCart(HttpServletRequest req,@AuthUser UserVo userVo,Model model) {
+		
+		
+		try {
+			int result=myPageService.cartDeleteService(req.getParameter("service"), Integer.parseInt(req.getParameter("reservNumber")), userVo.getUser_number());
+			if(result>0) {
+				return "mypage/cart";
+			}
+			
+		} catch (Exception e) {
+			return "";
+		}
+		
+		
+		return null;
+	}
 	
 }

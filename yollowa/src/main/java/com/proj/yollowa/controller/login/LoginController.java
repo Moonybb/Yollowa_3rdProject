@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.proj.yollowa.auth.SNSLogin;
@@ -179,5 +180,32 @@ public class LoginController {
 		return "redirect:../login/";
 	}
 	
+	///// 아이디 찾기
+	@RequestMapping(value = "login/FindId")
+	public String findId() throws SQLException {
+		
+		return "login/findId";
+	}
+	
+	
+	///// 패스워드 찾기
+	@RequestMapping(value = "login/Findpassword")
+	public String findPassword() throws SQLException{
+		
+		return "login/findPassword";
+	}
+	
+	
 
 }
+
+
+
+
+
+
+
+
+
+
+

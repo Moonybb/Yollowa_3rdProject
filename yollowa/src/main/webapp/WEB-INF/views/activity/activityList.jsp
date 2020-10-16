@@ -300,6 +300,12 @@ pointer-events:auto;
 <script type="text/javascript">
 	$(document).ready(function(){
 		
+		var filterCnt = $('#filterCnt').val();
+		
+		if(filterCnt!=''){
+			$('.cntSpan').text(filterCnt);
+		}
+		
 		// Inspiration: https://tympanus.net/codrops/2012/10/04/custom-drop-down-list-styling/
 
 		function DropDown(el) {
@@ -536,7 +542,7 @@ pointer-events:auto;
 		$('.ski').show();
 		$('.kid').show();
 		
-		$('#s').text($('.allList').length+"건의 검색결과");
+		$('.cntSpan').text($('.allList').length);
 	};
 	
 	function outdoorR(){
@@ -550,7 +556,7 @@ pointer-events:auto;
 		$('.kid').hide();
 
 		
-		$('#s').text($('.outdoor').length+"건의 검색결과");
+		$('.cntSpan').text($('.outdoor').length);
 	};
 	
 	
@@ -564,7 +570,7 @@ pointer-events:auto;
 		$('.ski').hide();
 		$('.kid').hide();
 		
-		$('#s').text($('.bungee').length+"건의 검색결과");
+		$('.cntSpan').text($('.bungee').length);
 	};
 	
 	
@@ -579,7 +585,7 @@ pointer-events:auto;
 		$('.kid').hide();
 
 		
-		$('#s').text($('.cruise').length+"건의 검색결과");
+		$('.cntSpan').text($('.cruise').length);
 	};
 	function waterR(){
 		$('.outdoor').hide();
@@ -592,7 +598,7 @@ pointer-events:auto;
 		$('.kid').hide();
 
 		
-		$('#s').text($('.water').length+"건의 검색결과");
+		$('.cntSpan').text($('.water').length);
 	};
 	function spaR(){
 		$('.outdoor').hide();
@@ -605,7 +611,7 @@ pointer-events:auto;
 		$('.kid').hide();
 
 		
-		$('#s').text($('.spa').length+"건의 검색결과");
+		$('.cntSpan').text($('.spa').length);
 	};
 	function natureR(){
 		$('.outdoor').hide();
@@ -618,7 +624,7 @@ pointer-events:auto;
 		$('.kid').hide();
 
 		
-		$('#s').text($('.nature').length+"건의 검색결과");
+		$('.cntSpan').text($('.nature').length);
 	};
 	function skiR(){
 		$('.outdoor').hide();
@@ -631,7 +637,7 @@ pointer-events:auto;
 		$('.kid').hide();
 
 		
-		$('#s').text($('.ski').length+"건의 검색결과");
+		$('.cntSpan').text($('.ski').length);
 	};
 	function kidR(){
 		$('.outdoor').hide();
@@ -644,7 +650,7 @@ pointer-events:auto;
 		$('.kid').show();
 
 		
-		$('#s').text($('.kid').length+"건의 검색결과");
+		$('.cntSpan').text($('.kid').length);
 	};
 	
 	// 관련도 순 선택
@@ -940,7 +946,8 @@ pointer-events:auto;
 			<div class="col-md-9">
 			<div class="con">
 				<h3 id="locFilterName">${locationFilter }</h3>
-				<h3 id="s">${cnt}건의 검색결과</h3>
+				<h3><span class="cntSpan">${cnt}</span>건의 검색 결과</h3>
+				<input type="hidden" id="filterCnt" value="${filterCnt }">
 				<div class="row filterDiv">
 					<div class="col-md-8">
 						  <!-- 검색 form -->

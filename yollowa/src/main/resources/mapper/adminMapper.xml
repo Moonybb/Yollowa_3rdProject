@@ -2,20 +2,48 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.proj.yollowa.model.adminpage.AdminpageDao">
-	<!-- HOST 권한을 요청한 USER들을 출력한다 -->
-	<select id="getHostApprovalStandbyList" resultType="com.proj.yollowa.model.entity.UserVo">
+<mapper namespace="com.proj.yollowa.model.adminpage.AdminDao">
+	<!-- HOST 권한을 요청한 USER들을 hostrqn과 user 테이블과 매칭하여 출력한다 -->
+	<select id="getHostApprovalStandbyList" resultType="com.proj.yollowa.model.entity.admin.HostrqnApprovalVo">
 		<![CDATA[
-		SELECT * FROM USER 
-		WHERE USER_LEVEL < 10 AND USER_COMPANYNUMBER IS NOT NULL
+		SELECT 
+			hostrqn_no,hostrqn_userNo,hostrqn_companyNumber,hostrqn_companyName,
+			hostrqn_info,user_number,user_nickName,user_name,user_phoneNumber,
+			user_id,user_email,user_companyNumber,user_companyName,
+			user_activityCompanyName,user_level 
+		FROM HOSTRQN, USER 
+		WHERE HOSTRQN_USERNO = USER_NUMBER
 		]]>
 	</select>
-	<!-- HOST 권한을 요청한 USER들에게 권한을 부여한다 -->
+	<!-- hostrqn 테이블 get one -->
+	<select id="getHostApprovalStandby" resultType="com.proj.yollowa.model.entity.admin.HostrqnApprovalVo">
+		select * from hostrqn where hostrqn_no=${hostrqn_no}
+	</select>
+	<!-- user 정보를 가저 온다 -->
+	<select id="getUser" resultType="com.proj.yollowa.model.entity.UserVo">
+		select * from user where user_number = ${user_number}
+	</select>
+	<!-- 권한이 승인 된 후 승인된 사업자 정보를 업데이트 한다 -->
 	<update id="updateUserLevelToHost">
 		<![CDATA[
-		UPDATE USER SET USER_LEVEL = #{user_level} WHERE (USER_NUMBER = #{user_number})
+		UPDATE USER SET 
+			USER_COMPANYNUMBER = #{user.user_companyNumber}, 
+		]]>
+			<if test="hostrqn_info == 1">
+				USER_COMPANYNAME = #{user.user_companyName}, 
+			</if>
+			<if test="hostrqn_info == 2">
+				USER_ACTIVITYCOMPANYNAME = #{user.user_activityCompanyName}, 
+			</if>
+		<![CDATA[
+			USER_LEVEL = #{user.user_level} 
+		WHERE USER_NUMBER =#{user.user_number}
 		]]>
 	</update>
+	<!-- 승인을 한 사업장 등록 항목 hostrqn 테이블에서 삭제한다 -->
+	<delete id="deleteOneHostrqn">
+		DELETE FROM HOSTRQN WHERE HOSTRQN_NO = #{hostrqn_no}
+	</delete>
 	
 	<!-- 승인이 필요한 ACTIVITY 항목을 출력한다 -->
 	<select id="getActivityApprovalStandbyList" resultType="com.proj.yollowa.model.entity.admin.ActivityApprovalVo">

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.proj.yollowa.model.entity.ReviewVo;
 import com.proj.yollowa.model.entity.SearchVo;
 import com.proj.yollowa.model.entity.UserVo;
+import com.proj.yollowa.model.entity.admin.HostrqnApprovalVo;
 import com.proj.yollowa.model.entity.mypage.ActivityReviewVo;
 import com.proj.yollowa.model.entity.mypage.AllReviewViewVo;
 import com.proj.yollowa.model.entity.mypage.LodgementReviewVo;
@@ -24,11 +25,12 @@ public class MypageServiceImplJK implements MypageServiceJK{
 	SqlSession sqlSession;
 	//관리자에게 사업자 권한을 요구한다
 	@Override
-	public void updateToStandByHostService(UserVo userVo) throws SQLException {
+	public void insertHostrqnServise(HostrqnApprovalVo hostrqnApprovalVo) throws SQLException {
 		MypageDaoJK mypageDaoJK = sqlSession.getMapper(MypageDaoJK.class);
 		
-		mypageDaoJK.updateToStandByHost(userVo);
+		mypageDaoJK.insertHostrqn(hostrqnApprovalVo);
 	}
+	
 	//사용자가 작성한 리뷰의 개수를 반환
 	@Override
 	public int getReviewCountService(SearchVo searchVo) throws SQLException {
@@ -140,11 +142,6 @@ public class MypageServiceImplJK implements MypageServiceJK{
 			firstImg = imgs.substring(0, su);
 		return firstImg;
 	}
-
-	
-
-	
-
 	
 	
 }

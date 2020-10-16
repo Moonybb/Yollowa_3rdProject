@@ -16,7 +16,7 @@ public class UserVo {
 	private String user_likes;
 	private String user_aWishList;
 	private String user_lWishList;
-	private int user_companyNumber;
+	private String user_companyNumber;
 	private String user_companyName;
 	private String user_activityCompanyName;
 	private int user_level;
@@ -25,12 +25,11 @@ public class UserVo {
 	private String user_kakaoId;
 	
 	public UserVo() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public UserVo(int user_number, String user_nickName, String user_name, Date user_birthday, String user_gender,
 			String user_phoneNumber, String user_address, String user_id, String user_password, String user_email,
-			String user_likes, String user_aWishList, String user_lWishList, int user_companyNumber,
+			String user_likes, String user_aWishList, String user_lWishList, String user_companyNumber,
 			String user_companyName, String user_activityCompanyName, int user_level, String user_googleId,
 			String user_naverId, String user_kakaoId) {
 		super();
@@ -77,7 +76,7 @@ public class UserVo {
 		result = prime * result + ((user_address == null) ? 0 : user_address.hashCode());
 		result = prime * result + ((user_birthday == null) ? 0 : user_birthday.hashCode());
 		result = prime * result + ((user_companyName == null) ? 0 : user_companyName.hashCode());
-		result = prime * result + user_companyNumber;
+		result = prime * result + ((user_companyNumber == null) ? 0 : user_companyNumber.hashCode());
 		result = prime * result + ((user_email == null) ? 0 : user_email.hashCode());
 		result = prime * result + ((user_gender == null) ? 0 : user_gender.hashCode());
 		result = prime * result + ((user_googleId == null) ? 0 : user_googleId.hashCode());
@@ -302,11 +301,11 @@ public class UserVo {
 		this.user_lWishList = user_lWishList;
 	}
 
-	public int getUser_companyNumber() {
+	public String getUser_companyNumber() {
 		return user_companyNumber;
 	}
 
-	public void setUser_companyNumber(int user_companyNumber) {
+	public void setUser_companyNumber(String user_companyNumber) {
 		this.user_companyNumber = user_companyNumber;
 	}
 

@@ -69,5 +69,20 @@
 						</p>
 					</div>
 				</div>
+				<div class="card mb-3" style="max-width: 20rem;">
+					<div class="card-header bg-light" >> 사업자 관련</div>
+					<div class="card-body">
+						<p class="card-text">
+							<a class="card-link"
+								href="${pageContext.request.contextPath }/mypage/hostRqn">사업자 신청하기</a>
+						</p>
+						<c:if test="${user.user_level ne 0}">
+						<p class="card-text">
+							<a class="card-link"
+								href="${pageContext.request.contextPath }/host/">사업자 페이지로 가기</a>
+						</p>
+						</c:if>
+					</div>
+				</div>
 			</div>
 			

@@ -140,5 +140,22 @@
 		select count(*) from review
 		where review_reservNumber=#{areservInfo_number} and review_category=1;
 	</select>
+	<delete id="deleteLcartInfo">
+		DELETE FROM lreservinfo WHERE LReservInfo_number =#{LReservInfo_number} and LReservInfo_cartStatus=1 and LReservInfo_userNumber=#{user_number}
+	</delete>
+	<delete id="deleteAcartInfo">
+		DELETE FROM areservinfo WHERE AReservInfo_number =#{AReservInfo_number} and AReservInfo_cartStatus=1 and AReservInfo_userNumber=#{user_number}
+	</delete>
+	
+	
+	<!-- 아이디 찾기 -->
+	<select id="findId" resultType="com.proj.yollowa.model.entity.UserVo">
+		select * from user where user_name=#{name} and user_phoneNumber=#{phoneNumber}
+	</select>
+	
+	<!-- 비밀번호 찾기 -->
+	<select id="findPassword" resultType="com.proj.yollowa.model.entity.UserVo">
+		select * from user where user_name=#{name} and user_id=#{id} and user_phoneNumber=#{phoneNumber}
+	</select>
 	
 </mapper>

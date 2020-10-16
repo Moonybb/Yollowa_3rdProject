@@ -243,6 +243,33 @@ public class MypageServiceImpl implements MypageService{
 		}
 		
 	}
+	@Override
+	public int cartDeleteService(String service, int reservnumber, int user_number) throws SQLException {
+		MypageDao myPageDao = sqlSession.getMapper(MypageDao.class);
+		if(service.equals("1")) {
+			return myPageDao.deleteAcartInfo(reservnumber, user_number);
+		}else if(service.equals("2")) {
+			return myPageDao.deleteLcartInfo(reservnumber, user_number);
+		}
+		
+		return -1;
+	}
+	
+	// 아이디 찾기
+	@Override
+	public UserVo findId(String name, String phoneNumber) {
+		MypageDao dao = sqlSession.getMapper(MypageDao.class);
+		UserVo userBean=dao.findId(name,phoneNumber);
+		return userBean;
+	}
+	
+	// 비밀번호 찾기
+	@Override
+	public UserVo findPassword(String name, String id, String phoneNumber) {
+		MypageDao dao = sqlSession.getMapper(MypageDao.class);
+		UserVo userBean=dao.findPassword(name,id,phoneNumber);
+		return userBean;
+	}
 	
 	
 }
