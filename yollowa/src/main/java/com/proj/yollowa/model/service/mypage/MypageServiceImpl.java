@@ -255,5 +255,21 @@ public class MypageServiceImpl implements MypageService{
 		return -1;
 	}
 	
+	// 아이디 찾기
+	@Override
+	public UserVo findId(String name, String phoneNumber) {
+		MypageDao dao = sqlSession.getMapper(MypageDao.class);
+		UserVo userBean=dao.findId(name,phoneNumber);
+		return userBean;
+	}
+	
+	// 비밀번호 찾기
+	@Override
+	public UserVo findPassword(String name, String id, String phoneNumber) {
+		MypageDao dao = sqlSession.getMapper(MypageDao.class);
+		UserVo userBean=dao.findPassword(name,id,phoneNumber);
+		return userBean;
+	}
+	
 	
 }

@@ -45,5 +45,11 @@ public interface MypageDao {
 	public int getAExistReview(int areservInfo_number) throws SQLException;
 	public int deleteLcartInfo(@Param("LReservInfo_number") int LReservInfo_number,@Param("user_number") int user_number) throws SQLException;
 	public int deleteAcartInfo(@Param("AReservInfo_number") int AReservInfo_number,@Param("user_number") int user_number) throws SQLException;
+	
+	// 아이디 찾기
+	public UserVo findId(@Param("name") String name,@Param("phoneNumber") String phoneNumber);
+	
+	// 비밀번호 찾기
+	public UserVo findPassword(@Param("name") String name,@Param("id") String id,@Param("phoneNumber") String phoneNumber);
 }
 

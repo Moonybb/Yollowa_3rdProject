@@ -95,9 +95,13 @@
 						<span class="focus-input100" data-symbol="&#xf190;"></span>
 					</div>
 
-					<div class="text-right p-t-8 p-b-31">
-						<a style="font-family: 'MapoPeacefull';" href="#"> 비밀번호를 잊어버리셨나요? </a>
+					<div class="text-right p-t-8">
+						<a style="font-family: 'MapoPeacefull';" href="FindId"> 아이디를 잊어버리셨나요? </a>
 					</div>
+					<div class="text-right ">
+						<a style="font-family: 'MapoPeacefull';" href="Findpassword"> 비밀번호를 잊어버리셨나요? </a>
+					</div>
+					<div class="text-right p-t-8 p-b-31"></div>
 
 					<div class="container-login100-form-btn">
 						<div class="wrap-login100-form-btn">
