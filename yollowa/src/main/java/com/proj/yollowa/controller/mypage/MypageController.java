@@ -25,6 +25,7 @@ public class MypageController {
 	@Inject
 	MypageService myPageService;
 	
+	
 	@Auth
 	@RequestMapping(value = "/{service}",method = RequestMethod.GET)
 	public String index(@AuthUser UserVo userVo,Model model,@PathVariable("service") String service) throws SQLException {
@@ -91,8 +92,6 @@ public class MypageController {
 	@Auth
 	@RequestMapping(value = "/cart/delete/",method=RequestMethod.GET)
 	public String deleteCart(HttpServletRequest req,@AuthUser UserVo userVo,Model model) {
-		
-		
 		try {
 			int result=myPageService.cartDeleteService(req.getParameter("service"), Integer.parseInt(req.getParameter("reservNumber")), userVo.getUser_number());
 			if(result>0) {
@@ -102,8 +101,6 @@ public class MypageController {
 		} catch (Exception e) {
 			return "";
 		}
-		
-		
 		return null;
 	}
 	
