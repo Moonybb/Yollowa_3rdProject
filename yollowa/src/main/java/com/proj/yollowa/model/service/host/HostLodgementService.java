@@ -27,8 +27,6 @@ public interface HostLodgementService {
 	// host/lodgeDelete - 글삭제와 방삭제 동시에 (방 삭제)
 	void deleteHostLodgeRoom(int lodgement_number);
 	
-
-	
 	// host/ladd -> lodgement insert 
 	void insertLodgement(int user_number, AddLodgementPageDto bean) throws SQLException;
 
