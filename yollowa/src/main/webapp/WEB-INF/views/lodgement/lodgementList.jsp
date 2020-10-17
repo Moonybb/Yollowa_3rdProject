@@ -818,13 +818,8 @@ pointer-events:auto;
 		<!-- 위치 filter -->
 		<div class="area_tot locSelect">
 		<div class="btn btn-primary locBtn">지역 설정</div>
-<<<<<<< HEAD
 			<div class="locArea row">
 				<div class="bicCity col-md-2">
-=======
-			<div class="locArea row" style="display: none;">
-				<div class="bicCity col-md-3">
->>>>>>> 030cb89e15b4360c99a85162002fd7c4148d8329
 					<ul class="city">
 						<li class="seoulSel">서울</li>
 						<li class="gyeonggiSel">경기</li>
