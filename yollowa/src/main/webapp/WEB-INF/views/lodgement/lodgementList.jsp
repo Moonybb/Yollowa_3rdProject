@@ -256,17 +256,21 @@ pointer-events:auto;
 	width: 150px;
 	margin-top: 10px;
 }
-.city>li{
+.city>li, .seoul dl, .gyeongsang dl{
 	list-style: none;
 }
-.detailCity>ul>li{
+.detailCity>ul>li, .seoul dl, .gyeongsang dl{
 	list-style: none;
 }
 .bicCity{
 }
 .bicCity, .detailCity{
-	width: 300px;
+	width: 1000px;
 	border: 1px solid lightgray;
+}
+
+.detailCity>ul{
+	width: 800px;
 }
 .detailCity{
 	margin-left: 5px;
@@ -277,14 +281,14 @@ pointer-events:auto;
 	opacity: 1;
 	margin-left: 0px;
 }
-.detailCity>ul, .bicCity>ul{
+.detailCity>ul, .bicCity>ul, .seoul dl, .gyeongsang dl{
 	padding-left: 5px;
 }
-.detailCity>ul>li, .bicCity>ul>li{
+.detailCity>ul>li, .bicCity>ul>li, .seoul dl>li, .gyeongsang dl>li{
 	font-size: 15px;
 	margin-top: 15px;
 }
-.detailCity>ul>li:hover, .bicCity>ul>li:hover{
+.detailCity>ul>li:hover, .bicCity>ul>li:hover, .seoul dl>li:hover, .gyeongsang dl>li:hover{
 	color: #E7B648;
 	cursor: pointer;
 }
@@ -292,7 +296,10 @@ pointer-events:auto;
 	padding-bottom: 0px;
 	margin-bottom: 0px;
 }
-
+.seoul dl, .gyeongsang dl{
+	float:left;
+	width: 200px;
+}
 /* 위치 Filter end */
 
 </style>
@@ -397,6 +404,8 @@ pointer-events:auto;
 		$('.locArea').hide();
 		
 		// detail city도 초기에는 경기 제외 모두 hide
+		$('.seoul').show();
+		$('.gyeonggi').hide();
 		$('.gapyeong').hide();
 		$('.gangwon').hide();
 		$('.jeju').hide();
@@ -411,8 +420,22 @@ pointer-events:auto;
 			$('.locArea').show();
 			
 			// 지역마다 mouseover
+			// 서울 mouseover
+			$('.seoulSel').mouseover(function(){
+				$('.seoul').show();
+				$('.gyeonggi').hide();
+				$('.gapyeong').hide();
+				$('.gangwon').hide();
+				$('.jeju').hide();
+				$('.incheon').hide();
+				$('.chungcheong').hide();
+				$('.gyeongsang').hide();
+				$('.busan').hide();
+				$('.jeonla').hide();
+			});
 			// 경기 mouseover
 			$('.gyeonggiSel').mouseover(function(){
+				$('.seoul').hide();
 				$('.gyeonggi').show();
 				$('.gapyeong').hide();
 				$('.gangwon').hide();
@@ -425,6 +448,7 @@ pointer-events:auto;
 			});
 			// 가평 mouseover
 			$('.gapyeongSel').mouseover(function(){
+				$('.seoul').hide();
 				$('.gyeonggi').hide();
 				$('.gapyeong').show();
 				$('.gangwon').hide();
@@ -437,6 +461,7 @@ pointer-events:auto;
 			});
 			// 강원 mouseover
 			$('.gangwonSel').mouseover(function(){
+				$('.seoul').hide();
 				$('.gyeonggi').hide();
 				$('.gapyeong').hide();
 				$('.gangwon').show();
@@ -449,6 +474,7 @@ pointer-events:auto;
 			});
 			// 제주 mouseover
 			$('.jejuSel').mouseover(function(){
+				$('.seoul').hide();
 				$('.gyeonggi').hide();
 				$('.gapyeong').hide();
 				$('.gangwon').hide();
@@ -461,6 +487,7 @@ pointer-events:auto;
 			});
 			// 인천 mouseover
 			$('.incheonSel').mouseover(function(){
+				$('.seoul').hide();
 				$('.gyeonggi').hide();
 				$('.gapyeong').hide();
 				$('.gangwon').hide();
@@ -473,6 +500,7 @@ pointer-events:auto;
 			});
 			// 충청 mouseover
 			$('.chungcheongSel').mouseover(function(){
+				$('.seoul').hide();
 				$('.gyeonggi').hide();
 				$('.gapyeong').hide();
 				$('.gangwon').hide();
@@ -485,6 +513,7 @@ pointer-events:auto;
 			});
 			// 경상 mouseover
 			$('.gyeongsangSel').mouseover(function(){
+				$('.seoul').hide();
 				$('.gyeonggi').hide();
 				$('.gapyeong').hide();
 				$('.gangwon').hide();
@@ -497,6 +526,7 @@ pointer-events:auto;
 			});
 			// 부산 mouseover
 			$('.busanSel').mouseover(function(){
+				$('.seoul').hide();
 				$('.gyeonggi').hide();
 				$('.gapyeong').hide();
 				$('.gangwon').hide();
@@ -509,6 +539,7 @@ pointer-events:auto;
 			});
 			// 전라 mouseover
 			$('.jeonlaSel').mouseover(function(){
+				$('.seoul').hide();
 				$('.gyeonggi').hide();
 				$('.gapyeong').hide();
 				$('.gangwon').hide();
@@ -735,6 +766,7 @@ pointer-events:auto;
 			<div class="locArea row">
 				<div class="bicCity col-md-3">
 					<ul class="city">
+						<li class="seoulSel">서울</li>
 						<li class="gyeonggiSel">경기</li>
 						<li class="gapyeongSel">가평</li>
 						<li class="gangwonSel">강원</li>
@@ -747,6 +779,40 @@ pointer-events:auto;
 					</ul>
 				</div>
 				<div class="detailCity col-md-6">
+					<ul class="seoul">
+						<dl>
+							<li onclick="locationFilterSel(this);">서울 전체</li>
+							<li onclick="locationFilterSel(this);">강남구</li>
+							<li onclick="locationFilterSel(this);">강동구</li>
+							<li onclick="locationFilterSel(this);">강북구</li>
+							<li onclick="locationFilterSel(this);">강서구</li>
+							<li onclick="locationFilterSel(this);">관악구</li>
+							<li onclick="locationFilterSel(this);">광진구</li>
+							<li onclick="locationFilterSel(this);">구로구</li>
+							<li onclick="locationFilterSel(this);">금천구</li>
+							<li onclick="locationFilterSel(this);">노원구</li>
+						</dl>
+						<dl>
+							<li onclick="locationFilterSel(this);">도봉구</li>
+							<li onclick="locationFilterSel(this);">동대문구</li>
+							<li onclick="locationFilterSel(this);">동작구</li>
+							<li onclick="locationFilterSel(this);">마포구</li>
+							<li onclick="locationFilterSel(this);">서대문구</li>
+							<li onclick="locationFilterSel(this);">서초구</li>
+							<li onclick="locationFilterSel(this);">성동구</li>
+							<li onclick="locationFilterSel(this);">성북구</li>
+							<li onclick="locationFilterSel(this);">송파구</li>
+							<li onclick="locationFilterSel(this);">양천구</li>
+						</dl>
+						<dl>
+							<li onclick="locationFilterSel(this);">영등포구</li>
+							<li onclick="locationFilterSel(this);">용산구</li>
+							<li onclick="locationFilterSel(this);">은평구</li>
+							<li onclick="locationFilterSel(this);">종로구</li>
+							<li onclick="locationFilterSel(this);">중구</li>
+							<li onclick="locationFilterSel(this);">중랑구</li>
+						</dl>
+					</ul>
 					<ul class="gyeonggi">
 						<li onclick="locationFilterSel(this);">경기 전체</li>
 						<li onclick="locationFilterSel(this);">양평/용문</li>
@@ -800,18 +866,22 @@ pointer-events:auto;
 						<li onclick="locationFilterSel(this);">공주/보은/청주/금산</li>
 					</ul>
 					<ul class="gyeongsang">
-						<li onclick="locationFilterSel(this);">경북 전체</li>
-						<li onclick="locationFilterSel(this);">경남 전체</li>
-						<li onclick="locationFilterSel(this);">거제</li>
-						<li onclick="locationFilterSel(this);">통영/고성</li>
-						<li onclick="locationFilterSel(this);">남해</li>
-						<li onclick="locationFilterSel(this);">경주</li>
-						<li onclick="locationFilterSel(this);">영덕/울진/포항/울릉도</li>
-						<li onclick="locationFilterSel(this);">산청/합천/하동</li>
-						<li onclick="locationFilterSel(this);">문경/상주/성주/안동</li>
-						<li onclick="locationFilterSel(this);">울산</li>
-						<li onclick="locationFilterSel(this);">청도/밀양</li>
-						<li onclick="locationFilterSel(this);">김해/양산</li>
+						<dl>
+							<li onclick="locationFilterSel(this);">경북 전체</li>
+							<li onclick="locationFilterSel(this);">경남 전체</li>
+							<li onclick="locationFilterSel(this);">거제</li>
+							<li onclick="locationFilterSel(this);">통영/고성</li>
+							<li onclick="locationFilterSel(this);">남해</li>
+							<li onclick="locationFilterSel(this);">경주</li>
+							<li onclick="locationFilterSel(this);">영덕/울진/포항/울릉도</li>
+							<li onclick="locationFilterSel(this);">산청/합천/하동</li>
+							<li onclick="locationFilterSel(this);">문경/상주/성주/안동</li>
+							<li onclick="locationFilterSel(this);">울산</li>
+						</dl>
+						<dl>
+							<li onclick="locationFilterSel(this);">청도/밀양</li>
+							<li onclick="locationFilterSel(this);">김해/양산</li>
+						</dl>
 					</ul>
 					<ul class="busan">
 						<li onclick="locationFilterSel(this);">부산 전체</li>

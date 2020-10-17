@@ -353,7 +353,10 @@
 			var appendDiv = '<p style="color:gray; margin:0px 0px 10px 10px; font-size:16px;">- '+refundInfo[i]+'</p>';
 			$('.info_refundInfo').append(appendDiv);
 		}
+		
 	});
+	/* document Ready end */
+	
 	
 	// 장바구니 ajax
 	function cartInput(articleNumber, roomNumber){
@@ -670,13 +673,11 @@
 											<input type="text" name="AReservInfo_amount" class="btn btn-secondary priceInput" value="0" readonly />
 											<input class="amount btn btn-primary" onclick="optionPlus(this);" value="+" readonly />
 											<span class="optionPrice">${bean.activityOption_price }</span>
+											<input type="hidden" name="AReservInfo_articleNumber" value="${bean.activityOption_articleNumber }" />
+											<input type="hidden" name="AReservInfo_optionNumber" value="${bean.activityOption_optionNumber }" />
+											<input type="hidden" name="AReservInfo_unitPrice" value="${bean.activityOption_price }" />
 										</div>
 									</div>
-									
-									<input type="hidden" name="AReservInfo_userNumber" value="${userNumber }" />
-									<input type="hidden" name="AReservInfo_articleNumber" value="${bean.activityOption_articleNumber }" />
-									<input type="hidden" name="AReservInfo_optionNumber" value="${bean.activityOption_optionNumber }" />
-									<input type="hidden" name="AReservInfo_unitPrice" value="${bean.activityOption_price }" />
 									
 								</c:forEach>
 								</div>
