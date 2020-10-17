@@ -58,8 +58,27 @@ h2{
 	font-size: 35px;
 }
 /* category end */
+/* 페이지 로더 */
+.loader {
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+  position:fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 6;
+/*   transform:translate(-50%,-50%); */
+}
 
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
 /* context start */
+
 .lodgementHref:hover{
 	text-decoration: none;
 	cursor: pointer;
@@ -307,8 +326,12 @@ pointer-events:auto;
 </style>
 
 <script type="text/javascript">
+	$(window).load(function(){
+		$('.loader').fadeOut();
+		$('.locSelect').attr('style', 'display:block;');
+	});
 	$(document).ready(function(){
-		
+		$('area_tot locSelect').attr('display', 'none;');
 		var filterCnt = $('#filterCnt').val();
 		
 		if(filterCnt!=''){
@@ -753,6 +776,7 @@ pointer-events:auto;
 	<%@ include file="../template/lodgeHeader.jspf"%>
 	<%@ include file="../template/lodgeMenu.jspf"%>
 	<div class="container">
+		<div class="loader"></div>
 		<div id="headerUp" class="page-header">
 			<p>
 				<a href="../">메인 페이지</a> > <a href="list"> 숙박 페이지</a>
@@ -764,7 +788,7 @@ pointer-events:auto;
 		<!-- 위치 filter -->
 		<div class="area_tot locSelect">
 		<div class="btn btn-primary locBtn">지역 설정</div>
-			<div class="locArea row">
+			<div class="locArea row" style="display: none;">
 				<div class="bicCity col-md-3">
 					<ul class="city">
 						<li class="gyeonggiSel">경기</li>
