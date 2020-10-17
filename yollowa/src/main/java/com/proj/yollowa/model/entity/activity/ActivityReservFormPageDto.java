@@ -2,21 +2,12 @@ package com.proj.yollowa.model.entity.activity;
 
 public class ActivityReservFormPageDto {
 	private int AReservInfo_articleNumber;
-	private int AReservInfo_optionNuber;
+	private int AReservInfo_optionNumber;
 	private String AReservInfo_amount;
 	private int AReservInfo_unitPrice;
 	
 	public ActivityReservFormPageDto() {
 		// TODO Auto-generated constructor stub
-	}
-
-	public ActivityReservFormPageDto(int aReservInfo_articleNumber, int aReservInfo_optionNuber,
-			String aReservInfo_amount, int aReservInfo_unitPrice) {
-		super();
-		AReservInfo_articleNumber = aReservInfo_articleNumber;
-		AReservInfo_optionNuber = aReservInfo_optionNuber;
-		AReservInfo_amount = aReservInfo_amount;
-		AReservInfo_unitPrice = aReservInfo_unitPrice;
 	}
 
 	@Override
@@ -25,7 +16,7 @@ public class ActivityReservFormPageDto {
 		int result = 1;
 		result = prime * result + ((AReservInfo_amount == null) ? 0 : AReservInfo_amount.hashCode());
 		result = prime * result + AReservInfo_articleNumber;
-		result = prime * result + AReservInfo_optionNuber;
+		result = prime * result + AReservInfo_optionNumber;
 		result = prime * result + AReservInfo_unitPrice;
 		return result;
 	}
@@ -46,18 +37,27 @@ public class ActivityReservFormPageDto {
 			return false;
 		if (AReservInfo_articleNumber != other.AReservInfo_articleNumber)
 			return false;
-		if (AReservInfo_optionNuber != other.AReservInfo_optionNuber)
+		if (AReservInfo_optionNumber != other.AReservInfo_optionNumber)
 			return false;
 		if (AReservInfo_unitPrice != other.AReservInfo_unitPrice)
 			return false;
 		return true;
 	}
 
+	public ActivityReservFormPageDto(int aReservInfo_articleNumber, int aReservInfo_optionNumber,
+			String aReservInfo_amount, int aReservInfo_unitPrice) {
+		super();
+		AReservInfo_articleNumber = aReservInfo_articleNumber;
+		AReservInfo_optionNumber = aReservInfo_optionNumber;
+		AReservInfo_amount = aReservInfo_amount;
+		AReservInfo_unitPrice = aReservInfo_unitPrice;
+	}
+
 	@Override
 	public String toString() {
 		return "ActivityReservFormPageDto [AReservInfo_articleNumber=" + AReservInfo_articleNumber
-				+ ", AReservInfo_optionNuber=" + AReservInfo_optionNuber + ", AReservInfo_amount=" + AReservInfo_amount
-				+ ", AReservInfo_unitPrice=" + AReservInfo_unitPrice + "]";
+				+ ", AReservInfo_optionNumber=" + AReservInfo_optionNumber + ", AReservInfo_amount="
+				+ AReservInfo_amount + ", AReservInfo_unitPrice=" + AReservInfo_unitPrice + "]";
 	}
 
 	public int getAReservInfo_articleNumber() {
@@ -68,12 +68,12 @@ public class ActivityReservFormPageDto {
 		AReservInfo_articleNumber = aReservInfo_articleNumber;
 	}
 
-	public int getAReservInfo_optionNuber() {
-		return AReservInfo_optionNuber;
+	public int getAReservInfo_optionNumber() {
+		return AReservInfo_optionNumber;
 	}
 
-	public void setAReservInfo_optionNuber(int aReservInfo_optionNuber) {
-		AReservInfo_optionNuber = aReservInfo_optionNuber;
+	public void setAReservInfo_optionNumber(int aReservInfo_optionNumber) {
+		AReservInfo_optionNumber = aReservInfo_optionNumber;
 	}
 
 	public String getAReservInfo_amount() {
@@ -91,6 +91,6 @@ public class ActivityReservFormPageDto {
 	public void setAReservInfo_unitPrice(int aReservInfo_unitPrice) {
 		AReservInfo_unitPrice = aReservInfo_unitPrice;
 	}
-	
+
 	
 }

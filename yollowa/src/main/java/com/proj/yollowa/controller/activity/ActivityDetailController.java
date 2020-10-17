@@ -74,19 +74,10 @@ public class ActivityDetailController {
 	@RequestMapping(value="detail/reservation", method=RequestMethod.POST)
 	public String activityReservation(ActivityReservFormPageDto bean) {
 		
-		System.out.println(bean);
+		int articleNumber = bean.getAReservInfo_articleNumber();
+		int optionNumber = bean.getAReservInfo_optionNumber();
+		String amountArr = bean.getAReservInfo_amount();
 		
-		// 사용자가 선택한 옵션 수량
-//		int AReservInfo_amount = Integer.parseInt(req.getParameter("AReservInfo_amount"));
-//		int AReservInfo_articleNumber = Integer.parseInt(req.getParameter("AReservInfo_articleNumber"));
-//		int AReservInfo_optionNumber = Integer.parseInt(req.getParameter("AReservInfo_optionNumber"));
-//		int AReservInfo_unitPrice = Integer.parseInt(req.getParameter("AReservInfo_unitPrice"));
-//		
-//		
-//		System.out.println("AReservInfo_amount :: "+AReservInfo_amount);
-//		System.out.println("AReservInfo_articleNumber :: "+AReservInfo_articleNumber);
-//		System.out.println("AReservInfo_optionNumber :: "+AReservInfo_optionNumber);
-//		System.out.println("AReservInfo_unitPrice :: "+AReservInfo_unitPrice);
 		
 		return null;
 	}
