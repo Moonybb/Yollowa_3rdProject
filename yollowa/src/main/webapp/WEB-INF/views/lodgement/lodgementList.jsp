@@ -265,7 +265,6 @@ pointer-events:auto;
 .bicCity{
 }
 .bicCity, .detailCity{
-	width: 1000px;
 	border: 1px solid lightgray;
 }
 
@@ -764,7 +763,7 @@ pointer-events:auto;
 		<div class="area_tot locSelect">
 		<div class="btn btn-primary locBtn">지역 설정</div>
 			<div class="locArea row">
-				<div class="bicCity col-md-3">
+				<div class="bicCity col-md-2">
 					<ul class="city">
 						<li class="seoulSel">서울</li>
 						<li class="gyeonggiSel">경기</li>
@@ -778,7 +777,7 @@ pointer-events:auto;
 						<li class="jeonlaSel">전라</li>
 					</ul>
 				</div>
-				<div class="detailCity col-md-6">
+				<div class="detailCity col-md-7">
 					<ul class="seoul">
 						<dl>
 							<li onclick="locationFilterSel(this);">서울 전체</li>
