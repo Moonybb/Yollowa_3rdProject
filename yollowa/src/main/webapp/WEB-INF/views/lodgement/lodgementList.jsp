@@ -294,6 +294,15 @@ pointer-events:auto;
 }
 
 /* 위치 Filter end */
+/* top 버튼 */
+	.btn_top {
+		position:absolute;
+		right:330px;
+		top:0;
+		display:none;
+		padding:5px 10px;
+		z-index:6;
+	}
 
 </style>
 
@@ -712,6 +721,29 @@ pointer-events:auto;
 			});
 		}
 	}; */
+	/* 탑 버튼 */
+		function btn_mv_up(btn) {
+			 if(!btn) return false;
+			
+			 var scrollTop = $(window).scrollTop();
+			 var height = $(window).height();
+			
+			 $(btn).stop().hide().css('top',height + scrollTop - 50);    // 스크롤 이동에 따른 위로버튼의 위치 이동
+			 if(scrollTop > 900) { 
+				 $(btn).fadeIn(); 
+			 }else if(scrollTop < 900) { 
+				 $(btn).stop().fadeOut(); 
+			 }
+		}
+		
+		// 탑 버튼
+		$(document).scroll(function() {
+			 btn_mv_up('.btn_top');
+		}).on('click', '.btn_top', function() {
+		 	 $("html, body").animate({scrollTop:0}, 'slow');
+		});
+
+
 	
 </script>
 <meta charset="UTF-8">
@@ -923,27 +955,10 @@ pointer-events:auto;
 					</c:forEach>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-md-4">
-					<input type="hidden" />
-				</div>
-				<div class="col-md-6">
-					<ul class="pagination">
-						<c:if test="${paging.prev }">
-						 <li class="page-item"><a class="page-link" href="?page=${paging.startPage - 1 }">이전</a></li>
-						</c:if>
-						<c:forEach begin="${paging.startPage }" end="${paging.endPage }" varStatus="status">
-							<li class="page-item"><a class="page-link" href="?page=${status.index }">${status.index }</a></li>
-						</c:forEach>
-						<c:if test="${paging.next && paging.endPage > 0 }">
-							<li class="page-item"><a class="page-link" href="?page=${paging.endPage + 1 }">다음</a></li>
-						</c:if>
-					</ul>
-				</div>
-			</div>
 			</div>
 		</div>
 	</div>
+	<button type="button" class="btn_top">top</button>
 	<%@ include file="../template/footer.jspf"%>
 </body>
 </html>

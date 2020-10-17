@@ -77,11 +77,23 @@
       </li>
     </ul>
     </c:if>
-    
-   	
-    
-    
   </div>
 </nav>
+</div>
+<script type="text/javascript">
+$(function(){
+	$(window).scroll(function(){  //스크롤이 발생할 경우
+			console.log("스크롤");
+	       var num = $(this).scrollTop();  // 스크롤 값
+	       if( num > 1000){
+	          $("#navbar2").css("position","fixed");
+	          $(".container").attr('style', 'padding-top:80px;');
+	       }else{
+	    	  $("#navbar2").css("position","absolute");
+	       }
+	  });
+	});
+
+</script>
 <div id="content">
 <!-- content start -->
