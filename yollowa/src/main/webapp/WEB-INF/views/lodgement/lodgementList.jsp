@@ -58,8 +58,27 @@ h2{
 	font-size: 35px;
 }
 /* category end */
+/* 페이지 로더 */
+.loader {
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+  position:fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 6;
+/*   transform:translate(-50%,-50%); */
+}
 
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
 /* context start */
+
 .lodgementHref:hover{
 	text-decoration: none;
 	cursor: pointer;
@@ -300,12 +319,25 @@ pointer-events:auto;
 	width: 200px;
 }
 /* 위치 Filter end */
+/* top 버튼 */
+	.btn_top {
+		position:absolute;
+		right:330px;
+		top:0;
+		display:none;
+		padding:5px 10px;
+		z-index:6;
+	}
 
 </style>
 
 <script type="text/javascript">
+	$(window).load(function(){
+		$('.loader').fadeOut();
+		$('.locSelect').attr('style', 'display:block;');
+	});
 	$(document).ready(function(){
-		
+		$('area_tot locSelect').attr('display', 'none;');
 		var filterCnt = $('#filterCnt').val();
 		
 		if(filterCnt!=''){
@@ -742,6 +774,29 @@ pointer-events:auto;
 			});
 		}
 	}; */
+	/* 탑 버튼 */
+		function btn_mv_up(btn) {
+			 if(!btn) return false;
+			
+			 var scrollTop = $(window).scrollTop();
+			 var height = $(window).height();
+			
+			 $(btn).stop().hide().css('top',height + scrollTop - 50);    // 스크롤 이동에 따른 위로버튼의 위치 이동
+			 if(scrollTop > 900) { 
+				 $(btn).fadeIn(); 
+			 }else if(scrollTop < 900) { 
+				 $(btn).stop().fadeOut(); 
+			 }
+		}
+		
+		// 탑 버튼
+		$(document).scroll(function() {
+			 btn_mv_up('.btn_top');
+		}).on('click', '.btn_top', function() {
+		 	 $("html, body").animate({scrollTop:0}, 'slow');
+		});
+
+
 	
 </script>
 <meta charset="UTF-8">
@@ -751,6 +806,7 @@ pointer-events:auto;
 	<%@ include file="../template/lodgeHeader.jspf"%>
 	<%@ include file="../template/lodgeMenu.jspf"%>
 	<div class="container">
+		<div class="loader"></div>
 		<div id="headerUp" class="page-header">
 			<p>
 				<a href="../">메인 페이지</a> > <a href="list"> 숙박 페이지</a>
@@ -762,8 +818,13 @@ pointer-events:auto;
 		<!-- 위치 filter -->
 		<div class="area_tot locSelect">
 		<div class="btn btn-primary locBtn">지역 설정</div>
+<<<<<<< HEAD
 			<div class="locArea row">
 				<div class="bicCity col-md-2">
+=======
+			<div class="locArea row" style="display: none;">
+				<div class="bicCity col-md-3">
+>>>>>>> 030cb89e15b4360c99a85162002fd7c4148d8329
 					<ul class="city">
 						<li class="seoulSel">서울</li>
 						<li class="gyeonggiSel">경기</li>
@@ -968,7 +1029,7 @@ pointer-events:auto;
 				
 				<div id="lodgeList" class="existShow row">
 					<c:forEach items="${listAll}" begin="0" varStatus="num" var="bean"> 
-						<div class="${bean.lodgement_category } allList col-md-4" onclick="location.href='detail/${bean.lodgement_number}'">
+						<div class="${bean.lodgement_category } allList col-md-4" onclick="location.href='detail/${bean.lodgement_number}'" style="display: block;">
 							<div class="oneLodge">
 								<div class="lodgeImgBox">
 								  <div class="type type${num.index }">${bean.lodgement_category}</div>
@@ -995,6 +1056,7 @@ pointer-events:auto;
 			</div>
 		</div>
 	</div>
+	<button type="button" class="btn_top">top</button>
 	<%@ include file="../template/footer.jspf"%>
 </body>
 </html>

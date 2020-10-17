@@ -45,8 +45,8 @@
           <a class="dropdown-item" href="${pageContext.request.contextPath }/mypage/cart/2">장바구니</a>
           <a class="dropdown-item" href="${pageContext.request.contextPath }/mypage/wishlist/2">찜 목록</a>
           <a class="dropdown-item" href="${pageContext.request.contextPath }/mypage/myreview">내가 쓴 리뷰</a>
-          <a class="dropdown-item" href="${pageContext.request.contextPath }/mypage/myqna">내까 쓴 Q&A</a>
-          <a class="dropdown-item" href="${pageContext.request.contextPath }/mypage/userinfo">내 정보</a>
+          <a class="dropdown-item" href="${pageContext.request.contextPath }/mypage/myqna">내가 쓴 Q&A</a>
+          <a class="dropdown-item" href="${pageContext.request.contextPath }/mypage/userinfo">계정 설정</a>
            <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="${pageContext.request.contextPath }/logout/">로그아웃</a>
         </div>
@@ -77,11 +77,23 @@
       </li>
     </ul>
     </c:if>
-    
-   	
-    
-    
   </div>
 </nav>
+</div>
+<script type="text/javascript">
+$(function(){
+	$(window).scroll(function(){  //스크롤이 발생할 경우
+			console.log("스크롤");
+	       var num = $(this).scrollTop();  // 스크롤 값
+	       if( num > 1000){
+	          $("#navbar2").css("position","fixed");
+	          $(".container").attr('style', 'padding-top:80px;');
+	       }else{
+	    	  $("#navbar2").css("position","absolute");
+	       }
+	  });
+	});
+
+</script>
 <div id="content">
 <!-- content start -->
