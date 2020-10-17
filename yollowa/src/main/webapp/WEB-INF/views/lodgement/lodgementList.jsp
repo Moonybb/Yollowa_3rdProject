@@ -899,7 +899,7 @@ pointer-events:auto;
 				
 				<div id="lodgeList" class="existShow row">
 					<c:forEach items="${listAll}" begin="0" varStatus="num" var="bean"> 
-						<div class="${bean.lodgement_category } allList col-md-4" onclick="location.href='detail/${bean.lodgement_number}'">
+						<div class="${bean.lodgement_category } allList col-md-4" onclick="location.href='detail/${bean.lodgement_number}'" style="display: block;">
 							<div class="oneLodge">
 								<div class="lodgeImgBox">
 								  <div class="type type${num.index }">${bean.lodgement_category}</div>
@@ -921,6 +921,24 @@ pointer-events:auto;
 							</div>
 						</div>
 					</c:forEach>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+					<input type="hidden" />
+				</div>
+				<div class="col-md-6">
+					<ul class="pagination">
+						<c:if test="${paging.prev }">
+						 <li class="page-item"><a class="page-link" href="?page=${paging.startPage - 1 }">이전</a></li>
+						</c:if>
+						<c:forEach begin="${paging.startPage }" end="${paging.endPage }" varStatus="status">
+							<li class="page-item"><a class="page-link" href="?page=${status.index }">${status.index }</a></li>
+						</c:forEach>
+						<c:if test="${paging.next && paging.endPage > 0 }">
+							<li class="page-item"><a class="page-link" href="?page=${paging.endPage + 1 }">다음</a></li>
+						</c:if>
+					</ul>
 				</div>
 			</div>
 			</div>
