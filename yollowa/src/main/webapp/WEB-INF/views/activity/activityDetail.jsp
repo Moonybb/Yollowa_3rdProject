@@ -154,7 +154,7 @@
 		-webkit-box-shadow: 0 0 35px 0 rgba(130, 130, 130, 0.2);
 		box-shadow: 0 0 35px 0 rgba(130, 130, 130, 0.2);
 		border-radius: 10px;
-		padding: 10px 35px;
+		padding: 10px 20px;
 		margin-bottom: 30px;
 	}
 	
@@ -201,7 +201,10 @@
 	
 	/* 예약탭 아래 정보들 */
 	.activityInfo{
-		padding-left:30px;
+		margin-top: 20px;
+		padding:10px 30px; 
+		border: 1px solid lightgray;
+		border-radius: 15px;
 	}
 	.smallInfo{
 		margin-top: 5px;
@@ -223,13 +226,52 @@
 		font-size: 18px;
 	}
 	.optionInfo{
-		margin-top: 50px;
+		padding-left: 20px;
+		margin-top: 40px;
 	}
-	.optionAmount{
-		
+	.option-reservDiv{
+		padding-top:20px;
+		padding-bottom: 30px;
+	}
+	.priceInput{
+		display:inline-block;
+		line-height: 15px;
+		width:43px;
 	}
 	.optionPrice{
 		float: right;
+		font-size: 18px;
+		padding-top:7px;
+	}
+	.amount{
+		width: 35px;
+		line-height: 15px;
+	}
+	.selectOption{
+		margin-bottom: 5px;
+		margin-top: 20px;
+	}
+	.resultOption{
+		margin-top: 30px;
+	}
+	.resultOption>span{
+		font-size: 18px;
+	}
+	.reservBtn{
+		line-height: 20px;
+		margin-top: 30px;
+	}
+	.nonCheck>svg, .yesCheck>svg{
+		padding-bottom:1px;
+		display: inline-block;
+		cursor: pointer;
+	}
+	
+	.appendInfoDiv{
+		padding-bottom: 20px;
+	}
+	.appendInfoDiv > span{
+		font-size: 16px;
 	}
 </style>
 
@@ -361,6 +403,181 @@
 		}
 	};
 	
+	
+	// 옵션 마이너스
+	function optionMinus(me){
+		var amount = parseInt($(me).next().val(),10);
+		if(amount!=0){
+			$(me).next().val(amount-1);
+		}
+		// css 변경
+		if($(me).next().val()==0){
+			$(me).parent().parent().css('box-shadow','');	
+			$(me).parent().prev().find('.nonCheck').css('display','inline-block');
+			$(me).parent().prev().find('.yesCheck').css('display','none');
+		}
+		
+		
+		
+		// 마이너스 이벤트 발생시 0일때
+		if(amount==1){
+			var labelClass = $(me).parent().prev().find('.optionName').attr('class');
+			var a = labelClass.split(' ');
+			var b = a[2];
+			
+			var appendBox = $('.appendBox').get();
+			
+			$.each(appendBox,function(index,item){
+				var tempClass1 = $(item).attr('class');
+				var tempClass2 = tempClass1.split(' ');
+				var itemClass = tempClass2[1];
+				if(itemClass==b){
+					// 클래스가 같은 것을 찾아서 그 부분만 삭제
+					$(item).remove();
+				}
+			});
+			
+			/* 우측 체크 정보에 가격 업데이트 start */
+			var price = $('.appendPrice').text();
+			var optionPrice = $(me).next().next().next().text();
+			
+			var updatePrice = parseInt(price,10) - parseInt(optionPrice,10);
+			$('.appendPrice').text(updatePrice);
+			/* 우측 체크 정보에 가격 업데이트 end */
+			
+			
+			
+		// 마이너스 이벤트 발생 시 0보다 클때 수량 마이너스해주기
+		}else if(amount>1){
+			var labelClass = $(me).parent().prev().find('.optionName').attr('class');
+			var a = labelClass.split(' ');
+			var b = a[2];
+			
+			var appendBox = $('.appendBox').get();
+			
+			$.each(appendBox,function(index,item){
+				var tempClass1 = $(item).attr('class');
+				var tempClass2 = tempClass1.split(' ');
+				var itemClass = tempClass2[1];
+				if(itemClass==b){
+					// 클래스가 같은 것을 찾아서 그 부분만 수량 마이너스
+					var j = $('.'+itemClass).find('.optionAmount').text();
+					$('.'+itemClass).find('.optionAmount').text(parseInt(j,10)-1);
+				}
+			});
+			
+			/* 우측 체크 정보에 가격 업데이트 start */
+			var price = $('.appendPrice').text();
+			var optionPrice = $(me).next().next().next().text();
+			
+			var updatePrice = parseInt(price,10) - parseInt(optionPrice,10);
+			$('.appendPrice').text(updatePrice);
+			/* 우측 체크 정보에 가격 업데이트 end */
+		}
+		
+	};
+	
+	// 옵션 플러스
+	function optionPlus(me){
+		var amount = parseInt($(me).prev().val(),10);
+		var i = 0;
+		$(me).prev().val(amount+1);
+		
+		// css 변경
+		if(amount>=0){
+			// box 테두리 띄우기
+			$(me).parent().parent().css({'box-shadow':'0 0 15px 0 rgba(16, 79, 206, 0.5'},{'border-radius':'10px'});
+			$(me).parent().prev().find('.nonCheck').css('display','none');
+			$(me).parent().prev().find('.yesCheck').css('display','inline-block');
+			
+		}
+		
+		
+		// 플러스 이벤트에서 값이 값이 1이 될때 
+		if(amount==0){
+			/* 우측 체크 정보에 추가 start */
+			var optionName = $(me).parent().prev().find('.optionName').text();
+			console.log(optionName);
+			
+			var labelClass = $(me).parent().prev().find('.optionName').attr('class');
+			var a = labelClass.split(' ');
+			var b = a[2];
+			console.log(b);
+			
+			var appendMsg = '<div class="appendBox '+b+'">';
+			appendMsg += '<div class="selectOption btn btn-sm btn-primary">선택</div>';
+			appendMsg += '<div class="appendInfoDiv"><span class="appendOptionName">'+optionName+'</span> / <span class="optionAmount">1</span><span>매</span></div>';
+			appendMsg += '</div>';
+			
+			$('.appendOptionDiv').append(appendMsg);
+			/* 우측 체크 정보에 추가 end */
+			
+	
+			/* 우측 체크 정보에 가격 업데이트 start */
+			// 이미 선택된 가격이 없을 
+			if($('.appendPrice').text()=='0'){
+				var price = $('.appendPrice').text();
+				var optionPrice = $(me).next().text();
+				$('.appendPrice').text(optionPrice);
+			
+				
+			// 이미 선택 되어있는 옵션이 있을 떄
+			}else if($('.appendPrice').text()!='0'){
+				var price = $('.appendPrice').text();
+				var optionPrice = $(me).next().text();
+				
+				var updatePrice = parseInt(price,10) + parseInt(optionPrice,10);
+				$('.appendPrice').text(updatePrice);
+				
+			}
+			/* 우측 체크 정보에 가격 업데이트 end */
+			
+			
+		// 플러스 이벤트에서 값이 값이 2이상이 될때 수량 플러스 및 가격 플러스
+		}else if(amount>0){
+			var labelClass = $(me).parent().prev().find('.optionName').attr('class');
+			var a = labelClass.split(' ');
+			var b = a[2];
+			console.log(b);
+			
+			var appendBox = $('.appendBox').get();
+			console.log(appendBox);
+			
+			$.each(appendBox,function(index,item){
+				var tempClass1 = $(item).attr('class');
+				var tempClass2 = tempClass1.split(' ');
+				var itemClass = tempClass2[1];
+				if(itemClass==b){
+					// 클래스가 같은 것을 찾아서 그 부분만 수량 수량 플러스
+					var j = $('.'+itemClass).find('.optionAmount').text();
+					console.log(j);
+					$('.'+itemClass).find('.optionAmount').text(parseInt(j,10)+1);
+				}
+			});
+			
+			/* 우측 체크 정보에 가격 업데이트 start */
+			var price = $('.appendPrice').text();
+			var optionPrice = $(me).next().text();
+			
+			var updatePrice = parseInt(price,10) + parseInt(optionPrice,10);
+			$('.appendPrice').text(updatePrice);
+			/* 우측 체크 정보에 가격 업데이트 end */
+		}
+	};
+	
+	function changeCircle(me){
+		$(me).parent().parent().css('box-shadow','');	
+		$(me).css('display','none');
+		$(me).next().css('display','inline-block');
+		$(me).parent().next().find('.priceInput').val('0');
+	};
+	
+	function changeCheck(me){
+		$(me).parent().parent().css({'box-shadow':'0 0 15px 0 rgba(16, 79, 206, 0.5'},{'border-radius':'10px'});
+		$(me).css('display','none');
+		$(me).prev().css('display','inline-block');
+		$(me).parent().next().find('.priceInput').val('1');
+	};
 
 </script>
 
@@ -392,7 +609,7 @@
 		</div>
 		<!--  -->
 		<p class="rote">
-			<a href="../../">메인 페이지</a> > <a href="../list"> 숙박 페이지</a> > <a href="#">${startEndDay.getActivity_title()}</a>
+			<a href="../../">메인 페이지</a> > <a href="../list"> 액티비티 페이지</a> > <a href="#">${startEndDay.getActivity_title()}</a>
 		</p>
 		<p class="hashTag">${hashTag }</p>
 		<p class="titleName">${startEndDay.getActivity_title()}</p>
@@ -427,34 +644,59 @@
 				<!-- 객실예약 -->
 				<div class="row">
 					<div id="category" class="col-md-12">
+						<form action="reservation" method="POST">
 						<div class="row">
 							<div class="filter-result col-md-7">
 								<div class="option-content">
 								<!-- 액티비티 옵션들 -->
-								<c:forEach items="${detailList }" var="bean" varStatus="status">
+								<c:forEach items="${detailList }" var="bean" begin="0" varStatus="status">
 									<div class="option-box">
-										<div class="form-check">
-										  <input class="form-check-input" type="checkbox" value="${bean.activityOption_name }" id="defaultCheck1">
-										  <label class="optionName form-check-label" for="defaultCheck1">
-										    ${bean.activityOption_name } [ ${bean.activityOption_subName } ]
-										  </label>
+										<div class="form-check optionCheck">
+											<span onclick="changeCircle(this);" class="yesCheck" style="display:none;">
+												<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-check-circle circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+												  <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+												  <path fill-rule="evenodd" d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.236.236 0 0 1 .02-.022z"/>
+												</svg>
+											</span>
+											<span onclick="changeCheck(this);" class="nonCheck">
+												<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-circle checkCircle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+												  <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+												</svg>
+											</span>
+										    <label class="optionName form-check-label option${status.index} " for="defaultCheck1">${bean.activityOption_name } [ ${bean.activityOption_subName } ]</label>
 										</div>
 										<div class="optionInfo">
+											<input class="amount btn btn-primary" onclick="optionMinus(this);" value="-" readonly />
+											<input type="text" name="AReservInfo_amount" class="btn btn-secondary priceInput" value="0" readonly />
+											<input class="amount btn btn-primary" onclick="optionPlus(this);" value="+" readonly />
 											<span class="optionPrice">${bean.activityOption_price }</span>
 										</div>
 									</div>
+									
+									<input type="hidden" name="AReservInfo_userNumber" value="${userNumber }" />
+									<input type="hidden" name="AReservInfo_articleNumber" value="${bean.activityOption_articleNumber }" />
+									<input type="hidden" name="AReservInfo_optionNumber" value="${bean.activityOption_optionNumber }" />
+									<input type="hidden" name="AReservInfo_unitPrice" value="${bean.activityOption_price }" />
+									
 								</c:forEach>
 								</div>
 							</div>
 							<div class="col-md-1">
 							</div>
 							<div class="col-md-4">
-								<div class="option-content jumbotron">
-									<div>선택</div>
-									<div>나중에 자바스크립트 append</div>
+								<div class="option-reservDiv jumbotron">
+									<div class="appendOptionDiv">
+									<!-- 이 부분에 append -->
+									
+									</div>
+									<div class="resultOption">
+										<span>총 결제 금액 : </span><span class="appendPrice">0</span><span>원</span>
+										<button type="submit" class="btn btn-lg btn-warning btn-block reservBtn">예약페이지 이동</button>
+									</div>
 								</div>
 							</div>
 						</div>
+						</form>
 					</div>
 				</div>
 				<div class="row">
