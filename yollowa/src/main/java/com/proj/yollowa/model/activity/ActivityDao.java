@@ -55,5 +55,8 @@ public interface ActivityDao {
 	// 기존에 등록된 찜 목록이 있을 때 기존 + & 숙박글번호
 	public void afterWishUpdate(@Param("afterWish") String afterWish,@Param("userNumber") int userNumber);
 	
+	// 액티비티 예약페이지 이동 - articleNumber로 등록된 옵션들 전부 select
+	public List<ActivityOptionVo> selectOptions(int articleNumber);
+	
 	
 }
