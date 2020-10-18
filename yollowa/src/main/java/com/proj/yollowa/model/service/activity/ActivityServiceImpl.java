@@ -233,6 +233,16 @@ public class ActivityServiceImpl implements ActivityService {
 		
 		return list;
 	}
+
+	
+	// 액티비티 옵션 이름 ,서브네임
+	@Override
+	public List<ActivityOptionVo> activityOptionName(int optionNumber, int articleNumber) {
+		ActivityDao dao= sqlSession.getMapper(ActivityDao.class);
+		List<ActivityOptionVo> list =dao.activityOptionName(optionNumber,articleNumber);
+		
+		return list;
+	}
 }
 
 

@@ -71,6 +71,11 @@
 		select * from activityOption where activityOption_articleNumber = #{articleNumber} order by activityOption_optionNumber
 	</select>
 	
+	<!-- 액티비티 옵션이름, 서브네임-->
+	<select id="activityOptionName" resultType="com.proj.yollowa.model.entity.activity.ActivityOptionVo">
+		select * from activityOption where activityOption_articleNumber = #{articleNumber} and  activityOption_optionNumber = #{optionNumber}
+	</select>
+	
 </mapper>
 
 

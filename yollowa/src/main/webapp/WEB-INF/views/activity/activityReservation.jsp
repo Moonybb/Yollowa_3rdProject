@@ -96,7 +96,7 @@
 						  <div class="modal-dialog">
 						    <div class="modal-content">
 						      <div class="modal-header">
-						        <h5 class="modal-title" id="exampleModalLabel">숙소이용규칙 및 취소/환불 규정(필수)</h5>
+						        <h5 class="modal-title" id="exampleModalLabel">액티비티 이용규칙 및 취소/환불 규정(필수)</h5>
 						        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						          <span aria-hidden="true">&times;</span>
 						        </button>
@@ -127,48 +127,38 @@
 			
 			<div id="jumbo" class="col-md-4 jumbotron " style="margin-top: 50px; display:inline-block;">
 				<div>
-					<p>숙소이름</p>
+					<p>액티비티 이름</p>
 					<span>${companyName}</span>
 				</div>
 				
 				<div>
-					<p>객실 명</p>
+					<p>예약 상품</p>
 					<span>
-						<c:forEach items="${roomDetail }" var="bean">
-							${bean.roomInfo_name }
+						<ul>
+						<c:forEach items="${optionName }" var="bean">
+							<li>${bean.activityOption_name} [ ${bean.activityOption_subName} ] </li>
 						</c:forEach>
+						</ul>
 					</span>
 				</div>
-				
 				<div>
-					<p>체크인</p>
+					<p>예약 날짜</p>
 					<span>${sdate}</span>
 				</div>
 				
-				<div style="border-bottom:1px solid lightgray; padding-bottom: 30px;">
-					<p>체크아웃</p>
-					<span>${edate}</span>
-				</div>
 				<form action="../Inicis/" name="form1" method="post">
-					<c:forEach items="${reservList }" var="bean">
-					<input type="hidden" name="" value="${bean.get }"/>
-					</c:forEach>
 					
 					<!-- 글번호 -->
-					<input type="hidden" name="articleNumber" value="${articleNumber }"/>
+					<input type="hidden" name="articleNumber" value="${articleNumber}"/>
 					
 					<!-- 숙소이름 -->
 					<input type="hidden" name="companyName" value="${companyName}"/>
 					
 					<!-- 객실 번호 -->
-					<input type="hidden" name="roomNumber" value="${roomNumber }"/>
-					<!-- 객실 명 -->
-					<c:forEach items="${roomDetail }" var="bean">
-						<input type="hidden" name="roomName" value="${bean.roomInfo_name }"/>
-					</c:forEach>
+					<input type="hidden" name="reservList" value="${reservList}"/>
+					
 					
 					<input type="hidden" name="checkIn" value="${sdate}"/>
-					<input type="hidden" name="checkOut" value="${edate}"/>
 					<input type="hidden" name="resultPrice" value="${resultPrice}"/>
 					<input type="hidden" name="cart" value="${cart }" /> 
 					

@@ -58,5 +58,8 @@ public interface ActivityDao {
 	// 액티비티 예약페이지 이동 - articleNumber로 등록된 옵션들 전부 select
 	public List<ActivityOptionVo> selectOptions(int articleNumber);
 	
+	// 액티비티 옵션 이름, 서브네임
+	public List<ActivityOptionVo> activityOptionName(@Param("optionNumber") int optionNumber,@Param("articleNumber") int articleNumber);
+	
 	
 }
