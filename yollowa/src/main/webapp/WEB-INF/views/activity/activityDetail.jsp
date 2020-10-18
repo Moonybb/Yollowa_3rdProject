@@ -647,7 +647,7 @@
 				<!-- 객실예약 -->
 				<div class="row">
 					<div id="category" class="col-md-12">
-						<form action="reservation" method="POST">
+						<form action="reservation/${article}" method="POST">
 						<div class="row">
 							<div class="filter-result col-md-7">
 								<div class="option-content">
