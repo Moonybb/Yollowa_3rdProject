@@ -224,6 +224,15 @@ public class ActivityServiceImpl implements ActivityService {
 	}
 	
 
+	// 액티비티 예약페이지 이동 - articleNumber로 등록된 옵션들 전부 select
+	@Override
+	public List<ActivityOptionVo> selectOptions(int articleNumber) {
+		ActivityDao dao = sqlSession.getMapper(ActivityDao.class);
+		
+		List<ActivityOptionVo> list =  dao.selectOptions(articleNumber);
+		
+		return list;
+	}
 }
 
 

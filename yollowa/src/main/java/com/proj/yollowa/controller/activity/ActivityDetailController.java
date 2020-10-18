@@ -1,6 +1,7 @@
 package com.proj.yollowa.controller.activity;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -16,7 +17,9 @@ import com.proj.yollowa.interceptor.Auth;
 import com.proj.yollowa.interceptor.AuthUser;
 import com.proj.yollowa.model.entity.UserVo;
 import com.proj.yollowa.model.entity.activity.ActivityDetailPageDto;
+import com.proj.yollowa.model.entity.activity.ActivityOptionVo;
 import com.proj.yollowa.model.entity.activity.ActivityReservFormPageDto;
+import com.proj.yollowa.model.entity.mypage.AReservInfoVo;
 import com.proj.yollowa.model.service.activity.ActivityService;
 
 @Controller
@@ -72,12 +75,50 @@ public class ActivityDetailController {
 	// 액티비티 예약 post 
 	@Auth
 	@RequestMapping(value="detail/reservation", method=RequestMethod.POST)
-	public String activityReservation(ActivityReservFormPageDto bean) {
+	public String activityReservation(@AuthUser UserVo userVo,ActivityReservFormPageDto bean) {
 		
 		int articleNumber = bean.getAReservInfo_articleNumber();
-		int optionNumber = bean.getAReservInfo_optionNumber();
 		String amountArr = bean.getAReservInfo_amount();
+
+		// articleNumber로 등록된 옵션 전부 select
+		List<ActivityOptionVo> optionList = activityService.selectOptions(articleNumber);
 		
+		// 사용자가 체크한 수량
+		String[] amount = amountArr.split(",");
+		int totalPrice = 0;
+		
+		AReservInfoVo aReservInfoVo = new AReservInfoVo();
+		List<AReservInfoVo> reservList = new ArrayList<AReservInfoVo>();
+		
+		for(int i=0; i<amount.length; i++) {
+			int optionNumber = optionList.get(i).getActivityOption_optionNumber();
+			int optionPrice = optionList.get(i).getActivityOption_price();
+			int userAmount = Integer.parseInt(amount[i]);
+			
+			System.out.println("optionNumber : "+optionNumber);
+			// articleNumber set
+			aReservInfoVo.setaReservInfo_articleNumber(articleNumber);
+			// 옵션 넘버 set
+			aReservInfoVo.setaReservInfo_optionNumber(optionNumber);
+			// 유저넘버 set
+			aReservInfoVo.setaReservInfo_userNumber(userVo.getUser_number());
+			// 선택한 수량 set
+			aReservInfoVo.setaReservInfo_amount(userAmount);
+			// unitPrice set
+			aReservInfoVo.setaReservInfo_unitPrice(optionPrice);
+			// 수량 * 옵션 가격 set
+			aReservInfoVo.setaReservInfo_payment(optionPrice*userAmount);
+			
+			// 리스트에 add할때에 수량이 1 이상인 것만 add 함
+			if(userAmount>0) {
+				reservList.add(aReservInfoVo);
+			}
+			// 총가격 계산
+			totalPrice += optionPrice*userAmount;
+			
+		}
+		System.out.println("reservList :: "+reservList);
+		System.out.println("총 가격 :: "+totalPrice);
 		
 		return null;
 	}
