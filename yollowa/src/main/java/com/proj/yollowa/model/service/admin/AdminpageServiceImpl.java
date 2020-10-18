@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.proj.yollowa.model.adminpage.AdminDao;
 import com.proj.yollowa.model.entity.ManagerVo;
+import com.proj.yollowa.model.entity.SearchVo;
 import com.proj.yollowa.model.entity.UserVo;
 import com.proj.yollowa.model.entity.admin.ActivityApprovalVo;
 import com.proj.yollowa.model.entity.admin.HostrqnApprovalVo;
@@ -24,10 +25,16 @@ public class AdminpageServiceImpl implements AdminpageService{
 	
 	//사업자 권한을 신청한 사용자들의 목록을 가져온다
 	@Override
-	public List<HostrqnApprovalVo> getHostApprovalStandbyListService() throws SQLException {
+	public List<HostrqnApprovalVo> getHostApprovalStandbyListService(SearchVo searchVo) throws SQLException {
 		AdminDao adminpageDao = sqlsession.getMapper(AdminDao.class);
 		
-		return adminpageDao.getHostApprovalStandbyList();
+		return adminpageDao.getHostApprovalStandbyList(searchVo);
+	}
+	
+	@Override
+	public int countHosrqnService(SearchVo searchVo) throws SQLException {
+		AdminDao adminpageDao = sqlsession.getMapper(AdminDao.class);
+		return adminpageDao.countHostrqn(searchVo);
 	}
 	
 	@Override
@@ -93,12 +100,17 @@ public class AdminpageServiceImpl implements AdminpageService{
 	}
 	
 	@Override
-	public List<ActivityApprovalVo> getActivityApprovalStandbyListService() throws SQLException {
+	public List<ActivityApprovalVo> getActivityApprovalStandbyListService(SearchVo searchVo) throws SQLException {
 		AdminDao adminpageDao = sqlsession.getMapper(AdminDao.class);
 		
-		return adminpageDao.getActivityApprovalStandbyList();
+		return adminpageDao.getActivityApprovalStandbyList(searchVo);
 	}
-
+	@Override
+	public int countActivityApprovalStandbyListService(SearchVo searchVo) throws SQLException {
+		AdminDao adminpageDao = sqlsession.getMapper(AdminDao.class);
+		
+		return adminpageDao.countActivityApprovalStandbyList(searchVo);
+	}
 	@Override
 	public void updateActivityTempToApprovedService(int activity_number) throws SQLException {
 		AdminDao adminpageDao = sqlsession.getMapper(AdminDao.class);
@@ -107,10 +119,17 @@ public class AdminpageServiceImpl implements AdminpageService{
 	}
 
 	@Override
-	public List<LodgementApprovalVo> getLodgementApprovalStandbyListService() throws SQLException {
+	public List<LodgementApprovalVo> getLodgementApprovalStandbyListService(SearchVo searchVo) throws SQLException {
 		AdminDao adminpageDao = sqlsession.getMapper(AdminDao.class);
 		
-		return adminpageDao.getLodgementApprovalStandbyList();
+		return adminpageDao.getLodgementApprovalStandbyList(searchVo);
+	}
+	
+	@Override
+	public int countLodgementApprovalStandbyListService(SearchVo searchVo) throws SQLException {
+		AdminDao adminpageDao = sqlsession.getMapper(AdminDao.class);
+		
+		return adminpageDao.countLodgementApprovalStandbyList(searchVo);
 	}
 
 	@Override
@@ -122,12 +141,19 @@ public class AdminpageServiceImpl implements AdminpageService{
 	
 	//Manager
 	@Override
-	public List<ManagerVo> getManagerListService() throws SQLException {
+	public List<ManagerVo> getManagerListService(SearchVo searchVo) throws SQLException {
 		AdminDao adminpageDao = sqlsession.getMapper(AdminDao.class);
 		
-		return adminpageDao.getManagerList();
+		return adminpageDao.getManagerList(searchVo);
 	}
-
+	
+	@Override
+	public int countManagerList(SearchVo searchVo) throws SQLException {
+		AdminDao adminpageDao = sqlsession.getMapper(AdminDao.class);
+		
+		return adminpageDao.countManagerList(searchVo);
+	}
+	
 	@Override
 	public ManagerVo getManagerService(int manager_number) throws SQLException {
 		AdminDao adminpageDao = sqlsession.getMapper(AdminDao.class);
@@ -156,6 +182,11 @@ public class AdminpageServiceImpl implements AdminpageService{
 		adminpageDao.insertManager(bean);
 	}
 
-
+	@Override
+	public int getUserNumberService(SearchVo searchVo) throws SQLException {
+		AdminDao adminpageDao =sqlsession.getMapper(AdminDao.class);
+		
+		return adminpageDao.getUserNumber(searchVo);
+	}
 
 }
