@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <div class="container">
-		<div class="page-header">
-			<p>메인 페이지 > 마이 페이지</p>
+		<div class="page-header" style="padding-top:15px;">
+			<p style="margin-bottom: 0px;"><a href="${pageContext.request.contextPath }/">메인 페이지</a> > <a href="${pageContext.request.contextPath }/mypage/2">마이 페이지</a></p>
 			<h1>
 				<a class="mypageLink"
-					href="${pageContext.request.contextPath }/mypage/">마이페이지</a> <small>
+					href="${pageContext.request.contextPath }/mypage/2">마이페이지</a> <small>
 					My Page</small>
 			</h1>
 		</div>
@@ -15,7 +15,7 @@
 				<div class="card border-primary mb-3" style="max-width: 20rem;">
 					<div class="card-header bg-primary">
 						<a class="card-link" style="color: white;"
-							href="${pageContext.request.contextPath }/mypage/">> 마이페이지</a>
+							href="${pageContext.request.contextPath }/mypage/2">> 마이페이지</a>
 					</div>
 					<div class="card-body">
 						<p class="card-text">

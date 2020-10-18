@@ -163,5 +163,7 @@
 	<update id="updateUserPassword">
 		UPDATE user SET user_password = #{user_password} WHERE user_number=#{user_number};
 	</update>
-	
+	<delete id="deleteUser">
+		DELETE FROM user WHERE user_number = #{user_number}
+	</delete>
 </mapper>

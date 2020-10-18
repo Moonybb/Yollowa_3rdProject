@@ -37,7 +37,7 @@ public class LoginController {
 
 	@Inject
 	private UserService userService;
-
+	
 	@Inject
 	private SnsValue naverSns;
 
@@ -111,8 +111,8 @@ public class LoginController {
 
 	//유저 로그인 페이지 get
 	@RequestMapping(value ="login/",method = RequestMethod.GET )
-	public String login(Model model) {
-
+	public String login(Model model,HttpServletRequest req) {
+		
 		SNSLogin snsLogin = new SNSLogin(naverSns);
 		model.addAttribute("naver_url", snsLogin.getNaverAuthURL());
 
@@ -121,27 +121,24 @@ public class LoginController {
 
 	//매니저 로그인 페이지 get
 	@RequestMapping(value = "mlogin/",method = RequestMethod.GET)
-	public String managerLogin() {
+	public String managerLogin(@AuthUser UserVo userVo) {
 		
 		
 		return "login/managerlogin";
 	}
 
 
-
-	
+	@Auth
 	@RequestMapping(value = "login/result", method = RequestMethod.POST)
-	public void loginResult() {
+	public void loginResult(@AuthUser UserVo userVo) {
 	}
 	
 	
-	@RequestMapping(value = "mlogin/result",method =RequestMethod.POST )
-	public void managerLoginResult() {
-	}
+	
 	//get접근시 리다이렉팅
+	@Auth
 	@RequestMapping(value = "login/result", method = RequestMethod.GET)
-	public String loginGetResult() {
-		return "redirect:../";
+	public void loginGetResult(@AuthUser UserVo userVo) {
 	}
 	
 	

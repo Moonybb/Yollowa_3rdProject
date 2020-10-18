@@ -69,6 +69,36 @@
 }
 
 </style>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
+<script type="text/javascript">
+	$(function(){
+		var failed='${failed}';
+		console.log(failed);
+		if(failed=="failed"){
+			swal({
+				title:"실패",
+				text:"아이디 또는 비밀번호가 맞지 않습니다",
+			    icon: "error",
+			    closeOnClickOutside:false,
+		    	buttons :{
+			    	confirm:{
+			    		text:'확인',
+			    		value:true,
+			    		className:'btn btn-primary'
+			    	}
+			    }
+			}).then((result) =>{
+				if(result){
+					<% HttpSession session1=request.getSession();
+						session1.setAttribute("failed", "");
+					%>
+				}
+			});
+		}
+	});
+</script>
 </head>
 <body>
 	<%@ include file="../template/header.jspf"%>
@@ -96,10 +126,7 @@
 					</div>
 
 					<div class="text-right p-t-8">
-						<a style="font-family: 'MapoPeacefull';" href="FindId"> 아이디를 잊어버리셨나요? </a>
-					</div>
-					<div class="text-right ">
-						<a style="font-family: 'MapoPeacefull';" href="Findpassword"> 비밀번호를 잊어버리셨나요? </a>
+						<a style="font-family: 'MapoPeacefull';text-decoration: underline;" href="FindId">아이디</a> 또는 <a style="font-family: 'MapoPeacefull';text-decoration: underline;" href="Findpassword" >비밀번호</a>를 잊어버리셨나요?
 					</div>
 					<div class="text-right p-t-8 p-b-31"></div>
 
@@ -123,7 +150,6 @@
 							style="width: 40px; height: 40px;"
 							src="${pageContext.request.contextPath}/resources/img/naver.PNG">
 						</a>
-
 					</div>
 
 					<div class="flex-col-c p-t-155">

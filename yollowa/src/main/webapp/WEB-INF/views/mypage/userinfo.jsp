@@ -121,7 +121,7 @@ form {
 		<div class="card border-primary mb-3" style="width: 100%;">
 			<div class="card-header">
 				<div style="display: inline-block;">계정 삭제</div>
-				<a class="link" href="userinfo/deleteUser">></a>
+				<a class="link" href="userinfo/deleteuser">></a>
 			</div>
 			<div class="card-body">
 				<p class="card-text">욜로와 계정 및 개인정보를 삭제 합니다.</p>
