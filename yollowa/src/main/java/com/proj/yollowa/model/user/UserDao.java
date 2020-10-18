@@ -35,4 +35,6 @@ public interface UserDao {
 	void insertKakaoUser(@Param("user") UserVo userVo) throws SQLException;
 	void insertNaverUser(@Param("user") UserVo userVo) throws SQLException;
 	UserVo getUser(int user_Number) throws SQLException;
+	
+	
 }

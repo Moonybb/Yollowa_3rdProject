@@ -27,6 +27,11 @@ public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
+	@RequestMapping(value = "index",method=RequestMethod.GET)
+	public String index(Model model) {
+		return "index";
+	}
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) {
 		return "home";
@@ -35,10 +40,6 @@ public class HomeController {
 	@Auth
 	@RequestMapping(value = "/review_write/{service}/{reservNumber}" ,method=RequestMethod.GET)
 	public String wRiteReview(Model model,@AuthUser UserVo userVo,@PathVariable String service,@PathVariable("reservNumber") int reservNumber) throws SQLException {
-		
-		if(userVo==null) {
-			return "../";
-		}
 		myPageService.getReviewInfoService(model, service, reservNumber);
 		
 		return "review";

@@ -532,8 +532,8 @@
 					<div style="font-family: 'MapoPeacefull';">
 						<select class="selection-2" style="font-family: 'MapoPeacefull';"
 							name="user_likes">
-							<option>액티비티 예약</option>
-							<option>숙박 예약</option>
+							<option value="1">액티비티 예약</option>
+							<option value="2">숙박 예약</option>
 						</select>
 					</div>
 					<span class="focus-input100"></span>

@@ -28,6 +28,9 @@ public class LogoutController {
 		}
 		return null;
 	}
+	@RequestMapping(value = "mlogin/result",method =RequestMethod.POST )
+	public void managerLoginResult() {
+	}
 	//get 접근시 리다이렉팅
 	@RequestMapping(value = "mlogin/result",method =RequestMethod.GET )
 	public String managerLoginGetResult() {

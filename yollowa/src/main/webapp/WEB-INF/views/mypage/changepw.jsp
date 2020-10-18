@@ -96,15 +96,12 @@ form {
 			<div class="invalid-feedback">Sorry, that username's taken. Try
 				another?</div>
 		</div> -->
-
-		<form>
 			<div class="form-group">
 				<label class="col-form-label" for="user_password">비밀번호 입력</label> <input
 					type="password" class="form-control inputpw"
 					placeholder="비밀번호를 입력해주세요" style="width: 25%;">
 			</div>
-			<button type="button" class="btn btn-primary button">확인</button>
-		</form>
+			<button type="submit" class="btn btn-primary button">확인</button>
 
 
 
