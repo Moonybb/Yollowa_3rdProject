@@ -1,6 +1,12 @@
 package com.proj.yollowa.controller.activity;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+
+import java.sql.Date;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -16,7 +22,9 @@ import com.proj.yollowa.interceptor.Auth;
 import com.proj.yollowa.interceptor.AuthUser;
 import com.proj.yollowa.model.entity.UserVo;
 import com.proj.yollowa.model.entity.activity.ActivityDetailPageDto;
+import com.proj.yollowa.model.entity.activity.ActivityOptionVo;
 import com.proj.yollowa.model.entity.activity.ActivityReservFormPageDto;
+import com.proj.yollowa.model.entity.mypage.AReservInfoVo;
 import com.proj.yollowa.model.service.activity.ActivityService;
 
 @Controller
@@ -65,21 +73,89 @@ public class ActivityDetailController {
 		model.addAttribute("startEndDay", list.get(0));
 		model.addAttribute("article", activity_number);
 		
+		model.addAttribute("reviewRate", list.get(0).getActivity_reviewGradeRate());
+		model.addAttribute("reviewCount", list.get(0).getActivity_reviewCount());
+		
 		return "activity/activityDetail";
 	}
 	
 	
 	// 액티비티 예약 post 
 	@Auth
-	@RequestMapping(value="detail/reservation", method=RequestMethod.POST)
-	public String activityReservation(ActivityReservFormPageDto bean) {
+	@RequestMapping(value="detail/reservation/{articleNumber}", method=RequestMethod.POST)
+	public String activityReservation(@PathVariable("articleNumber") int articleNumber ,@AuthUser UserVo userVo,ActivityReservFormPageDto bean,Model model) {
 		
-		int articleNumber = bean.getAReservInfo_articleNumber();
-		int optionNumber = bean.getAReservInfo_optionNumber();
+		// 글 이름
+		List<ActivityDetailPageDto> title =activityService.activityDetail(articleNumber, model);
+		model.addAttribute("companyName", title.get(0).getActivity_title());
+		
+		// 예약 시간
+		
+		SimpleDateFormat format1 = new SimpleDateFormat ( "yyyy-MM-dd");
+				
+		String sdate = format1.format(System.currentTimeMillis());
+		        				 		
+		System.out.println(sdate);
+		model.addAttribute("sdate",sdate);
+		Date d = Date.valueOf(sdate);
+		
+		// 글번호
+		model.addAttribute("articleNumber", articleNumber);
+		
+		
 		String amountArr = bean.getAReservInfo_amount();
+
+		// articleNumber로 등록된 옵션 전부 select
+		List<ActivityOptionVo> optionList = activityService.selectOptions(articleNumber);
+		
+		// 사용자가 체크한 수량
+		String[] amount = amountArr.split(",");
+		int totalPrice = 0;
+		
+		List<AReservInfoVo> reservList = new ArrayList<AReservInfoVo>();
+		List<ActivityOptionVo> option = new ArrayList<ActivityOptionVo>();
 		
 		
-		return null;
+		for(int i=0; i<amount.length; i++) {
+			AReservInfoVo aReservInfoVo = new AReservInfoVo();
+			int optionNumber = optionList.get(i).getActivityOption_optionNumber();
+			int optionPrice = optionList.get(i).getActivityOption_price();
+			int userAmount = Integer.parseInt(amount[i]);
+			
+			System.out.println("optionNumber : "+optionNumber);
+			// articleNumber set
+			aReservInfoVo.setaReservInfo_articleNumber(articleNumber);
+			// 옵션 넘버 set
+			aReservInfoVo.setaReservInfo_optionNumber(optionNumber);
+			// 유저넘버 set
+			aReservInfoVo.setaReservInfo_userNumber(userVo.getUser_number());
+			// 선택한 수량 set
+			aReservInfoVo.setaReservInfo_amount(userAmount);
+			// unitPrice set
+			aReservInfoVo.setaReservInfo_unitPrice(optionPrice);
+			// 수량 * 옵션 가격 set
+			aReservInfoVo.setaReservInfo_payment(optionPrice*userAmount);
+			// 현재날짜 SET
+			aReservInfoVo.setaReservInfo_checkIn(d);
+			
+			// 리스트에 add할때에 수량이 1 이상인 것만 add 함
+			if(userAmount>0) {
+				reservList.add(aReservInfoVo);
+				List<ActivityOptionVo> optionName = activityService.activityOptionName(optionNumber,articleNumber);
+				option.addAll(optionName);
+			}
+			// 총가격 계산
+			totalPrice += optionPrice*userAmount;
+			
+		}
+		
+		model.addAttribute("optionName", option);
+		model.addAttribute("reservList", reservList);
+		
+		model.addAttribute("userName", userVo.getUser_name());	// 유저이름
+		model.addAttribute("resultPrice", totalPrice);			// 총 결제 금액
+		
+		return "activity/activityReservation";
 	}
 	
 	
@@ -94,6 +170,79 @@ public class ActivityDetailController {
 		int activityNumber = Integer.parseInt(req.getParameter("number"));
 		
 		activityService.activityWishUpdate(activityNumber, userNumber);
+	}
+	
+	
+	// activity 이니시스
+	@Auth
+	@RequestMapping(value="detail/Inicis/", method=RequestMethod.POST)
+	public String activityInicis(@AuthUser UserVo userVo ,HttpServletRequest req,Model model) {
+		String articleNumber=req.getParameter("articleNumber");
+		String companyName=req.getParameter("companyName");
+		String reservList=req.getParameter("reservList");
+		String sdate=req.getParameter("sdate");
+		String resultPrice=req.getParameter("resultPrice");
+		String cart=req.getParameter("cart");
+		
+		System.out.println("이니시스");
+		System.out.println(articleNumber);
+		System.out.println(companyName);
+		System.out.println(reservList);
+		System.out.println(sdate);
+		System.out.println(resultPrice);
+		System.out.println(cart);
+		
+		model.addAttribute("reservList", reservList);
+		model.addAttribute("userName", userVo.getUser_name());
+		model.addAttribute("userPhoneNumber", userVo.getUser_phoneNumber());
+		model.addAttribute("companyName", companyName);
+		model.addAttribute("resultPrice", resultPrice);
+		
+		return "activity/activityInicis";
+	}
+	
+	
+	
+	// 결제 완료시 ajax
+	@Auth
+	@RequestMapping(value = "detail/InicisAjax",method = RequestMethod.POST)
+	public void InicisAjax(HttpServletRequest req,@AuthUser UserVo user) throws SQLException, ParseException {
+		String articleNumber= req.getParameter("articleNumber");
+		String companyName= req.getParameter("companyName");
+		String checkI= req.getParameter("checkIn");
+		String resultPrice= req.getParameter("resultPrice");
+		String reservList= req.getParameter("reservList");
+		
+		System.out.println("리절브리스트:"+reservList);
+		
+		
+		int userNumber =user.getUser_number();
+		String userPhoneNumber =user.getUser_phoneNumber();
+		
+		String cart=req.getParameter("cart");
+		System.out.println("결제완료 ajax:::"+cart);
+		
+		System.out.println();
+		java.sql.Date checkIn=java.sql.Date.valueOf(checkI);
+//		
+//		if(cart.isEmpty()) {
+//			System.out.println("바로 결제");
+//			//유저넘버 , 글번호 , 옵션 넘버, 상품개수 , 예약날,종료일,폰넘버,개당가격, 결제금액
+//			activityService.AReservInfoInsert(userNumber,Integer.parseInt(articleNumber),optionNumber,amount,checkI,checkI+90,userPhoneNumber,unitPrice,payment);
+//		}else {
+//			System.out.println("바구니결제");
+//			int c = Integer.parseInt(cart);
+//			activityService.AReservInfoUpdate(c);
+//		}
+		
+		
+	}
+	
+	// 예약완료 페이지
+	@RequestMapping(value = "detail/ReservationResult/")
+	public String lodgementReservationResult(Model model,HttpServletRequest req) throws SQLException{
+		
+		return "activity/activityReservationResult";
 	}
 	
 	

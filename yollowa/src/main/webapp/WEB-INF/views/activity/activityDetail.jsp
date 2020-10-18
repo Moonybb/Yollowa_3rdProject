@@ -354,6 +354,38 @@
 			$('.info_refundInfo').append(appendDiv);
 		}
 		
+		
+		// 리뷰 평균 
+		var starRateString = $('#reviewRate').text();
+		// 넘버 타입으로 형변환
+		var starRate = Number(starRateString);
+		console.log(starRate);
+		
+		if(starRate>4.5){
+			$('#reviewRateStar').text('★ ★ ★ ★ ★ ');
+			$('#reviewRateTitle').text('추천해요');
+			
+		}else if(starRate>3.5){
+			$('#reviewRateStar').text('★ ★ ★ ★ ☆ ');
+			$('#reviewRateTitle').text('만족해요');
+			
+		}else if(starRate>2.5){
+			$('#reviewRateStar').text('★ ★ ★ ☆ ☆ ');
+			$('#reviewRateTitle').text('괜찮아요');
+			
+		}else if(starRate>1.5){
+			$('#reviewRateStar').text('★ ★ ☆ ☆ ☆ ');
+			$('#reviewRateTitle').text('평범해요');
+			
+		}else if(starRate>0.5){
+			$('#reviewRateStar').text('★ ☆ ☆ ☆ ☆ ');
+			$('#reviewRateTitle').text('별로에요');
+			
+		}else if(starRate>0){
+			$('#reviewRateStar').text('☆ ☆ ☆ ☆ ☆ ');
+			$('#reviewRateTitle').text('등록된 리뷰가 없습니다');
+			
+		}
 	});
 	/* document Ready end */
 	
@@ -647,7 +679,7 @@
 				<!-- 객실예약 -->
 				<div class="row">
 					<div id="category" class="col-md-12">
-						<form action="reservation" method="POST">
+						<form action="reservation/${article}" method="POST">
 						<div class="row">
 							<div class="filter-result col-md-7">
 								<div class="option-content">
@@ -779,11 +811,11 @@
 				<!-- ..리뷰 -->
 				<div id="review-div row">
 					<div id="reviewRate text-center">
-						<div id="reviewRateTitle">추천해요</div>
+						<div id="reviewRateTitle">등록된 리뷰가 없습니다</div>
 						<div id="reviewRateStarDiv">
-						<span id="reviewRateStar">★ ★ ★ ★ ★ </span><span id="reviewRate">10.0</span>
+						<span id="reviewRateStar">★ ★ ★ ★ ★ </span><span id="reviewRate">${reviewRate }</span>
 						</div>
-						<div id="reviewRateCount">전체리뷰 40</div>
+						<div id="reviewRateCount">전체리뷰 ${reviewCount }</div>
 					</div>
 					<c:forEach items="${reviewList}" var="bean" varStatus="status">
 						<div class="review-box col-md-12">
