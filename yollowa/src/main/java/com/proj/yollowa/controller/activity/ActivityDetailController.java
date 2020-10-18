@@ -73,6 +73,9 @@ public class ActivityDetailController {
 		model.addAttribute("startEndDay", list.get(0));
 		model.addAttribute("article", activity_number);
 		
+		model.addAttribute("reviewRate", list.get(0).getActivity_reviewGradeRate());
+		model.addAttribute("reviewCount", list.get(0).getActivity_reviewCount());
+		
 		return "activity/activityDetail";
 	}
 	
