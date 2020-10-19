@@ -16,7 +16,7 @@
 	$("link[rel='shortcut icon']").attr("href", "${pageContext.request.contextPath}/resources/img/icons/favicon.png");
 	</script>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Yollowa</title>
 </head>
 <body>
 

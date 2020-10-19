@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Yollowa</title>
 <%@ include file="../template/head.jspf" %>
 
 <script src="${pageContext.request.contextPath}/resources/js/ckeditor/ckeditor.js"></script>
