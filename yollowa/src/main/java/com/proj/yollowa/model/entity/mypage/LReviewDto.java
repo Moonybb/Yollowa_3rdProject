@@ -20,10 +20,153 @@ public class LReviewDto {
 	private int lodgement_number;
 	private String lodgement_companyName;
 	private String lodgement_location;
-	private String lodgement_Lat;
-	private String lodgement_Lng;
+	private double lodgement_Lat;
+	private double lodgement_Lng;
 	
 	public LReviewDto() {
+	}
+
+	public LReviewDto(int lReservInfo_number, int lReservInfo_userNumber, int lReservInfo_acticleNumber,
+			int lReservInfo_roomNumber, Date lReservInfo_checkIn, Date lReservInfo_checkOut,
+			String lReservInfo_phoneNumber, Date lReservInfo_reservDate, int lReservInfo_payment,
+			int lReservInfo_reservStatus, int lReservInfo_cartStatus, int roomInfo_roomNumber,
+			int roomInfo_articleNumber, String roomInfo_name, int lodgement_number, String lodgement_companyName,
+			String lodgement_location, double lodgement_Lat, double lodgement_Lng) {
+		super();
+		this.lReservInfo_number = lReservInfo_number;
+		this.lReservInfo_userNumber = lReservInfo_userNumber;
+		this.lReservInfo_acticleNumber = lReservInfo_acticleNumber;
+		this.lReservInfo_roomNumber = lReservInfo_roomNumber;
+		this.lReservInfo_checkIn = lReservInfo_checkIn;
+		this.lReservInfo_checkOut = lReservInfo_checkOut;
+		this.lReservInfo_phoneNumber = lReservInfo_phoneNumber;
+		this.lReservInfo_reservDate = lReservInfo_reservDate;
+		this.lReservInfo_payment = lReservInfo_payment;
+		this.lReservInfo_reservStatus = lReservInfo_reservStatus;
+		this.lReservInfo_cartStatus = lReservInfo_cartStatus;
+		this.roomInfo_roomNumber = roomInfo_roomNumber;
+		this.roomInfo_articleNumber = roomInfo_articleNumber;
+		this.roomInfo_name = roomInfo_name;
+		this.lodgement_number = lodgement_number;
+		this.lodgement_companyName = lodgement_companyName;
+		this.lodgement_location = lodgement_location;
+		this.lodgement_Lat = lodgement_Lat;
+		this.lodgement_Lng = lodgement_Lng;
+	}
+
+	@Override
+	public String toString() {
+		return "LReviewDto [lReservInfo_number=" + lReservInfo_number + ", lReservInfo_userNumber="
+				+ lReservInfo_userNumber + ", lReservInfo_acticleNumber=" + lReservInfo_acticleNumber
+				+ ", lReservInfo_roomNumber=" + lReservInfo_roomNumber + ", lReservInfo_checkIn=" + lReservInfo_checkIn
+				+ ", lReservInfo_checkOut=" + lReservInfo_checkOut + ", lReservInfo_phoneNumber="
+				+ lReservInfo_phoneNumber + ", lReservInfo_reservDate=" + lReservInfo_reservDate
+				+ ", lReservInfo_payment=" + lReservInfo_payment + ", lReservInfo_reservStatus="
+				+ lReservInfo_reservStatus + ", lReservInfo_cartStatus=" + lReservInfo_cartStatus
+				+ ", roomInfo_roomNumber=" + roomInfo_roomNumber + ", roomInfo_articleNumber=" + roomInfo_articleNumber
+				+ ", roomInfo_name=" + roomInfo_name + ", lodgement_number=" + lodgement_number
+				+ ", lodgement_companyName=" + lodgement_companyName + ", lodgement_location=" + lodgement_location
+				+ ", lodgement_Lat=" + lodgement_Lat + ", lodgement_Lng=" + lodgement_Lng + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + lReservInfo_acticleNumber;
+		result = prime * result + lReservInfo_cartStatus;
+		result = prime * result + ((lReservInfo_checkIn == null) ? 0 : lReservInfo_checkIn.hashCode());
+		result = prime * result + ((lReservInfo_checkOut == null) ? 0 : lReservInfo_checkOut.hashCode());
+		result = prime * result + lReservInfo_number;
+		result = prime * result + lReservInfo_payment;
+		result = prime * result + ((lReservInfo_phoneNumber == null) ? 0 : lReservInfo_phoneNumber.hashCode());
+		result = prime * result + ((lReservInfo_reservDate == null) ? 0 : lReservInfo_reservDate.hashCode());
+		result = prime * result + lReservInfo_reservStatus;
+		result = prime * result + lReservInfo_roomNumber;
+		result = prime * result + lReservInfo_userNumber;
+		long temp;
+		temp = Double.doubleToLongBits(lodgement_Lat);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(lodgement_Lng);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((lodgement_companyName == null) ? 0 : lodgement_companyName.hashCode());
+		result = prime * result + ((lodgement_location == null) ? 0 : lodgement_location.hashCode());
+		result = prime * result + lodgement_number;
+		result = prime * result + roomInfo_articleNumber;
+		result = prime * result + ((roomInfo_name == null) ? 0 : roomInfo_name.hashCode());
+		result = prime * result + roomInfo_roomNumber;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		LReviewDto other = (LReviewDto) obj;
+		if (lReservInfo_acticleNumber != other.lReservInfo_acticleNumber)
+			return false;
+		if (lReservInfo_cartStatus != other.lReservInfo_cartStatus)
+			return false;
+		if (lReservInfo_checkIn == null) {
+			if (other.lReservInfo_checkIn != null)
+				return false;
+		} else if (!lReservInfo_checkIn.equals(other.lReservInfo_checkIn))
+			return false;
+		if (lReservInfo_checkOut == null) {
+			if (other.lReservInfo_checkOut != null)
+				return false;
+		} else if (!lReservInfo_checkOut.equals(other.lReservInfo_checkOut))
+			return false;
+		if (lReservInfo_number != other.lReservInfo_number)
+			return false;
+		if (lReservInfo_payment != other.lReservInfo_payment)
+			return false;
+		if (lReservInfo_phoneNumber == null) {
+			if (other.lReservInfo_phoneNumber != null)
+				return false;
+		} else if (!lReservInfo_phoneNumber.equals(other.lReservInfo_phoneNumber))
+			return false;
+		if (lReservInfo_reservDate == null) {
+			if (other.lReservInfo_reservDate != null)
+				return false;
+		} else if (!lReservInfo_reservDate.equals(other.lReservInfo_reservDate))
+			return false;
+		if (lReservInfo_reservStatus != other.lReservInfo_reservStatus)
+			return false;
+		if (lReservInfo_roomNumber != other.lReservInfo_roomNumber)
+			return false;
+		if (lReservInfo_userNumber != other.lReservInfo_userNumber)
+			return false;
+		if (Double.doubleToLongBits(lodgement_Lat) != Double.doubleToLongBits(other.lodgement_Lat))
+			return false;
+		if (Double.doubleToLongBits(lodgement_Lng) != Double.doubleToLongBits(other.lodgement_Lng))
+			return false;
+		if (lodgement_companyName == null) {
+			if (other.lodgement_companyName != null)
+				return false;
+		} else if (!lodgement_companyName.equals(other.lodgement_companyName))
+			return false;
+		if (lodgement_location == null) {
+			if (other.lodgement_location != null)
+				return false;
+		} else if (!lodgement_location.equals(other.lodgement_location))
+			return false;
+		if (lodgement_number != other.lodgement_number)
+			return false;
+		if (roomInfo_articleNumber != other.roomInfo_articleNumber)
+			return false;
+		if (roomInfo_name == null) {
+			if (other.roomInfo_name != null)
+				return false;
+		} else if (!roomInfo_name.equals(other.roomInfo_name))
+			return false;
+		if (roomInfo_roomNumber != other.roomInfo_roomNumber)
+			return false;
+		return true;
 	}
 
 	public int getlReservInfo_number() {
@@ -162,168 +305,22 @@ public class LReviewDto {
 		this.lodgement_location = lodgement_location;
 	}
 
-	public String getLodgement_Lat() {
+	public double getLodgement_Lat() {
 		return lodgement_Lat;
 	}
 
-	public void setLodgement_Lat(String lodgement_Lat) {
+	public void setLodgement_Lat(double lodgement_Lat) {
 		this.lodgement_Lat = lodgement_Lat;
 	}
 
-	public String getLodgement_Lng() {
+	public double getLodgement_Lng() {
 		return lodgement_Lng;
 	}
 
-	public void setLodgement_Lng(String lodgement_Lng) {
+	public void setLodgement_Lng(double lodgement_Lng) {
 		this.lodgement_Lng = lodgement_Lng;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + lReservInfo_acticleNumber;
-		result = prime * result + lReservInfo_cartStatus;
-		result = prime * result + ((lReservInfo_checkIn == null) ? 0 : lReservInfo_checkIn.hashCode());
-		result = prime * result + ((lReservInfo_checkOut == null) ? 0 : lReservInfo_checkOut.hashCode());
-		result = prime * result + lReservInfo_number;
-		result = prime * result + lReservInfo_payment;
-		result = prime * result + ((lReservInfo_phoneNumber == null) ? 0 : lReservInfo_phoneNumber.hashCode());
-		result = prime * result + ((lReservInfo_reservDate == null) ? 0 : lReservInfo_reservDate.hashCode());
-		result = prime * result + lReservInfo_reservStatus;
-		result = prime * result + lReservInfo_roomNumber;
-		result = prime * result + lReservInfo_userNumber;
-		result = prime * result + ((lodgement_Lat == null) ? 0 : lodgement_Lat.hashCode());
-		result = prime * result + ((lodgement_Lng == null) ? 0 : lodgement_Lng.hashCode());
-		result = prime * result + ((lodgement_companyName == null) ? 0 : lodgement_companyName.hashCode());
-		result = prime * result + ((lodgement_location == null) ? 0 : lodgement_location.hashCode());
-		result = prime * result + lodgement_number;
-		result = prime * result + roomInfo_articleNumber;
-		result = prime * result + ((roomInfo_name == null) ? 0 : roomInfo_name.hashCode());
-		result = prime * result + roomInfo_roomNumber;
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		LReviewDto other = (LReviewDto) obj;
-		if (lReservInfo_acticleNumber != other.lReservInfo_acticleNumber)
-			return false;
-		if (lReservInfo_cartStatus != other.lReservInfo_cartStatus)
-			return false;
-		if (lReservInfo_checkIn == null) {
-			if (other.lReservInfo_checkIn != null)
-				return false;
-		} else if (!lReservInfo_checkIn.equals(other.lReservInfo_checkIn))
-			return false;
-		if (lReservInfo_checkOut == null) {
-			if (other.lReservInfo_checkOut != null)
-				return false;
-		} else if (!lReservInfo_checkOut.equals(other.lReservInfo_checkOut))
-			return false;
-		if (lReservInfo_number != other.lReservInfo_number)
-			return false;
-		if (lReservInfo_payment != other.lReservInfo_payment)
-			return false;
-		if (lReservInfo_phoneNumber == null) {
-			if (other.lReservInfo_phoneNumber != null)
-				return false;
-		} else if (!lReservInfo_phoneNumber.equals(other.lReservInfo_phoneNumber))
-			return false;
-		if (lReservInfo_reservDate == null) {
-			if (other.lReservInfo_reservDate != null)
-				return false;
-		} else if (!lReservInfo_reservDate.equals(other.lReservInfo_reservDate))
-			return false;
-		if (lReservInfo_reservStatus != other.lReservInfo_reservStatus)
-			return false;
-		if (lReservInfo_roomNumber != other.lReservInfo_roomNumber)
-			return false;
-		if (lReservInfo_userNumber != other.lReservInfo_userNumber)
-			return false;
-		if (lodgement_Lat == null) {
-			if (other.lodgement_Lat != null)
-				return false;
-		} else if (!lodgement_Lat.equals(other.lodgement_Lat))
-			return false;
-		if (lodgement_Lng == null) {
-			if (other.lodgement_Lng != null)
-				return false;
-		} else if (!lodgement_Lng.equals(other.lodgement_Lng))
-			return false;
-		if (lodgement_companyName == null) {
-			if (other.lodgement_companyName != null)
-				return false;
-		} else if (!lodgement_companyName.equals(other.lodgement_companyName))
-			return false;
-		if (lodgement_location == null) {
-			if (other.lodgement_location != null)
-				return false;
-		} else if (!lodgement_location.equals(other.lodgement_location))
-			return false;
-		if (lodgement_number != other.lodgement_number)
-			return false;
-		if (roomInfo_articleNumber != other.roomInfo_articleNumber)
-			return false;
-		if (roomInfo_name == null) {
-			if (other.roomInfo_name != null)
-				return false;
-		} else if (!roomInfo_name.equals(other.roomInfo_name))
-			return false;
-		if (roomInfo_roomNumber != other.roomInfo_roomNumber)
-			return false;
-		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "LReviewDto [lReservInfo_number=" + lReservInfo_number + ", lReservInfo_userNumber="
-				+ lReservInfo_userNumber + ", lReservInfo_acticleNumber=" + lReservInfo_acticleNumber
-				+ ", lReservInfo_roomNumber=" + lReservInfo_roomNumber + ", lReservInfo_checkIn=" + lReservInfo_checkIn
-				+ ", lReservInfo_checkOut=" + lReservInfo_checkOut + ", lReservInfo_phoneNumber="
-				+ lReservInfo_phoneNumber + ", lReservInfo_reservDate=" + lReservInfo_reservDate
-				+ ", lReservInfo_payment=" + lReservInfo_payment + ", lReservInfo_reservStatus="
-				+ lReservInfo_reservStatus + ", lReservInfo_cartStatus=" + lReservInfo_cartStatus
-				+ ", roomInfo_roomNumber=" + roomInfo_roomNumber + ", roomInfo_articleNumber=" + roomInfo_articleNumber
-				+ ", roomInfo_name=" + roomInfo_name + ", lodgement_number=" + lodgement_number
-				+ ", lodgement_companyName=" + lodgement_companyName + ", lodgement_location=" + lodgement_location
-				+ ", lodgement_Lat=" + lodgement_Lat + ", lodgement_Lng=" + lodgement_Lng + "]";
-	}
-
-	public LReviewDto(int lReservInfo_number, int lReservInfo_userNumber, int lReservInfo_acticleNumber,
-			int lReservInfo_roomNumber, Date lReservInfo_checkIn, Date lReservInfo_checkOut,
-			String lReservInfo_phoneNumber, Date lReservInfo_reservDate, int lReservInfo_payment,
-			int lReservInfo_reservStatus, int lReservInfo_cartStatus, int roomInfo_roomNumber,
-			int roomInfo_articleNumber, String roomInfo_name, int lodgement_number, String lodgement_companyName,
-			String lodgement_location, String lodgement_Lat, String lodgement_Lng) {
-		super();
-		this.lReservInfo_number = lReservInfo_number;
-		this.lReservInfo_userNumber = lReservInfo_userNumber;
-		this.lReservInfo_acticleNumber = lReservInfo_acticleNumber;
-		this.lReservInfo_roomNumber = lReservInfo_roomNumber;
-		this.lReservInfo_checkIn = lReservInfo_checkIn;
-		this.lReservInfo_checkOut = lReservInfo_checkOut;
-		this.lReservInfo_phoneNumber = lReservInfo_phoneNumber;
-		this.lReservInfo_reservDate = lReservInfo_reservDate;
-		this.lReservInfo_payment = lReservInfo_payment;
-		this.lReservInfo_reservStatus = lReservInfo_reservStatus;
-		this.lReservInfo_cartStatus = lReservInfo_cartStatus;
-		this.roomInfo_roomNumber = roomInfo_roomNumber;
-		this.roomInfo_articleNumber = roomInfo_articleNumber;
-		this.roomInfo_name = roomInfo_name;
-		this.lodgement_number = lodgement_number;
-		this.lodgement_companyName = lodgement_companyName;
-		this.lodgement_location = lodgement_location;
-		this.lodgement_Lat = lodgement_Lat;
-		this.lodgement_Lng = lodgement_Lng;
-	}
-	
 	
 	
 }

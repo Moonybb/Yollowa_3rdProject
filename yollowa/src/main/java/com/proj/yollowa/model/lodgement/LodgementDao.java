@@ -3,10 +3,13 @@ package com.proj.yollowa.model.lodgement;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
 import com.proj.yollowa.model.entity.UserVo;
+import com.proj.yollowa.model.entity.activity.ActivityDetailPageDto;
+import com.proj.yollowa.model.entity.activity.ActivityVo;
 import com.proj.yollowa.model.entity.lodgement.InformationVo;
 import com.proj.yollowa.model.entity.lodgement.LodgementDetailPageDto;
 import com.proj.yollowa.model.entity.lodgement.LodgementRoomInfoVo;
@@ -80,6 +83,10 @@ public interface LodgementDao {
 	
 	// 결제 성공시 예약정보 update (장바구니 결제)
 	public void LReservInfoUpdate(int c);
+	
+	
+	// 주변 액티비티 추천
+	public List<ActivityVo> selectActivityRecommend(@Param("map") Map map);
 	
 	
 }

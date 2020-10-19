@@ -273,6 +273,87 @@
 	.appendInfoDiv > span{
 		font-size: 16px;
 	}
+	
+	/* 추천 액티비티 */
+	.recommendation{
+		margin-top: 30px;
+	}
+	.recommendDiv{
+		margin-top:20px;
+		border-radius: 5px;
+		background-image: url("/lodgement/back.jpg");
+	}
+	.cardBox{
+		border-radius: 10px;
+		padding: 0px 20px 0px 0px;
+		
+	}
+	.card{
+		margin-top: 30px;
+		margin-bottom: 30px;
+		height: 260px;
+		border-radius: 5px;
+	}
+	.recommendImgBox{
+		height: 160px;
+	}
+	.recommendImg{
+		width:100%;
+		height: 100%;
+		display: inline-block;
+	}
+	.recomment{
+		text-align:center;
+		padding-left: 30px;
+		padding-top: 180px;
+		padding-bottom:20px;
+	}
+	.recomment>div{
+		padding-top: 10px;
+		font-size: 19px;
+		color:white;
+	}
+	.recommendLoc{
+		padding: 0px 0px;
+	}
+	.recommendSub, .recommendReview>span{
+		padding: 0px 10px;
+	}
+	.recommendSub{
+		padding-top: 5px;
+		font-size: 17px;
+	}
+	.recommendLoc{
+		height:20px;
+		overflow: hidden;
+		background-color:rgba(100,100,100,0.5);
+		color:white;
+		width:100%;
+		z-index:2;
+		padding: 0px 5px 0px 5px;
+		display:inline-block;
+		position: absolute;
+		top:140px;
+		left:0px;		
+	}
+	.recommendReview{
+		padding-top: 5px;
+	}
+	.recommendType{
+		padding: 2px 8px 2px 8px;
+		background-color: black;
+		border-radius: 5px;
+		color: white;
+		display:inline-block;
+		position: absolute;
+	}
+	.mentment{
+		color:white;
+		font-size: 30px;
+		padding-top:120px;
+		padding-bottom:120px;
+		padding-left:50px;
+	}
 </style>
 
 <!-- swal -->
@@ -282,6 +363,14 @@
 <script type="text/javascript">
 	// 캐러셀 이미지
 	$(document).ready(function(){
+		
+		// 추천이 존재하지 않을 때
+		var text = $('.recommendType').text();
+		console.log(text);
+		if(!text){
+			$('.appendMent').append('<div class="mentment">근처에 등록된 액티비티가 존재하지 않습니다.</div>');
+			$('.recomment>div').text('');
+		}
 		
 		// 가격 정규식
 		for(var i=0; i<100; i++){
@@ -620,8 +709,8 @@
 <title>숙박</title>
 </head>
 <body>
-	<%@ include file="../template/lodgeHeader.jspf"%>
-	<%@ include file="../template/lodgeMenu.jspf"%>
+	<%@ include file="../template/header.jspf"%>
+	<%@ include file="../template/menu.jspf"%>
 	<div class="container">
 	
 	
@@ -759,6 +848,58 @@
 							</ul>
 						</div>
 					</div>
+				</div>
+				
+				<div class="row recommendation">
+					<h4>${startEndDay.getActivity_title()} 근처 추천 숙박업소</h4>
+					<c:if test="${recommendList ne null}">
+						<div class="col-md-12 recommendDiv">
+							<div class="row">
+								<div class="col-md-2 recomment">
+									<div>차로 20분 내외</div>
+									<div>액티비티</div>
+								</div>
+								<div class="col-md-10 appendMent">
+									<div class="row">
+									<c:forEach items="${recommendList }" end="3" var="list">
+										<div class="col-md-3 cardBox">
+											<div class="card">
+												<div class="recommendImgBox">
+													<div class="recommendType">${list.lodgement_category }</div>
+													<img class="recommendImg" src="/activity/titleImg/1_activity9.jpg"/>
+													<div class="recommendLoc">
+														<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-geo-alt" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+														  <path fill-rule="evenodd" d="M12.166 8.94C12.696 7.867 13 6.862 13 6A5 5 0 0 0 3 6c0 .862.305 1.867.834 2.94.524 1.062 1.234 2.12 1.96 3.07A31.481 31.481 0 0 0 8 14.58l.208-.22a31.493 31.493 0 0 0 1.998-2.35c.726-.95 1.436-2.008 1.96-3.07zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
+														  <path fill-rule="evenodd" d="M8 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+														</svg>
+														${list.lodgement_location }
+													</div>
+												</div>
+												<div class="recommendSubBox">
+													<div class="recommendSub">${list.lodgement_companyName }</div>
+													<div class="recommendReview">
+														<span>★ ${list.lodgement_reviewGradeRate } (리뷰 ${list.lodgement_reviewCount }건)</span>
+													</div>
+												</div>
+											</div>
+										</div>
+									</c:forEach>
+										
+									</div>
+								</div>
+							</div>
+						</div>
+					</c:if>	
+					<c:if test="${recommendList eq null}">
+						<div class="col-md-12 recommendDiv">
+							<div class="row">
+								<div class="col-md-12 recomment">
+									<span class="notLodgement">주위의 숙박업소를 찾을 수 없습니다.</span>
+								</div>
+							</div>
+						</div>
+					</c:if>
+							
 				</div>
 			</div>
 			

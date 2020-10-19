@@ -454,7 +454,6 @@ function submitClick(){
                         $(".Lng").val(coords["Ga"]);
                         $(".Lat").val(coords["Ha"]);
                         
-                        
                         // 지도를 보여준다.
                         mapContainer.style.display = "block";
                         map.relayout();

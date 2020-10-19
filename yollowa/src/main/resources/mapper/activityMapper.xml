@@ -71,6 +71,14 @@
 		select * from activityOption where activityOption_articleNumber = #{articleNumber} order by activityOption_optionNumber
 	</select>
 	
+	
+	<!-- 숙박 추천 -->
+	<select id="selectLodgementRecommend" resultType="com.proj.yollowa.model.entity.lodgement.LodgementVo" parameterType="map">
+		<![CDATA[
+		select * from lodgement where lodgement_Lat <= #{map.maxLat} and lodgement_Lat >= #{map.minLat} and lodgement_Lng <= #{map.maxLng} and lodgement_Lng >= #{map.minLng}
+		]]>
+	</select>
+	
 	<!-- 액티비티 옵션이름, 서브네임-->
 	<select id="activityOptionName" resultType="com.proj.yollowa.model.entity.activity.ActivityOptionVo">
 		select * from activityOption where activityOption_articleNumber = #{articleNumber} and  activityOption_optionNumber = #{optionNumber}

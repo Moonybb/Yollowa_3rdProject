@@ -104,10 +104,23 @@ h3{
 	border: 1px solid lightgray;
 	display: inline-block;
 	cursor: pointer;
+	transform: scale(1);
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  -o-transform: scale(1);
+  transition: all 0.3s ease-in-out;   /* 부드러운 모션을 위해 추가*/
 }
-/* .oneLodge:nth-child(3n){
-	margin-right:0px;
-} */
+.oneLodge:hover{
+	  transform: scale(1.03);
+  -webkit-transform: scale(1.03);
+  -moz-transform: scale(1.03);
+  -ms-transform: scale(1.03);
+  -o-transform: scale(1.03);
+  /* transform: translate(0px, -5px);
+	-ms-transform: translate(0px, -5px);
+	-webkit-transform: translate(0px, -5px); */
+}
 
 .lodgeImgBox{
 	max-width: 100%;
@@ -306,6 +319,19 @@ pointer-events:auto;
 
 <script type="text/javascript">
 	$(document).ready(function(){
+		
+		$(function(){
+			$(window).scroll(function(){  //스크롤이 발생할 경우
+					console.log("스크롤");
+			       var num = $(this).scrollTop();  // 스크롤 값
+			       if( num > 0){
+			          $('.navbar2').css("position","fixed");
+		 	          $(".container").attr('style', 'padding-top:80px;');
+			       }else{
+			    	  $('.navbar2').css("position","absolute");
+			       } 
+			  });
+			});
 		
 		var filterCnt = $('#filterCnt').val();
 		

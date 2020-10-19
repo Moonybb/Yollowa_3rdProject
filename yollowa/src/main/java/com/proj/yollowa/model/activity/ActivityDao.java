@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
@@ -59,6 +60,8 @@ public interface ActivityDao {
 	// 액티비티 예약페이지 이동 - articleNumber로 등록된 옵션들 전부 select
 	public List<ActivityOptionVo> selectOptions(int articleNumber);
 	
+	// 숙박 추천
+	public List<LodgementVo> selectLodgementRecommend(@Param("map") Map<String, Double> map);
 	// 액티비티 옵션 이름, 서브네임
 	public List<ActivityOptionVo> activityOptionName(@Param("optionNumber") int optionNumber,@Param("articleNumber") int articleNumber);
 	
