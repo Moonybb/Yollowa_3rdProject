@@ -36,4 +36,5 @@ public interface MypageService {
 	//비밀번호 변경
 	public int searchPassword(String user_id,String user_password) throws SQLException;
 	public void changePasswordService(int user_number, String password) throws SQLException;
+	public int deleteUser(int user_number) throws SQLException;
 }

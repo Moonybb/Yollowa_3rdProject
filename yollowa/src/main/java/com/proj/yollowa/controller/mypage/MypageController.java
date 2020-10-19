@@ -105,23 +105,23 @@ public class MypageController {
 		}
 		return null;
 	}
-	
+	///ajax
 	@Auth
 	@RequestMapping(value = "/userinfo/searchpw",method = RequestMethod.POST)
 	@ResponseBody
-	public Object searchPw(@AuthUser UserVo userVo,@RequestParam String password) throws SQLException {
+	public Object searchpw(@AuthUser UserVo userVo,@RequestParam String password) throws SQLException {
 		
 		System.out.println(password);
 		
 		return myPageService.searchPassword(userVo.getUser_id(), password);
 	}
 	
-	
 	@Auth
 	@RequestMapping(value = "/userinfo/changepw",method = RequestMethod.GET)
 	public String changePw() {
 		return "mypage/changepw";
 	}
+	
 	@Auth
 	@RequestMapping(value = "/userinfo/changepw",method = RequestMethod.POST)
 	@ResponseBody
@@ -131,5 +131,38 @@ public class MypageController {
 		
 		return "success";
 	}
+	////////////
+	
+	
+	
+	
+	
+	///ajax
+	@Auth
+	@RequestMapping(value = "/userinfo/dsearchpw",method = RequestMethod.POST)
+	@ResponseBody
+	public Object searchPw(@AuthUser UserVo userVo,@RequestParam String password) throws SQLException {
+		
+		System.out.println(password);
+		
+		return myPageService.searchPassword(userVo.getUser_id(), password);
+	}
+	@Auth
+	@RequestMapping(value = "/userinfo/deleteuser",method = RequestMethod.GET)
+	public String deleteUser() {
+		
+		return "mypage/deleteuser";
+	}
+	@Auth
+	@RequestMapping(value = "/userinfo/deleteuser",method = RequestMethod.POST)
+	@ResponseBody
+	public Object deleteUser(@AuthUser UserVo userVo,@RequestParam String password,HttpServletRequest request) throws SQLException {
+		
+		request.getSession().invalidate();
+		
+		return myPageService.deleteUser(userVo.getUser_number());
+	}
+	//////////////////
+	
 	
 }

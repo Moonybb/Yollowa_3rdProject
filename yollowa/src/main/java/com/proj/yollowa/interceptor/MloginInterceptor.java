@@ -34,6 +34,7 @@ public class MloginInterceptor extends HandlerInterceptorAdapter implements Sess
 			session.setAttribute(MLOGIN, loginService.loginManagerService(managerLoginVo));
 			response.sendRedirect("../");
 		}else {
+			session.setAttribute("failed", "failed");
 			response.sendRedirect("./");
 		}
 		return false;

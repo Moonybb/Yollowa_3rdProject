@@ -23,6 +23,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter implements Sessi
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
+		HttpSession session = request.getSession();
 		
 		///로그인
 		String user_id = request.getParameter("user_id");
@@ -32,15 +33,14 @@ public class LoginInterceptor extends HandlerInterceptorAdapter implements Sessi
 		
 		UserVo userVo = loginService.loginUserService(loginVo);
 		//로그인VO를 가지고 널이아니면 세션에 실어줌
-		HttpSession session = request.getSession();
 		if(userVo != null) {
 			//가져왔을때 널이 아니면 세션에 유저 정보 실어줌.
 			session.setAttribute(LOGIN, userVo);
 			System.out.println(session.getAttribute(LOGIN));
 			response.sendRedirect("../");
 		}else {
+			session.setAttribute("failed", "failed");
 			response.sendRedirect("./");
-			//return true;
 		}
 		
 		return false;
