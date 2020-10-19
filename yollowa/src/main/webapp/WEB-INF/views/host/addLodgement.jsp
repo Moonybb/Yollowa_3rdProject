@@ -451,8 +451,13 @@ function submitClick(){
                         // 해당 주소에 대한 좌표를 받아서
                         var coords = new daum.maps.LatLng(result.y, result.x);
                         
+<<<<<<< HEAD
                         $(".Lat").val(coords["Ha"]);
                         $(".Lng").val(coords["Ga"]);
+=======
+                        $(".Lng").val(coords["Ga"]);
+                        $(".Lat").val(coords["Ha"]);
+>>>>>>> f07aeaea5237ffce1686bb97896a2c90ad2ffbcb
                         
                         
                         // 지도를 보여준다.

@@ -90,7 +90,7 @@ ul {
 								<p class="card-text" style="font-size: 0.8rem;">리뷰
 									${userwish.activity_reviewCount }개</p>
 
-								<p class="card-text" style="font-size: 0.8rem; color: #757575;">
+								<p class="card-text hashtag" style="font-size: 0.8rem; color: #757575;">
 								<c:if test="${userwish.hashTag ne null }">
 									<c:forEach items="${userwish.hashTag }" var="hash">
 							 ${hash }

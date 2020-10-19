@@ -1,5 +1,6 @@
 package com.proj.yollowa.model.activity;
 
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -61,6 +62,15 @@ public interface ActivityDao {
 	
 	// 숙박 추천
 	public List<LodgementVo> selectLodgementRecommend(@Param("map") Map<String, Double> map);
+	// 액티비티 옵션 이름, 서브네임
+	public List<ActivityOptionVo> activityOptionName(@Param("optionNumber") int optionNumber,@Param("articleNumber") int articleNumber);
+	
+	// 액티비티 취소환불규정
+	public InformationVo activityRefund(int articleNumber);
+	
+	// 액티비티 예약완료시 insert
+	public void AReservInfoInsert(@Param("userNumber") int userNumber,@Param("articleNumber") int articleNumber,@Param("optionNumber") int optionNumber,@Param("amount") int amount,
+			@Param("userPhoneNumber") String userPhoneNumber,@Param("unitPrice") int unitPrice,@Param("payment") int payment,@Param("checkOut") Date checkOut);
 	
 	
 }

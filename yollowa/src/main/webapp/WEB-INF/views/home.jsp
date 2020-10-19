@@ -24,8 +24,8 @@
 		  text-align: center;
 		}
 		.carousel {
-		  height: 600px;
-		}
+		  height: 400px;
+		} 
 		.carousel-inner img {
 		  width: 100%;
 		}
@@ -36,19 +36,30 @@
 <body>
 <%@ include file="template/header.jspf" %>
 <%@ include file="template/menu.jspf" %>
-
 	<div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
   <div class="carousel-inner ">
     <div class="carousel-item active">
       <video src="${pageContext.request.contextPath }/resources/video/beach.mp4" class="d-block w-100" autoplay noache muted></video>
+    	<div class="carousel-caption d-none d-md-block" style="margin-bottom: 75px;">
+    	<h1 style="font-weight: bold;">NEW EXPERIENCE AND FEELING</h1>
+		<img style="width:123px;height: 35px;"alt="" src="${pageContext.request.contextPath}/resources/img/icons/headLogo.png">
+      </div>
     </div>
     <div class="carousel-item">
       <img src="${pageContext.request.contextPath }/resources/img/surffing.jpg" class="d-block w-100" alt="...">
+    	<div class="carousel-caption d-none d-md-block" style="margin-bottom: 75px;">
+    	<h1 style="font-weight: bold;">NEW EXPERIENCE AND FEELING</h1>
+		<img style="width:123px;height: 35px;"alt="" src="${pageContext.request.contextPath}/resources/img/icons/headLogo.png">
+      </div>
     </div>
     <div class="carousel-item">
       <img src="${pageContext.request.contextPath }/resources/img/youth.jpg" class="d-block w-100" alt="...">
+    	<div class="carousel-caption d-none d-md-block" style="margin-bottom: 75px;">
+    	<h1 style="font-weight: bold;">NEW EXPERIENCE AND FEELING</h1>
+		<img style="width:123px;height: 35px;"alt="" src="${pageContext.request.contextPath}/resources/img/icons/headLogo.png">
+      </div>
     </div>
-  </div>
+  
   <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="sr-only">Previous</span>
@@ -57,15 +68,16 @@
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="sr-only">Next</span>
   </a>
+  </div>
 </div>
 <div class="container">
 	<div class="row">
-  		<div class="col-lg-6" style="text-align: center;">
+  		<!-- <div class="col-lg-6" style="text-align: center;">
   		<button type="button" class="btn btn-warning">액티비티 추천</button>
   		</div>
   		<div class="col-lg-6" style="text-align: center;">
   		<button type="button" class="btn btn-primary">숙박업소 추천</button>
-  		</div>
+  		</div> -->
 	</div>
 
 </div>

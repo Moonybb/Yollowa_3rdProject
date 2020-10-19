@@ -281,6 +281,12 @@ public class MypageServiceImpl implements MypageService{
 		dao.updateUserPassword(user_number, password);
 		
 	}
+	@Override
+	public int deleteUser(int user_number) throws SQLException {
+		MypageDao dao = sqlSession.getMapper(MypageDao.class);
+		dao.deleteUser(user_number);
+		return 0;
+	}
 	
 	
 	

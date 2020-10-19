@@ -1,5 +1,6 @@
 package com.proj.yollowa.model.service.activity;
 
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -265,6 +266,36 @@ public class ActivityServiceImpl implements ActivityService {
 		model.addAttribute("recommendList", list);
 		System.out.println("추천 숙박 list :: "+list);
 		return null;
+
+	
+	// 액티비티 옵션 이름 ,서브네임
+	@Override
+	public List<ActivityOptionVo> activityOptionName(int optionNumber, int articleNumber) {
+		ActivityDao dao= sqlSession.getMapper(ActivityDao.class);
+		List<ActivityOptionVo> list =dao.activityOptionName(optionNumber,articleNumber);
+		
+		return list;
+	}
+
+	
+	// 액티비티 취소환불규정
+	@Override
+	public InformationVo activityRefund(int articleNumber) {
+		ActivityDao dao = sqlSession.getMapper(ActivityDao.class);
+		InformationVo inforBean=dao.activityRefund(articleNumber);
+		
+		return inforBean;
+	}
+
+	
+	// 액티비티 예약 완료시 insert
+	@Override
+	public void AReservInfoInsert(int userNumber, int articleNumber, int optionNumber, int amount,
+			String userPhoneNumber, int unitPrice, int payment,Date checkOut) {
+		ActivityDao dao = sqlSession.getMapper(ActivityDao.class);
+		dao.AReservInfoInsert(userNumber,articleNumber,optionNumber,amount,userPhoneNumber,unitPrice,payment,checkOut);
+		
+		
 	}
 }
 
