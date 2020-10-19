@@ -92,7 +92,7 @@ public class LodgementDetailController {
 
 		String cart = req.getParameter("cart");
 		model.addAttribute("cart", cart);
-		System.out.println("cart::::::"+cart);
+		//System.out.println("cart::::::"+cart);
 		// 예약할 숙소정보
 		String roomNumber =req.getParameter("roomNumber");
 		String sdate =req.getParameter("sdate");
@@ -351,7 +351,7 @@ public class LodgementDetailController {
 	// 장바구니 ajax controller
 	@Auth
 	@RequestMapping(value="detail/cartInsert", method=RequestMethod.POST)
-	public void lodgementCartInsert(@AuthUser UserVo userVo,HttpServletRequest req){
+	public void lodgementCartInsert(@AuthUser UserVo userVo,HttpServletRequest req,Model model) throws SQLException{
 		
 		int articleNumber = Integer.parseInt(req.getParameter("articleNumber"));
 		int roomNumber= Integer.parseInt(req.getParameter("roomNumber"));
@@ -368,11 +368,153 @@ public class LodgementDetailController {
 		startDate = Date.valueOf(sdate);
 		endDate = Date.valueOf(edate);
 		
+///////////////////////////////////
+		
+		int rn= roomNumber;
+		List<LodgementRoomInfoVo> detailList = lodgementService.lodgementReserInfo(articleNumber,rn,model);
+		// 총 결제금액
+		int peakPrice=detailList.get(0).getRoomInfo_peakPrice();		// 성수기 가격
+		int offPeakPrice =detailList.get(0).getRoomInfo_offPeakPrice();	// 비수기가격
+				
+				
+		
+		Date reserveStart=Date.valueOf(sdate);	// 체크인
+		Date reserveEnd=Date.valueOf(edate);	//체크아웃
+		
+		LodgementRoomInfoVo days =lodgementService.lodgementpeakDays(articleNumber,rn,model);
+		Date peakStart=days.getRoomInfo_peakStartDate();	//성수기 시작날	10-20
+		Date peakEnd = days.getRoomInfo_peakEndDate();		//성수기 종료날	10-23
+		
+		// 하루 long값 86400000
+		long oneDay=86400000;
+		
+		//총 가격
+		int resultPrice=0;
+		
+		
+		//체크인 날이 성수기 종료날보다 높을때 or 체크아웃날이 성수기 시작날보다 낮을때 (성수기 포함 하루도없음)
+		if((peakEnd.getTime()<reserveStart.getTime()) || (reserveEnd.getTime()<peakStart.getTime()) ) {		
+			long a=reserveEnd.getTime()-reserveStart.getTime()+oneDay;
+			int i= Long.valueOf(a/oneDay).intValue();// 숙박 일수 * 비수기 가격
+//			System.out.println("완전 비성수기"+i);
+			
+			model.addAttribute("resultPrice", offPeakPrice*i);
+			resultPrice=offPeakPrice*i;
+			
+		}
+		
+		// 체크인은 비수기 , 체크아웃은 성수기 사이
+		else if((reserveStart.getTime()<peakStart.getTime()) && ((reserveEnd.getTime()>=peakStart.getTime()) && (reserveEnd.getTime()<=peakEnd.getTime()))) {
+			int offPeakCnt =0;
+			int peakCnt=0;
+			long rs=reserveStart.getTime();
+			long ps=peakStart.getTime();
+			int p1=0;
+			int p2=0;
+			
+			// 체크인부터 성수기시작 전까지
+			boolean boo1=true;
+			while(boo1) {
+				offPeakCnt++;
+				rs=rs+oneDay;
+				if(rs == peakStart.getTime()) {
+//					System.out.println("비수기날카운트"+offPeakCnt); 
+					p1=offPeakCnt*offPeakPrice;
+					boo1=false;
+				}
+			}
+			
+			// 성수기시작부터 체크아웃까지
+			boolean boo2=true;
+			while(boo2) {
+				peakCnt++;
+				ps=ps+oneDay;
+				if(ps== reserveEnd.getTime()) {
+					peakCnt++;
+//					System.out.println("성수기날카운트"+peakCnt);
+					p2 =peakCnt*peakPrice;
+					boo2=false;
+				}
+			}
+			resultPrice=p1+p2;
+		}
+		
+		// 체크인은 성수기 사이, 체크아웃은 비수기 
+		else if((reserveEnd.getTime()>peakEnd.getTime()) && ((reserveStart.getTime()>=peakStart.getTime()) && (reserveStart.getTime()<=peakEnd.getTime()))) {
+			int offPeakCnt=0;
+			int peakCnt =0;
+			
+			long rs=reserveStart.getTime();
+			long pe=peakEnd.getTime();
+			int p1=0;
+			int p2=0;
+			
+			
+			// 체크인부터 성수기끝까지
+			boolean boo1=true;
+			while(boo1) {
+				peakCnt++;
+				rs=rs+oneDay;
+				if(rs == peakEnd.getTime()) {
+					peakCnt++;
+//					System.out.println("성수기날 카운트~"+peakCnt);
+					p1 =peakCnt*peakPrice;
+					boo1=false;
+				}
+				
+			}
+			
+			// 성수기끝부터 체크아웃까지
+			boolean boo2=true;
+			while(boo2) {
+				offPeakCnt++;
+				pe=pe+oneDay;
+				if(pe == reserveEnd.getTime()) {
+//					System.out.println("비수기날 카운트~"+offPeakCnt);
+					p2 = offPeakCnt*offPeakPrice;
+					boo2=false;
+				}
+				
+			}
+			
+			resultPrice=p1+p2;
+		
+		}
+			
+			 
+		// 성수기 사이
+		else if((reserveStart.getTime()>=peakStart.getTime()) && (reserveEnd.getTime()<=peakEnd.getTime())) {
+			long a=reserveEnd.getTime()-reserveStart.getTime()+oneDay;
+			int i= Long.valueOf(a/oneDay).intValue();// 숙박 일수 * 성수기 가격
+//			System.out.println("완전 성수기"+i);
+			resultPrice=peakPrice*i;
+			
+		}
+		
+		// 체크인,체크아웃이 비수기지만 사이에 성수기포함
+		else {
+			long peakPrev=(peakStart.getTime()-reserveStart.getTime())/oneDay;	//체크인부터 성수기시작전까지
+			long peakNext=(reserveEnd.getTime()-peakEnd.getTime())/oneDay;		//성수기끝부터 체크아웃까지
+			long peak=(peakEnd.getTime()-peakStart.getTime()+oneDay)/oneDay;		//성수기
+			int p1,p2,p3;
+			p1 = Long.valueOf(peakPrev).intValue();
+			p2 = Long.valueOf(peakNext).intValue();
+			p3 = Long.valueOf(peak).intValue();
+//			System.out.println("성수기 전"+p1);
+//			System.out.println("성수기만"+p3);
+//			System.out.println("성수기 후"+p2);
+			int resultPrice1=(p1+p3)*offPeakPrice+p2*peakPrice;
+			resultPrice=resultPrice1;
+						
+		}
+		
+		
+		
 		// insert 하기 전에 받아온 정보들로 roomInfo에서 날짜 상대적으로 가격을 받아낸다 (시작날짜 기준)
-		int payment = lodgementService.roomPaymentSelect(roomNumber, startDate, endDate);
+		//int payment = lodgementService.roomPaymentSelect(roomNumber, startDate, endDate);
 		
 		// 위에서 성수기인지 비성수기인지 사용자가 선택한 날짜로 확인 후 반환된 payment를 가지고 insert
-		lodgementService.lodgementCartInsert(articleNumber, roomNumber, startDate, endDate, payment, userVo);
+		lodgementService.lodgementCartInsert(articleNumber, roomNumber, startDate, endDate, resultPrice, userVo);
 		
 //		try {
 //			startDate = (java.sql.Date) transFormat.parse(sdate);
