@@ -81,6 +81,7 @@
 	}
 	.pagination {
 		margin: 10px 205px auto 350px;
+		width: 100%;
 	}
 	#btn-long {
 	    margin: 5px auto 5px auto;
@@ -123,17 +124,13 @@
 				</div>
 		</div>
 		<div class="col-md-9">
-			<form id="search" action="" class="form-inline">
+			<form id="search" action="${pageContext.request.contextPath }/admin/lodgementApprovalStandbyList/" class="form-inline">
 				<div class="form-group">
 				    <select name="searchType" class="custom-select">
-				      	<option value="subject">회원번호</option>
-				      	<option value="subject">아이디</option>
-						<option value="content">이름</option>
-						<option value="all">전화번호</option>
-						<option value="user_name">이메일</option>
+				      	<option value="lodgement_number">사업자</option>
 				    </select>
 				  	<input type="text" class="form-control" placeholder="검색어를 입력하세요" id="inputDefault">
-					<input type="button" id="btn-normal" value="검색하기" class="btn btn-primary" />
+					<input type="submit" id="btn-normal" value="검색하기" class="btn btn-primary" />
 				</div>
 			</form>
 			<table class="table">

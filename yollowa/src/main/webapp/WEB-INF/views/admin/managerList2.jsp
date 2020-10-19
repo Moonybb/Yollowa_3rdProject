@@ -75,13 +75,16 @@
 	    padding-top: 1px;
 	    padding-bottom: 1px;
 	}
+	.pagingBox{
+		display: flex;
+		position: relative;
+	}
 	.pagination {
-		text-align: center;
-    	padding-left: revert;
-   	}
+		margin: 10px 205px auto 350px;
+	}
 	#btn-long {
-	    margin: 5px auto 23px auto;
-	    width: 77px;
+	    margin: 5px auto 5px auto;
+	    width: 100%;
 	    height: 33px;
 	    padding-top: 1px;
 	    padding-bottom: 1px;
@@ -120,10 +123,14 @@
 				</div>
 		</div>
 		<div class="col-md-9">
-			<form id="search" action="${pageContext.request.contextPath }/admin/managerList/" class="form-inline">
+			<form id="search" action="" class="form-inline">
 				<div class="form-group">
 				    <select name="searchType" class="custom-select">
-				      	<option value="manager_number">아이디</option>
+				      	<option value="subject">회원번호</option>
+				      	<option value="subject">아이디</option>
+						<option value="content">이름</option>
+						<option value="all">전화번호</option>
+						<option value="user_name">이메일</option>
 				    </select>
 				  	<input type="text" class="form-control" placeholder="검색어를 입력하세요" id="inputDefault">
 					<input type="button" id="btn-normal" value="검색하기" class="btn btn-primary" />
@@ -147,11 +154,8 @@
 			    </c:forEach>
 			  </tbody>
 			</table>
-			<div class="row">
-				<div class="col-md-4">
-					<input type="hidden" />
-				</div>
-				<div class="col-md-6">
+			<div class="pagingBox">
+				<div class="paging">
 					<ul class="pagination">
 						<c:if test="${paging.prev }">
 						 <li class="page-item"><a class="page-link" href="?page=${paging.startPage - 1 }">이전</a></li>
@@ -164,9 +168,9 @@
 						</c:if>
 					</ul>
 				</div>
-				<div class="col-md-2" id="writeBox">
-					<input type="button" id="btn-long" value="새계정" class="btn btn-primary" onClick="location.href='./add'" />
-				</div>
+			</div>
+			<div class="btnGroup">
+				<input type="button" id="btn-long" value="등록" class="btn btn-primary" onClick="location.href='./add'" />
 			</div>
 		</div>
 	</div>
