@@ -102,9 +102,7 @@
 						        </button>
 						      </div>
 						      <div class="modal-body">
-						        <c:forEach items="${infoList }" var="bean">
-						        	${bean.information_refundInfo }
-						        </c:forEach>
+						        	${refund}
 						      </div>
 						      <div class="modal-footer">
 						        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
@@ -133,15 +131,22 @@
 				
 				<div>
 					<p>예약 상품</p>
-					<span>
-						<ul>
+					<div style=" display: inline-block; margin: 0px;">
+						<ul style="list-style: none; padding: 0px; font-size: 15px;">
 						<c:forEach items="${optionName }" var="bean">
 							<li>${bean.activityOption_name} [ ${bean.activityOption_subName} ] </li>
 						</c:forEach>
 						</ul>
-					</span>
+					</div>
+					<div style="display: inline-block; margin: 0px;">
+						<ul style="list-style: none; padding-left: 15px; font-size: 15px;">
+						<c:forEach items="${reservList }" var="bean">
+							<li> ${bean.aReservInfo_amount}매 /  ${bean.aReservInfo_payment}원  </li>
+						</c:forEach>
+						</ul>
+					</div>
 				</div>
-				<div>
+				<div >
 					<p>예약 날짜</p>
 					<span>${sdate}</span>
 				</div>

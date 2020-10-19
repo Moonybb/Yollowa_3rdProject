@@ -10,6 +10,7 @@ import com.proj.yollowa.model.entity.activity.ActivityDetailPageDto;
 import com.proj.yollowa.model.entity.activity.ActivityOptionVo;
 import com.proj.yollowa.model.entity.activity.ActivityVo;
 import com.proj.yollowa.model.entity.activity.ReviewVo;
+import com.proj.yollowa.model.entity.lodgement.InformationVo;
 import com.proj.yollowa.model.entity.lodgement.LodgementVo;
 
 public interface ActivityService {
@@ -45,4 +46,9 @@ public interface ActivityService {
 	
 	// 예약 옵션 이름
 	List<ActivityOptionVo> activityOptionName(int optionNumber, int articleNumber);
+	InformationVo activityRefund(int articleNumber);
+	
+	// 예약 완료 insert
+	void AReservInfoInsert(int userNumber, int articleNumber, int optionNumber, int amount, String userPhoneNumber,
+			int unitPrice, int payment);
 }

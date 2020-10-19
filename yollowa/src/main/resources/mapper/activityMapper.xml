@@ -76,6 +76,17 @@
 		select * from activityOption where activityOption_articleNumber = #{articleNumber} and  activityOption_optionNumber = #{optionNumber}
 	</select>
 	
+	<!-- 액티비티 취소환불규정 -->
+	<select id="activityRefund" resultType="com.proj.yollowa.model.entity.lodgement.InformationVo">
+		select * from information where information_number = #{articleNumber} and information_type=1
+	</select>
+	
+	<!-- 액티비티 예약완료시 insert -->
+	<insert id="AReservInfoInsert">
+		insert into AReservInfo (AReservInfo_userNumber,AReservInfo_articleNumber,AReservInfo_optionNumber,AReservInfo_amount,AReservInfo_checkIn,AReservInfo_checkOut,AReservInfo_phoneNumber,AReservInfo_reservDate,AReservInfo_unitPrice,AReservInfo_payment,AReservInfo_reservStatus,AReservInfo_cartStatus) 
+		values (#{userNumber},#{articleNumber},#{optionNumber},#{amount},now(),now()+90,#{userPhoneNumber},now(),#{unitPrice},#{payment},1,0)
+	</insert>
+	
 </mapper>
 
 

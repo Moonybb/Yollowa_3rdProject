@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -24,6 +25,7 @@ import com.proj.yollowa.model.entity.UserVo;
 import com.proj.yollowa.model.entity.activity.ActivityDetailPageDto;
 import com.proj.yollowa.model.entity.activity.ActivityOptionVo;
 import com.proj.yollowa.model.entity.activity.ActivityReservFormPageDto;
+import com.proj.yollowa.model.entity.lodgement.InformationVo;
 import com.proj.yollowa.model.entity.mypage.AReservInfoVo;
 import com.proj.yollowa.model.service.activity.ActivityService;
 
@@ -148,6 +150,12 @@ public class ActivityDetailController {
 			totalPrice += optionPrice*userAmount;
 			
 		}
+//		System.out.println(reservList);
+		InformationVo refund=activityService.activityRefund(articleNumber);
+		
+		
+		
+		model.addAttribute("refund", refund.getInformation_refundInfo());
 		
 		model.addAttribute("optionName", option);
 		model.addAttribute("reservList", reservList);
@@ -177,6 +185,7 @@ public class ActivityDetailController {
 	@Auth
 	@RequestMapping(value="detail/Inicis/", method=RequestMethod.POST)
 	public String activityInicis(@AuthUser UserVo userVo ,HttpServletRequest req,Model model) {
+		
 		String articleNumber=req.getParameter("articleNumber");
 		String companyName=req.getParameter("companyName");
 		String reservList=req.getParameter("reservList");
@@ -184,14 +193,16 @@ public class ActivityDetailController {
 		String resultPrice=req.getParameter("resultPrice");
 		String cart=req.getParameter("cart");
 		
-		System.out.println("이니시스");
-		System.out.println(articleNumber);
-		System.out.println(companyName);
-		System.out.println(reservList);
-		System.out.println(sdate);
-		System.out.println(resultPrice);
-		System.out.println(cart);
+//		System.out.println("이니시스");
+//		System.out.println(articleNumber);
+//		System.out.println(companyName);
+//		System.out.println(reservList);
+//		System.out.println(sdate);
+//		System.out.println(resultPrice);
+//		System.out.println(cart);
 		
+		
+		model.addAttribute("articleNumber", articleNumber);
 		model.addAttribute("reservList", reservList);
 		model.addAttribute("userName", userVo.getUser_name());
 		model.addAttribute("userPhoneNumber", userVo.getUser_phoneNumber());
@@ -213,27 +224,63 @@ public class ActivityDetailController {
 		String resultPrice= req.getParameter("resultPrice");
 		String reservList= req.getParameter("reservList");
 		
-		System.out.println("리절브리스트:"+reservList);
+//		System.out.println("리절브리스트:"+reservList);
+		String[] optionNumberList=reservList.split("optionNumber=");
+		String[] unitPriceList=reservList.split("unitPrice=");
+		String[] paymentList=reservList.split("payment=");
+		String[] amountList=reservList.split("amount=");
 		
+		String[] ol=null;
+		String[] ul=null;
+		String[] pl=null;
+		String[] al=null;
 		
+//		for(int i=0;i<optionNumberList.length;i++) {
+//			System.out.println(optionNumberList[i]);
+//		}
+//		for(int i=0;i<unitPriceList.length;i++) {
+//			System.out.println(unitPriceList[i]);
+//		}
+//		for(int i=0;i<paymentList.length;i++) {
+//			System.out.println(paymentList[i]);
+//		}
+//		for(int i=0;i<amountList.length;i++) {
+//			System.out.println(amountList[i]);
+//		}
+		
+
+
 		int userNumber =user.getUser_number();
 		String userPhoneNumber =user.getUser_phoneNumber();
 		
 		String cart=req.getParameter("cart");
-		System.out.println("결제완료 ajax:::"+cart);
+//		System.out.println("결제완료 ajax:::"+cart);
 		
-		System.out.println();
-		java.sql.Date checkIn=java.sql.Date.valueOf(checkI);
-//		
-//		if(cart.isEmpty()) {
-//			System.out.println("바로 결제");
-//			//유저넘버 , 글번호 , 옵션 넘버, 상품개수 , 예약날,종료일,폰넘버,개당가격, 결제금액
-//			activityService.AReservInfoInsert(userNumber,Integer.parseInt(articleNumber),optionNumber,amount,checkI,checkI+90,userPhoneNumber,unitPrice,payment);
-//		}else {
-//			System.out.println("바구니결제");
-//			int c = Integer.parseInt(cart);
-//			activityService.AReservInfoUpdate(c);
-//		}
+		for(int i=1;i<optionNumberList.length;i++) {
+			ol=optionNumberList[i].split(",");	//optionNumber
+			ul=unitPriceList[i].split(",");		//unitPrice
+			pl=paymentList[i].split(",");		//payment
+			al=amountList[i].split(",");		//amountList
+					
+			if(cart.isEmpty()) {
+//				System.out.println("바로 결제");
+//				System.out.println("articleNumber:"+Integer.parseInt(articleNumber));
+//				System.out.println("optionNumber:"+Integer.parseInt(ol[0]));
+//				System.out.println("amount:"+Integer.parseInt(al[0]));
+//				System.out.println("unitPrice:"+Integer.parseInt(ul[0]));
+//				System.out.println("payment:"+Integer.parseInt(pl[0]));
+				
+				//유저넘버 , 글번호 , 옵션 넘버, 상품개수 , 예약날,종료일,폰넘버,개당가격, 결제금액
+				activityService.AReservInfoInsert(userNumber,Integer.parseInt(articleNumber),Integer.parseInt(ol[0]),Integer.parseInt(al[0]),userPhoneNumber,Integer.parseInt(ul[0]),Integer.parseInt(pl[0]));
+			}else {
+				System.out.println("바구니결제");
+				int c = Integer.parseInt(cart);
+				//activityService.AReservInfoUpdate(c);
+			}
+		}
+		
+		
+		
 		
 		
 	}

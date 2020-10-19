@@ -243,6 +243,27 @@ public class ActivityServiceImpl implements ActivityService {
 		
 		return list;
 	}
+
+	
+	// 액티비티 취소환불규정
+	@Override
+	public InformationVo activityRefund(int articleNumber) {
+		ActivityDao dao = sqlSession.getMapper(ActivityDao.class);
+		InformationVo inforBean=dao.activityRefund(articleNumber);
+		
+		return inforBean;
+	}
+
+	
+	// 액티비티 예약 완료시 insert
+	@Override
+	public void AReservInfoInsert(int userNumber, int articleNumber, int optionNumber, int amount,
+			String userPhoneNumber, int unitPrice, int payment) {
+		ActivityDao dao = sqlSession.getMapper(ActivityDao.class);
+		dao.AReservInfoInsert(userNumber,articleNumber,optionNumber,amount,userPhoneNumber,unitPrice,payment);
+		
+		
+	}
 }
 
 
