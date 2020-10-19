@@ -464,8 +464,6 @@ function submitClick(){
                         // 해당 주소에 대한 좌표를 받아서
                         var coords = new daum.maps.LatLng(result.y, result.x);
                         
-                        $(".Lat").val(coords["Ha"]);
-                        $(".Lng").val(coords["Ga"]);
                         $(".Lng").val(coords["Ga"]);
                         $(".Lat").val(coords["Ha"]);
                         

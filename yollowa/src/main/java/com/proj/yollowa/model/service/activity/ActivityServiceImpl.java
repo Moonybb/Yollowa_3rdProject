@@ -266,7 +266,7 @@ public class ActivityServiceImpl implements ActivityService {
 		model.addAttribute("recommendList", list);
 		System.out.println("추천 숙박 list :: "+list);
 		return null;
-
+	}
 	
 	// 액티비티 옵션 이름 ,서브네임
 	@Override

@@ -71,7 +71,6 @@
 		select * from activityOption where activityOption_articleNumber = #{articleNumber} order by activityOption_optionNumber
 	</select>
 	
-<<<<<<< HEAD
 	
 	<!-- 숙박 추천 -->
 	<select id="selectLodgementRecommend" resultType="com.proj.yollowa.model.entity.lodgement.LodgementVo" parameterType="map">
@@ -80,7 +79,6 @@
 		]]>
 	</select>
 	
-=======
 	<!-- 액티비티 옵션이름, 서브네임-->
 	<select id="activityOptionName" resultType="com.proj.yollowa.model.entity.activity.ActivityOptionVo">
 		select * from activityOption where activityOption_articleNumber = #{articleNumber} and  activityOption_optionNumber = #{optionNumber}
@@ -97,7 +95,6 @@
 		values (#{userNumber},#{articleNumber},#{optionNumber},#{amount},now(),#{checkOut},#{userPhoneNumber},now(),#{unitPrice},#{payment},1,0)
 	</insert>
 	
->>>>>>> f07aeaea5237ffce1686bb97896a2c90ad2ffbcb
 </mapper>
 
 

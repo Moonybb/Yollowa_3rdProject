@@ -27,12 +27,9 @@ import com.proj.yollowa.model.entity.UserVo;
 import com.proj.yollowa.model.entity.activity.ActivityDetailPageDto;
 import com.proj.yollowa.model.entity.activity.ActivityOptionVo;
 import com.proj.yollowa.model.entity.activity.ActivityReservFormPageDto;
-<<<<<<< HEAD
 import com.proj.yollowa.model.entity.activity.ActivityVo;
 import com.proj.yollowa.model.entity.lodgement.LodgementVo;
-=======
 import com.proj.yollowa.model.entity.lodgement.InformationVo;
->>>>>>> f07aeaea5237ffce1686bb97896a2c90ad2ffbcb
 import com.proj.yollowa.model.entity.mypage.AReservInfoVo;
 import com.proj.yollowa.model.service.activity.ActivityService;
 
@@ -85,7 +82,6 @@ public class ActivityDetailController {
 		model.addAttribute("reviewRate", list.get(0).getActivity_reviewGradeRate());
 		model.addAttribute("reviewCount", list.get(0).getActivity_reviewCount());
 		
-<<<<<<< HEAD
 		/* 주변 액티비티 추천 start */
 		double activityLat = list.get(0).getActivity_Lat();
 		double activityLng = list.get(0).getActivity_Lng();
@@ -93,11 +89,6 @@ public class ActivityDetailController {
 		List<LodgementVo> recommendList = activityService.selectLodgementRecommend(activityLat, activityLng, model); 
 		
 		/* 주변 액티비티 추천 end */
-=======
-		
-		
->>>>>>> f07aeaea5237ffce1686bb97896a2c90ad2ffbcb
-		
 		return "activity/activityDetail";
 	}
 	
