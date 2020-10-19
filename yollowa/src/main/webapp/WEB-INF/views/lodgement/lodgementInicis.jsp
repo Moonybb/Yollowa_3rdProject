@@ -14,6 +14,7 @@
 
 
 <script>
+$("link[rel='shortcut icon']").attr("href", "${pageContext.request.contextPath}/resources/img/icons/favicon.png");
 var IMP = window.IMP; // 생략가능
 IMP.init('imp40929352'); // 가맹점 식별코드
 

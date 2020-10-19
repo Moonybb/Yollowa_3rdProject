@@ -9,6 +9,9 @@
 	<%@ include file="../template/head.jspf" %>
 	<script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
 	 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+	 <script type="text/javascript">
+	 $("link[rel='shortcut icon']").attr("href", "${pageContext.request.contextPath}/resources/img/icons/favicon.png");
+	 </script>
 </head>
 <body>
 	<%@ include file="../template/header.jspf" %>

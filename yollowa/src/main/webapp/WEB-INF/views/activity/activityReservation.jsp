@@ -59,6 +59,7 @@
 			swal('필수 이용약관에 동의해주세요','','info');
 		}
 	};
+	$("link[rel='shortcut icon']").attr("href", "${pageContext.request.contextPath}/resources/img/icons/favicon.png");
 </script>
 
 <meta charset="UTF-8">

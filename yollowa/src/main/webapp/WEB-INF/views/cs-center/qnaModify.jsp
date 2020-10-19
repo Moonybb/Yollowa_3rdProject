@@ -79,6 +79,7 @@
 		
 </style>
 <script type="text/javascript">
+$("link[rel='shortcut icon']").attr("href", "${pageContext.request.contextPath}/resources/img/icons/favicon.png");
 	$(document).ready(function() {
 		CKEDITOR.replace('editor',
 			    {

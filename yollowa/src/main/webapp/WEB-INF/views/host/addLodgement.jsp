@@ -145,7 +145,7 @@
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d3d2ea55cf19b317302dd07f8c2c3117&libraries=services"></script>
 
 <script type="text/javascript">
-
+$("link[rel='shortcut icon']").attr("href", "${pageContext.request.contextPath}/resources/img/icons/favicon.png");
 /* 이미지 등록 시 미리보기 기능 */
 function setThumbnail(event) { 
 	var reader = new FileReader();
