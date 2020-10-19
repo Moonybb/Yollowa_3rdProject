@@ -116,7 +116,7 @@ form {
 		 						    		value:true,
 		 						    		className:'btn btn-danger'
 		 						    	},
-		 						    	cancel:{
+		 						    	cancle:{
 		 						    		text:'취소',
 		 						    		value:false,
 		 						    		className:'btn btn-primary'
@@ -132,7 +132,7 @@ form {
 		 									},
 		 									dataType: "json",
 		 									success:function(data){
-		 										if(data==0){
+		 										if(data==1){
 		 								 			swal({
 		 					 							title:"성공",
 		 					 						    text: "삭제 되었습니다. 이용해주셔서 감사합니다",

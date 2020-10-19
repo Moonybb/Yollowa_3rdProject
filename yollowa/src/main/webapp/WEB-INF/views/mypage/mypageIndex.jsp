@@ -40,6 +40,9 @@ ul {
 	color: #433387;
 }
 </style>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
 <script type="text/javascript">
 	$(function() {
 		$('.card-body p>a').on('mouseenter', function() {
@@ -73,12 +76,38 @@ ul {
 					<fmt:formatNumber type="number" maxFractionDigits="3" value="${info.lReservInfo_payment}" var="pay" />
 					<p>결제 금액 : ${pay }원</p>
 					<p class="lead">
-						<a class="btn btn-warning btn-lg" href="#" role="button" style="display: block;">예약 번호 확인하기</a>
+						<button class="btn btn-warning btn-lg" style="display: block;width:100%;">예약 번호 확인하기</button>
+						<script type="text/javascript">
+							$('button').click(function(){
+								let today = new Date();   
+
+								let year = today.getFullYear(); // 년도
+								let month = today.getMonth() + 1;  // 월
+								let date = today.getDate();  // 날짜
+								let day = today.getDay();  // 요일
+								 swal({
+									 	title:'예약번호',
+			 						    text: '고객님의 예약번호는 '+year+month+date+"${info.lodgement_number}"+'입니다',
+			 					    	buttons :{
+			 						    	confirm:{
+			 						    		text:'확인',
+			 						    		value:true,
+			 						    		className:'btn btn-primary'
+			 						    	}
+			 						    }
+			 						}).then((result) =>{
+			 							if(result){
+			 							}
+			 						});
+								
+							});
+						</script>
 					<hr class="my-4">	
 						<a class="btn btn-lg lodgeDetail" href="${pageContext.request.contextPath }/lodgement/detail/${info.lReservInfo_acticleNumber}" role="button" style="display: block;" >숙박 업체 자세히 보기</a>
 					</p>
 				</div>
 				</c:forEach>
+				
 			</div>
 	<%@ include file="../template/mypagemenu2.jspf" %>
 	<%@ include file="../template/footer.jspf"%>

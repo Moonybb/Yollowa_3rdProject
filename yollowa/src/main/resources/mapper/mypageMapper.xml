@@ -14,6 +14,7 @@
 		and ai.AReservInfo_cartStatus=0
 		and DATE(now())<=DATE(ai.areservInfo_checkOut)
 		and ai.AReservInfo_userNumber=#{user_number}
+		order by AReservInfo_reservDate desc
 		]]>
 	</select>
 	<select id="getOverHistory" resultType="com.proj.yollowa.model.entity.mypage.AReservInfoDto">
@@ -24,6 +25,7 @@
 		and ai.AReservInfo_cartStatus=0
 		and DATE(now())>DATE(ai.areservInfo_checkOut)
 		and ai.AReservInfo_userNumber=#{user_number}
+		order by AReservInfo_reservDate desc
 		]]>
 	</select>
 	<select id="getAuserCartInfo" resultType="com.proj.yollowa.model.entity.mypage.AReservInfoDto">
@@ -33,7 +35,8 @@
 		where ai.areservinfo_reservStatus=0
 		and ai.AReservInfo_cartStatus=1
 		and DATE(now())<DATE(ai.areservInfo_checkOut)
-		and ai.AReservInfo_userNumber=#{user_number};
+		and ai.AReservInfo_userNumber=#{user_number}
+		order by AReservInfo_reservDate desc
 		]]>
 	</select>
 	<select id="getLreservationInfo" resultType="com.proj.yollowa.model.entity.mypage.LReservInfoDto">
@@ -166,4 +169,10 @@
 	<delete id="deleteUser">
 		DELETE FROM user WHERE user_number = #{user_number}
 	</delete>
+	<select id="getSortAcitivity">
+		select * from activity order by activity_reviewCount desc, activity_reviewGradeRate desc
+	</select>
+	<select id="getSortLodgement">
+		select * from lodgement order by lodgement_reviewCount desc,lodgement_reviewGradeRate desc
+	</select>
 </mapper>

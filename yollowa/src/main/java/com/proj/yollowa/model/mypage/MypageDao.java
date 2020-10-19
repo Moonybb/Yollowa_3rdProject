@@ -55,5 +55,7 @@ public interface MypageDao {
 	public int searchPassword(@Param("user_id") String user_id,@Param("user_password") String user_password) throws SQLException;
 	public int updateUserPassword(@Param("user_number") int user_number,@Param("user_password") String user_password) throws SQLException;
 	public int deleteUser(int user_number) throws SQLException;
+	public List<ActivityVo> getSortAcitivity() throws SQLException;
+	public List<LodgementVo> getSortLodgement() throws SQLException;
 }
 

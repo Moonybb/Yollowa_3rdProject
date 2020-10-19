@@ -2,6 +2,8 @@ package com.proj.yollowa.model.service.mypage;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -139,6 +141,7 @@ public class MypageServiceImpl implements MypageService{
 					bean.setActivity_img(imgName);
 					list.add(bean);
 				}
+				Collections.reverse(list);
 				model.addAttribute("wishList",list);
 				model.addAttribute("service",service);
 				
@@ -172,6 +175,7 @@ public class MypageServiceImpl implements MypageService{
 					bean.setLodgement_img(imgName);
 					list.add(bean);
 				}
+				Collections.reverse(list);
 				model.addAttribute("wishList",list);
 				model.addAttribute("service",service);
 			}else {
@@ -284,10 +288,15 @@ public class MypageServiceImpl implements MypageService{
 	@Override
 	public int deleteUser(int user_number) throws SQLException {
 		MypageDao dao = sqlSession.getMapper(MypageDao.class);
-		dao.deleteUser(user_number);
-		return 0;
+		
+		return dao.deleteUser(user_number);
 	}
-	
+	@Override
+	public void homeList(Model model) throws SQLException {
+		MypageDao dao = sqlSession.getMapper(MypageDao.class);
+		model.addAttribute("alist",dao.getSortAcitivity());
+		model.addAttribute("llist",dao.getSortLodgement());
+	}
 	
 	
 }
