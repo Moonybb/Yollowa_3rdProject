@@ -12,9 +12,11 @@
 	<link rel="stylesheet" type="text/css" href="${bootstrapCSS }">
 	<script type="text/javascript" src="${jquery }"></script>
 	<script type="text/javascript" src="${bootstrap }"></script>
-	<script type="text/javascript" src=""></script>
+	<script type="text/javascript" src="">
+	$("link[rel='shortcut icon']").attr("href", "${pageContext.request.contextPath}/resources/img/icons/favicon.png");
+	</script>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Yollowa</title>
 </head>
 <body>
 

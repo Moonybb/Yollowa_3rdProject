@@ -46,6 +46,7 @@ ul {
 }
 </style>
 <script type="text/javascript">
+$("link[rel='shortcut icon']").attr("href", "${pageContext.request.contextPath}/resources/img/icons/favicon.png");
 	$(function() {
 		$('.card-body p>a').on('mouseenter', function() {
 			$(this).css('color', '#C6BFE7');

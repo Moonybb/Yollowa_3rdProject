@@ -30,6 +30,7 @@
 		}
 		count--;
 	}
+	$("link[rel='shortcut icon']").attr("href", "${pageContext.request.contextPath}/resources/img/icons/favicon.png");
 </script>
 
 <meta charset="UTF-8">

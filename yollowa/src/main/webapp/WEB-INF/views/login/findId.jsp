@@ -36,7 +36,7 @@
 }
 </style>
 <script type="text/javascript">
-	
+$("link[rel='shortcut icon']").attr("href", "${pageContext.request.contextPath}/resources/img/icons/favicon.png");
 	function phoneNumber(){
 		var keycode = event.keyCode;
 		if((keycode>=48 && keycode<=57) || (keycode>=96 && keycode<=105) || keycode== 8 || keycode== 46){

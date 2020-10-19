@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Yollowa</title>
 <%@ include file="../template/head.jspf" %>
 <style rel="stylesheet" type="text/css">
 	/* category start */
@@ -182,6 +182,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
 <script type="text/javascript">
+$("link[rel='shortcut icon']").attr("href", "${pageContext.request.contextPath}/resources/img/icons/favicon.png");
 	$(document).ready(function(){
 		if($('.temp').val()==0){
 			$('.temp').val("관리자 승인이 대기중인 글입니다");

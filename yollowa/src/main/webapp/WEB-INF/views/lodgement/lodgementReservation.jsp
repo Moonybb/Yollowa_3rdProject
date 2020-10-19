@@ -30,7 +30,7 @@
 }
 </style>
 <script type="text/javascript">
-
+$("link[rel='shortcut icon']").attr("href", "${pageContext.request.contextPath}/resources/img/icons/favicon.png");
 	function buy(){
 		if(($("#customCheck1").is(":checked") == true) && ($("#customCheck2").is(":checked") == true))  {
 			

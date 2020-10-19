@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Yollowa</title>
 <%@ include file="../template/head.jspf" %>
 <style rel="stylesheet" type="text/css">
 	/* category start */
@@ -81,7 +81,7 @@
 	}
 </style>
 <script type="text/javascript">
-	
+$("link[rel='shortcut icon']").attr("href", "${pageContext.request.contextPath}/resources/img/icons/favicon.png");
 </script>
 </head>
 <body>
