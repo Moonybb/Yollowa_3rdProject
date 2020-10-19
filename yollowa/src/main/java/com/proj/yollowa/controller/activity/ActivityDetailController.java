@@ -4,9 +4,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.sql.Date;
 import java.sql.SQLException;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -78,6 +80,9 @@ public class ActivityDetailController {
 		model.addAttribute("reviewRate", list.get(0).getActivity_reviewGradeRate());
 		model.addAttribute("reviewCount", list.get(0).getActivity_reviewCount());
 		
+		
+		
+		
 		return "activity/activityDetail";
 	}
 	
@@ -86,6 +91,7 @@ public class ActivityDetailController {
 	@Auth
 	@RequestMapping(value="detail/reservation/{articleNumber}", method=RequestMethod.POST)
 	public String activityReservation(@PathVariable("articleNumber") int articleNumber ,@AuthUser UserVo userVo,ActivityReservFormPageDto bean,Model model) {
+		
 		
 		// 글 이름
 		List<ActivityDetailPageDto> title =activityService.activityDetail(articleNumber, model);
@@ -256,6 +262,20 @@ public class ActivityDetailController {
 		String cart=req.getParameter("cart");
 //		System.out.println("결제완료 ajax:::"+cart);
 		
+
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+		String ss=sdf.format(new java.util.Date());
+		java.sql.Date checkOut= java.sql.Date.valueOf(ss);
+		DateFormat Format = new SimpleDateFormat("yyyy-MM-dd");
+		
+		Date date = checkOut;
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.add(Calendar.DATE, 90);
+        String d=Format.format(cal.getTime());
+        
+        Date cDate=Date.valueOf(d);
+        
 		for(int i=1;i<optionNumberList.length;i++) {
 			ol=optionNumberList[i].split(",");	//optionNumber
 			ul=unitPriceList[i].split(",");		//unitPrice
@@ -271,7 +291,7 @@ public class ActivityDetailController {
 //				System.out.println("payment:"+Integer.parseInt(pl[0]));
 				
 				//유저넘버 , 글번호 , 옵션 넘버, 상품개수 , 예약날,종료일,폰넘버,개당가격, 결제금액
-				activityService.AReservInfoInsert(userNumber,Integer.parseInt(articleNumber),Integer.parseInt(ol[0]),Integer.parseInt(al[0]),userPhoneNumber,Integer.parseInt(ul[0]),Integer.parseInt(pl[0]));
+				activityService.AReservInfoInsert(userNumber,Integer.parseInt(articleNumber),Integer.parseInt(ol[0]),Integer.parseInt(al[0]),userPhoneNumber,Integer.parseInt(ul[0]),Integer.parseInt(pl[0]),cDate);
 			}else {
 				System.out.println("바구니결제");
 				int c = Integer.parseInt(cart);

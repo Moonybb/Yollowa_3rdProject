@@ -1,5 +1,6 @@
 package com.proj.yollowa.model.service.activity;
 
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -258,9 +259,9 @@ public class ActivityServiceImpl implements ActivityService {
 	// 액티비티 예약 완료시 insert
 	@Override
 	public void AReservInfoInsert(int userNumber, int articleNumber, int optionNumber, int amount,
-			String userPhoneNumber, int unitPrice, int payment) {
+			String userPhoneNumber, int unitPrice, int payment,Date checkOut) {
 		ActivityDao dao = sqlSession.getMapper(ActivityDao.class);
-		dao.AReservInfoInsert(userNumber,articleNumber,optionNumber,amount,userPhoneNumber,unitPrice,payment);
+		dao.AReservInfoInsert(userNumber,articleNumber,optionNumber,amount,userPhoneNumber,unitPrice,payment,checkOut);
 		
 		
 	}

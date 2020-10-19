@@ -1,5 +1,6 @@
 package com.proj.yollowa.model.activity;
 
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -66,7 +67,7 @@ public interface ActivityDao {
 	
 	// 액티비티 예약완료시 insert
 	public void AReservInfoInsert(@Param("userNumber") int userNumber,@Param("articleNumber") int articleNumber,@Param("optionNumber") int optionNumber,@Param("amount") int amount,
-			@Param("userPhoneNumber") String userPhoneNumber,@Param("unitPrice") int unitPrice,@Param("payment") int payment);
+			@Param("userPhoneNumber") String userPhoneNumber,@Param("unitPrice") int unitPrice,@Param("payment") int payment,@Param("checkOut") Date checkOut);
 	
 	
 }

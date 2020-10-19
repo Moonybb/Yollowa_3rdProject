@@ -84,7 +84,7 @@
 	<!-- 액티비티 예약완료시 insert -->
 	<insert id="AReservInfoInsert">
 		insert into AReservInfo (AReservInfo_userNumber,AReservInfo_articleNumber,AReservInfo_optionNumber,AReservInfo_amount,AReservInfo_checkIn,AReservInfo_checkOut,AReservInfo_phoneNumber,AReservInfo_reservDate,AReservInfo_unitPrice,AReservInfo_payment,AReservInfo_reservStatus,AReservInfo_cartStatus) 
-		values (#{userNumber},#{articleNumber},#{optionNumber},#{amount},now(),now()+90,#{userPhoneNumber},now(),#{unitPrice},#{payment},1,0)
+		values (#{userNumber},#{articleNumber},#{optionNumber},#{amount},now(),#{checkOut},#{userPhoneNumber},now(),#{unitPrice},#{payment},1,0)
 	</insert>
 	
 </mapper>

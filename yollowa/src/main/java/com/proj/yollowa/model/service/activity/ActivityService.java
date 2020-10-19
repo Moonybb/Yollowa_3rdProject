@@ -1,5 +1,6 @@
 package com.proj.yollowa.model.service.activity;
 
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -50,5 +51,5 @@ public interface ActivityService {
 	
 	// 예약 완료 insert
 	void AReservInfoInsert(int userNumber, int articleNumber, int optionNumber, int amount, String userPhoneNumber,
-			int unitPrice, int payment);
+			int unitPrice, int payment,Date checkOut);
 }
