@@ -140,7 +140,6 @@
 			      <th>제목</th>
 			      <th>작성자</th>
 			      <th>작성일</th>
-			      <th>조회수</th>
 			    </tr>
 			  </thead>
 			  <tbody>
@@ -150,7 +149,6 @@
 			      <td><a href="./detail/${notice.noticeno }">${notice.title }</a></td>
 			      <td><a href="./detail/${notice.noticeno }">${notice.writer }</a></td>
 			      <td><a href="./detail/${notice.noticeno }">${notice.writeddate }</a></td>
-			      <td><a href="./detail/${notice.noticeno }">${notice.cnt }</a></td>
 			    </tr>
 			    </c:forEach>
 			  </tbody>

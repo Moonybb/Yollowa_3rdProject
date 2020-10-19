@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.ui.Model;
 
 import com.proj.yollowa.model.entity.activity.ActivityDetailPageDto;
+import com.proj.yollowa.model.entity.activity.ActivityOptionVo;
 import com.proj.yollowa.model.entity.activity.ActivityVo;
 import com.proj.yollowa.model.entity.activity.ReviewVo;
 import com.proj.yollowa.model.entity.lodgement.LodgementVo;
@@ -35,4 +36,13 @@ public interface ActivityService {
 	
 	// 디테일 기본정보
 	void activityInfo(int activity_number, int type, Model model);
+	
+	// 디테일 찜목록 
+	void activityWishUpdate(int activityNumber, int userNumber);
+	
+	// 액티비티 예약페이지 이동 - articleNumber로 등록된 옵션들 전부 select
+	List<ActivityOptionVo> selectOptions(int articleNumber);
+	
+	// 예약 옵션 이름
+	List<ActivityOptionVo> activityOptionName(int optionNumber, int articleNumber);
 }

@@ -152,11 +152,10 @@
 						<div class="col-md-4">
 						<span id="writer">작성자 | ${bean.writer }</span>
 						</div>
-						<div class="col-md-6">
+						<div class="col-md-5">
 						<span id="date">작성일 | ${bean.writeddate }</span>
 						</div>
-						<div class="col-md-2">
-						<span id="cnt">조회수 | ${bean.cnt }</span>
+						<div class="col-md-3">
 						</div>
 					</div>
 				</div>

@@ -170,7 +170,7 @@ form>h2{
 			
 			<div class="form-group row">
 				<div class="col-sm-12" style="text-align: center;">
-					<button type="button" class="btn btn-primary">작성하기</button>
+					<button type="button" id="formbtn" class="btn btn-primary">작성하기</button>
 				</div>
 			</div>
 		</form>

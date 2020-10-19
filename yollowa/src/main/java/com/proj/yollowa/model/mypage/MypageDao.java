@@ -51,5 +51,8 @@ public interface MypageDao {
 	
 	// 비밀번호 찾기
 	public UserVo findPassword(@Param("name") String name,@Param("id") String id,@Param("phoneNumber") String phoneNumber);
+	// 유저 비밀번호 변경
+	public int searchPassword(@Param("user_id") String user_id,@Param("user_password") String user_password) throws SQLException;
+	public int updateUserPassword(@Param("user_number") int user_number,@Param("user_password") String user_password) throws SQLException;
 }
 

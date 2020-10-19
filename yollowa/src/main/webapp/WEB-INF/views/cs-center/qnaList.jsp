@@ -140,7 +140,6 @@
 			      <th>제목</th>
 			      <th>작성자</th>
 			      <th>작성일</th>
-			      <th>조회수</th>
 			    </tr>
 			  </thead>
 			  <tbody>
@@ -152,7 +151,6 @@
 			      </td>
 			      <td><a href="./detail/${bean.qnano }">${bean.writer }</a></td>
 			      <td><a href="./detail/${bean.qnano }">${bean.writeddate }</a></td>
-			      <td><a href="./detail/${bean.qnano }">${bean.cnt }</a></td>
 			    </tr>
 			    </c:forEach>
 			  </tbody>

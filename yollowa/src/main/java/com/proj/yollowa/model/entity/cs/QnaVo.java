@@ -12,21 +12,19 @@ public class QnaVo {
 	private String writer;
 	private String content;
 	private Date writeddate;
-	private int cnt;
 	
 	private int hidden;
 	
 	public QnaVo() {
 	}
 
-	public QnaVo(int qnano, String title, String writer, String content, Date writeddate, int cnt, int hidden) {
+	public QnaVo(int qnano, String title, String writer, String content, Date writeddate, int hidden) {
 		super();
 		this.qnano = qnano;
 		this.title = title;
 		this.writer = writer;
 		this.content = content;
 		this.writeddate = writeddate;
-		this.cnt = cnt;
 		this.hidden = hidden;
 	}
 
@@ -70,14 +68,6 @@ public class QnaVo {
 		this.writeddate = writeddate;
 	}
 
-	public int getCnt() {
-		return cnt;
-	}
-
-	public void setCnt(int cnt) {
-		this.cnt = cnt;
-	}
-
 	public int getHidden() {
 		return hidden;
 	}
@@ -89,7 +79,7 @@ public class QnaVo {
 	@Override
 	public String toString() {
 		return "QnaVo [qnano=" + qnano + ", title=" + title + ", writer=" + writer + ", content=" + content
-				+ ", writeddate=" + writeddate + ", cnt=" + cnt + ", hidden=" + hidden + "]";
+				+ ", writeddate=" + writeddate + ", hidden=" + hidden + "]";
 	}
 	
 }

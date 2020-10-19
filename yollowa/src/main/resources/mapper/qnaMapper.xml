@@ -6,7 +6,7 @@
 	<select id="getQnaList" resultType="com.proj.yollowa.model.entity.cs.QnaVo">
 		<![CDATA[
 		SELECT 
-			QNANO, TITLE, WRITER, CONTENT, WRITEDDATE, CNT, HIDDEN 
+			QNANO, TITLE, WRITER, CONTENT, WRITEDDATE, HIDDEN 
 		FROM QNA 
 		WHERE QNANO>0
 		]]>

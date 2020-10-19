@@ -6,7 +6,7 @@
 	<select id="getFaqList" resultType="com.proj.yollowa.model.entity.cs.FaqVo">
 		<![CDATA[
 		SELECT 
-			FAQNO, TITLE, WRITER, CONTENT, WRITEDDATE, CNT 
+			FAQNO, TITLE, WRITER, CONTENT, WRITEDDATE 
 		FROM FAQ 
 		WHERE FAQNO>0
 		]]>

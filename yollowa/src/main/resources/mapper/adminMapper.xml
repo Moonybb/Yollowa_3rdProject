@@ -14,6 +14,15 @@
 		FROM HOSTRQN, USER 
 		WHERE HOSTRQN_USERNO = USER_NUMBER
 		]]>
+		<include refid="search" />
+		ORDER BY hostrqn_no ASC
+		LIMIT #{pageStart}, #{perPageNum}
+		
+	</select>
+	<!-- 검색조건에 맞는 hostrqn 테이블의 열 총계 -->
+	<select id="countHostrqn" resultType="int">
+		SELECT COUNT(hostrqn_no) FROM hostrqn WHERE hostrqn_no>0 
+		<include refid="search" />
 	</select>
 	<!-- hostrqn 테이블 get one -->
 	<select id="getHostApprovalStandby" resultType="com.proj.yollowa.model.entity.admin.HostrqnApprovalVo">
@@ -40,18 +49,28 @@
 		WHERE USER_NUMBER =#{user.user_number}
 		]]>
 	</update>
-	<!-- 승인을 한 사업장 등록 항목 hostrqn 테이블에서 삭제한다 -->
+	<!-- 승인이 되어 user테이블에 저장이된 사업장을 hostrqn 테이블에서 삭제한다 -->
 	<delete id="deleteOneHostrqn">
-		DELETE FROM HOSTRQN WHERE HOSTRQN_NO = #{hostrqn_no}
+		DELETE FROM HOSTRQN WHERE HOSTRQN_NO = #{hostrqn_no} 
 	</delete>
 	
 	<!-- 승인이 필요한 ACTIVITY 항목을 출력한다 -->
 	<select id="getActivityApprovalStandbyList" resultType="com.proj.yollowa.model.entity.admin.ActivityApprovalVo">
 		<![CDATA[
 		SELECT ACTIVITY_NUMBER, ACTIVITYOPTION_ARTICLENUMBER, ACTIVITY_IMG, ACTIVITY_TEMP, USER_COMPANYNAME, USER_NAME 
-		FROM ACTIVITY, USER, activityoption 
+		FROM ACTIVITY, USER, ACTIVITYOPTION 
 		WHERE ACTIVITY_USERNUMBER = USER_NUMBER AND ACTIVITY_TEMP !=1 AND ACTIVITYOPTION_ARTICLENUMBER=ACTIVITY_NUMBER
 		]]>
+		<include refid="search" />
+		ORDER BY ACTIVITY_NUMBER ASC
+		LIMIT #{pageStart}, #{perPageNum}
+	</select>
+	<!-- 검색조건에 맞는 activity 테이블의 열 총계 -->
+	<select id="countActivityApprovalStandbyList" resultType="int">
+		SELECT COUNT(ACTIVITY_NUMBER)  
+		FROM ACTIVITY, USER, ACTIVITYOPTION 
+		WHERE ACTIVITY_USERNUMBER = USER_NUMBER AND ACTIVITY_TEMP !=1 AND ACTIVITYOPTION_ARTICLENUMBER=ACTIVITY_NUMBER
+		<include refid="search" />
 	</select>
 	<!-- ACTIVITY 테이블의 ACTIVITY_TEMP 값을 1로 UPDATE한다 -->
 	<update id="updateActivityTempToApproved">
@@ -66,6 +85,16 @@
 			LODGEMENT_NUMBER, ROOMINFO_ARTICLENUMBER, LODGEMENT_COMPANYNAME, LODGEMENT_IMG, LODGEMENT_TEMP, USER_COMPANYNAME, USER_NAME 
 		FROM LODGEMENT, USER, ROOMINFO 
 		WHERE LODGEMENT_USERNUMBER = USER_NUMBER AND LODGEMENT_TEMP !=1 AND ROOMINFO_ARTICLENUMBER=LODGEMENT_NUMBER GROUP BY LODGEMENT_NUMBER
+		<include refid="search" />
+		ORDER BY LODGEMENT_USERNUMBER ASC
+		LIMIT #{pageStart}, #{perPageNum}
+	</select>
+		<!-- 검색조건에 맞는 activity 테이블의 열 총계 -->
+	<select id="countLodgementApprovalStandbyList" resultType="int">
+		SELECT COUNT(LODGEMENT_USERNUMBER)  
+		FROM LODGEMENT, USER, ROOMINFO 
+		WHERE LODGEMENT_USERNUMBER = USER_NUMBER AND LODGEMENT_TEMP !=1 AND ROOMINFO_ARTICLENUMBER=LODGEMENT_NUMBER
+		<include refid="search" />
 	</select>
 	<!-- LODGEMENT 테이블의 LODGEMENT_TEMP 값을 1로 UPDATE한다 -->
 	<update id="updateLodgementTempToApproved">
@@ -76,28 +105,92 @@
 	<select id="getManagerList" resultType="com.proj.yollowa.model.entity.ManagerVo">
 		SELECT MANAGER_NUMBER, MANAGER_ID, MANAGER_LEVEL 
 		FROM MANAGER
+		ORDER BY MANAGER_NUMBER DESC
+		LIMIT #{pageStart}, #{perPageNum}
 	</select>
-	
+	<!-- 매니저 테이블에 등록되어 있는 매니저 중 주어진 검색 조건에 맞는 매니저들의 총인원을 출력 -->
+	<select id="countManagerList" resultType="int">
+		SELECT COUNT(MANAGER_NUMBER)
+		FROM MANAGER 
+		<include refid="search" />
+	</select>
+	<!-- 검색 조건에 맞는 매니저의 상세 내용을 출력 -->
 	<select id="getManager" resultType="com.proj.yollowa.model.entity.ManagerVo">
 		SELECT 
 			MANAGER_NUMBER, MANAGER_ID, MANAGER_LEVEL, MANAGER_PASSWORD 
 		FROM MANAGER 
 		WHERE MANAGER_NUMBER = #{manager_number}
 	</select>
-	
+	<!-- 매니저를 추가한다  -->
 	<insert id="insertManager">
 		INSERT INTO MANAGER (MANAGER_LEVEL, MANAGER_ID, MANAGER_PASSWORD) 
 		VALUES (#{manager_level}, #{manager_id}, #{manager_password})
 	</insert>
-	
+	<!-- 매니저의 내용을 수정한다 -->
 	<update id="updateManager">
 		UPDATE MANAGER 
 		SET MANAGER_LEVEL = #{manager_level}, MANAGER_ID = #{manager_id}, MANAGER_PASSWORD = #{manager_password} 
 		WHERE (MANAGER_NUMBER = #{manager_number})
 	</update>
-	
+	<!-- 매니저 계정을 삭제한다 -->
 	<delete id="deleteManager">
 		DELETE FROM MANAGER WHERE (MANAGER_NUMBER = #{manager_number})
 	</delete>
+	<!-- 유저의 특정 정보를 검색하여 유저번호를 반환 받는다  -->
+	<select id="getUserNumber" resultType="int">
+		 SELECT COUNT(USER_NUMBER) FROM USER WHERE USER_NUMBER>0 
+		 <include refid="searchUser" />
+	</select>
 	
+	<!-- 검색 조건 -->
+	<sql id="search">
+		<if test="searchType != null and searchType != '' ">
+			<if test="searchType == 'hostrqn_userNO'">
+				 AND HOSTRQN_USERNO=#{keyword} 
+			</if>
+			<if test="searchType == 'activity_usernumber'">
+				 AND ACTIVITY_USERNUMBER=#{keyword} 
+			</if>
+			<if test="searchType == 'lodgement_number'">
+				 AND LODGEMENT_NUMBER=#{keyword} 
+			</if>
+			<if test="searchType == 'manager_number'">
+				 where MANAGER_NUMBER=#{keyword} 
+			</if>
+		</if>
+	</sql>
+	<sql id="searchUser">
+		<if test="searchType != null and searchType != '' ">
+			<if test="searchType == 'user_number'">
+				 AND USER_NUMBER=#{keyword} 
+			</if>
+			<if test="searchType == 'user_nickName'">
+				 AND USER_NICKNAME LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType == 'user_name'">
+				 AND USER_NAME LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType == 'user_phoneNumber'">
+				 AND USER_PHONENUMBER LIKE CONCAT('%', #{keyword}, '%') 
+			</if>
+			<if test="searchType == 'user_id'">
+				 AND USER_ID LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType == 'user_email'">
+				 AND USER_EMAIL LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType == 'user_companyNumber'">
+				 AND USER_COMPANYNUMBER LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType == 'user_companyName'">
+				 AND USER_COMPANYNAME LIKE CONCAT('%', #{keyword}, '%') 
+			</if>
+			<if test="searchType == 'user_activityCompanyName'">
+				 AND USER_ACTIVITYCOMPANYNAME LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType == 'user_level'">
+				 AND USER_LEVEL=#{keyword} 
+			</if>
+		</if>
+	</sql>
 </mapper>

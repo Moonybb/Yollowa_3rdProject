@@ -157,5 +157,11 @@
 	<select id="findPassword" resultType="com.proj.yollowa.model.entity.UserVo">
 		select * from user where user_name=#{name} and user_id=#{id} and user_phoneNumber=#{phoneNumber}
 	</select>
+	<select id="searchPassword" resultType="int">
+		select count(*) from user where user_id=#{user_id} and user_password=#{user_password}
+	</select>
+	<update id="updateUserPassword">
+		UPDATE user SET user_password = #{user_password} WHERE user_number=#{user_number};
+	</update>
 	
 </mapper>

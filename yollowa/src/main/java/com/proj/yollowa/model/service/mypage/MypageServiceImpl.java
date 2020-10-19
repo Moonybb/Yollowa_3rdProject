@@ -270,6 +270,18 @@ public class MypageServiceImpl implements MypageService{
 		UserVo userBean=dao.findPassword(name,id,phoneNumber);
 		return userBean;
 	}
+	@Override
+	public int searchPassword(String user_id,String user_password) throws SQLException {
+		MypageDao dao = sqlSession.getMapper(MypageDao.class);
+		return dao.searchPassword(user_id, user_password);
+	}
+	@Override
+	public void changePasswordService(int user_number, String password) throws SQLException {
+		MypageDao dao = sqlSession.getMapper(MypageDao.class);
+		dao.updateUserPassword(user_number, password);
+		
+	}
+	
 	
 	
 }

@@ -77,6 +77,9 @@ public class LodgementDetailController {
 		model.addAttribute("startEndDay", list.get(0));
 		model.addAttribute("article", number);
 		
+		model.addAttribute("reviewRate", list.get(0).getLodgement_reviewGradeRate());
+		model.addAttribute("reviewCount", list.get(0).getLodgement_reviewCount());
+		
 		return "lodgement/lodgementDetail";
 	}
 

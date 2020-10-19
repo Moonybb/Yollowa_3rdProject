@@ -46,6 +46,10 @@
 </svg>찜
 								목록</a>
 						</p>
+						<p class="card-text">
+							<a class="card-link"
+								href="${pageContext.request.contextPath }/mypage/userinfo">계정 설정</a>
+						</p>
 					</div>
 				</div>
 				<div class="card border-secondary mb-3" style="max-width: 20rem;">
@@ -61,11 +65,6 @@
 							<a class="card-link"
 								href="${pageContext.request.contextPath }/mypage/myqna">내가 쓴
 								Q&A</a>
-						</p>
-						<p class="card-text">
-							<a class="card-link"
-								href="${pageContext.request.contextPath }/mypage/userinfo">내
-								정보</a>
 						</p>
 					</div>
 				</div>
