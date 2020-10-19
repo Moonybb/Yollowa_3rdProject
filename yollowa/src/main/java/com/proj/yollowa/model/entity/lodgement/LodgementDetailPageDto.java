@@ -8,8 +8,8 @@ public class LodgementDetailPageDto {
 	private int lodgement_userNumber;
 	private String lodgement_companyName;
 	private String lodgement_location;
-	private String lodgement_Lat;
-	private String lodgement_Lng;
+	private double lodgement_Lat;
+	private double lodgement_Lng;
 	private String lodgement_category;
 	private String lodgement_hashTag;
 	private int lodgement_goodCount;
@@ -31,6 +31,180 @@ public class LodgementDetailPageDto {
 	private String roomInfo_img;
 	
 	public LodgementDetailPageDto() {
+	}
+
+	public LodgementDetailPageDto(int lodgement_number, int lodgement_userNumber, String lodgement_companyName,
+			String lodgement_location, double lodgement_Lat, double lodgement_Lng, String lodgement_category,
+			String lodgement_hashTag, int lodgement_goodCount, double lodgement_reviewGradeRate,
+			int lodgement_reviewCount, String lodgement_img, int lodgement_temp, int roomInfo_roomNumber,
+			int roomInfo_articleNumber, String roomInfo_name, int roomInfo_peakPrice, int roomInfo_offPeakPrice,
+			Date roomInfo_peakStartDate, Date roomInfo_peakEndDate, int roomInfo_minPeople, int roomInfo_maxPeople,
+			int roomInfo_extraPrice, String roomInfo_img) {
+		super();
+		this.lodgement_number = lodgement_number;
+		this.lodgement_userNumber = lodgement_userNumber;
+		this.lodgement_companyName = lodgement_companyName;
+		this.lodgement_location = lodgement_location;
+		this.lodgement_Lat = lodgement_Lat;
+		this.lodgement_Lng = lodgement_Lng;
+		this.lodgement_category = lodgement_category;
+		this.lodgement_hashTag = lodgement_hashTag;
+		this.lodgement_goodCount = lodgement_goodCount;
+		this.lodgement_reviewGradeRate = lodgement_reviewGradeRate;
+		this.lodgement_reviewCount = lodgement_reviewCount;
+		this.lodgement_img = lodgement_img;
+		this.lodgement_temp = lodgement_temp;
+		this.roomInfo_roomNumber = roomInfo_roomNumber;
+		this.roomInfo_articleNumber = roomInfo_articleNumber;
+		this.roomInfo_name = roomInfo_name;
+		this.roomInfo_peakPrice = roomInfo_peakPrice;
+		this.roomInfo_offPeakPrice = roomInfo_offPeakPrice;
+		this.roomInfo_peakStartDate = roomInfo_peakStartDate;
+		this.roomInfo_peakEndDate = roomInfo_peakEndDate;
+		this.roomInfo_minPeople = roomInfo_minPeople;
+		this.roomInfo_maxPeople = roomInfo_maxPeople;
+		this.roomInfo_extraPrice = roomInfo_extraPrice;
+		this.roomInfo_img = roomInfo_img;
+	}
+
+	@Override
+	public String toString() {
+		return "LodgementDetailPageDto [lodgement_number=" + lodgement_number + ", lodgement_userNumber="
+				+ lodgement_userNumber + ", lodgement_companyName=" + lodgement_companyName + ", lodgement_location="
+				+ lodgement_location + ", lodgement_Lat=" + lodgement_Lat + ", lodgement_Lng=" + lodgement_Lng
+				+ ", lodgement_category=" + lodgement_category + ", lodgement_hashTag=" + lodgement_hashTag
+				+ ", lodgement_goodCount=" + lodgement_goodCount + ", lodgement_reviewGradeRate="
+				+ lodgement_reviewGradeRate + ", lodgement_reviewCount=" + lodgement_reviewCount + ", lodgement_img="
+				+ lodgement_img + ", lodgement_temp=" + lodgement_temp + ", roomInfo_roomNumber=" + roomInfo_roomNumber
+				+ ", roomInfo_articleNumber=" + roomInfo_articleNumber + ", roomInfo_name=" + roomInfo_name
+				+ ", roomInfo_peakPrice=" + roomInfo_peakPrice + ", roomInfo_offPeakPrice=" + roomInfo_offPeakPrice
+				+ ", roomInfo_peakStartDate=" + roomInfo_peakStartDate + ", roomInfo_peakEndDate="
+				+ roomInfo_peakEndDate + ", roomInfo_minPeople=" + roomInfo_minPeople + ", roomInfo_maxPeople="
+				+ roomInfo_maxPeople + ", roomInfo_extraPrice=" + roomInfo_extraPrice + ", roomInfo_img=" + roomInfo_img
+				+ "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		long temp;
+		temp = Double.doubleToLongBits(lodgement_Lat);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(lodgement_Lng);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((lodgement_category == null) ? 0 : lodgement_category.hashCode());
+		result = prime * result + ((lodgement_companyName == null) ? 0 : lodgement_companyName.hashCode());
+		result = prime * result + lodgement_goodCount;
+		result = prime * result + ((lodgement_hashTag == null) ? 0 : lodgement_hashTag.hashCode());
+		result = prime * result + ((lodgement_img == null) ? 0 : lodgement_img.hashCode());
+		result = prime * result + ((lodgement_location == null) ? 0 : lodgement_location.hashCode());
+		result = prime * result + lodgement_number;
+		result = prime * result + lodgement_reviewCount;
+		temp = Double.doubleToLongBits(lodgement_reviewGradeRate);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + lodgement_temp;
+		result = prime * result + lodgement_userNumber;
+		result = prime * result + roomInfo_articleNumber;
+		result = prime * result + roomInfo_extraPrice;
+		result = prime * result + ((roomInfo_img == null) ? 0 : roomInfo_img.hashCode());
+		result = prime * result + roomInfo_maxPeople;
+		result = prime * result + roomInfo_minPeople;
+		result = prime * result + ((roomInfo_name == null) ? 0 : roomInfo_name.hashCode());
+		result = prime * result + roomInfo_offPeakPrice;
+		result = prime * result + ((roomInfo_peakEndDate == null) ? 0 : roomInfo_peakEndDate.hashCode());
+		result = prime * result + roomInfo_peakPrice;
+		result = prime * result + ((roomInfo_peakStartDate == null) ? 0 : roomInfo_peakStartDate.hashCode());
+		result = prime * result + roomInfo_roomNumber;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		LodgementDetailPageDto other = (LodgementDetailPageDto) obj;
+		if (Double.doubleToLongBits(lodgement_Lat) != Double.doubleToLongBits(other.lodgement_Lat))
+			return false;
+		if (Double.doubleToLongBits(lodgement_Lng) != Double.doubleToLongBits(other.lodgement_Lng))
+			return false;
+		if (lodgement_category == null) {
+			if (other.lodgement_category != null)
+				return false;
+		} else if (!lodgement_category.equals(other.lodgement_category))
+			return false;
+		if (lodgement_companyName == null) {
+			if (other.lodgement_companyName != null)
+				return false;
+		} else if (!lodgement_companyName.equals(other.lodgement_companyName))
+			return false;
+		if (lodgement_goodCount != other.lodgement_goodCount)
+			return false;
+		if (lodgement_hashTag == null) {
+			if (other.lodgement_hashTag != null)
+				return false;
+		} else if (!lodgement_hashTag.equals(other.lodgement_hashTag))
+			return false;
+		if (lodgement_img == null) {
+			if (other.lodgement_img != null)
+				return false;
+		} else if (!lodgement_img.equals(other.lodgement_img))
+			return false;
+		if (lodgement_location == null) {
+			if (other.lodgement_location != null)
+				return false;
+		} else if (!lodgement_location.equals(other.lodgement_location))
+			return false;
+		if (lodgement_number != other.lodgement_number)
+			return false;
+		if (lodgement_reviewCount != other.lodgement_reviewCount)
+			return false;
+		if (Double.doubleToLongBits(lodgement_reviewGradeRate) != Double
+				.doubleToLongBits(other.lodgement_reviewGradeRate))
+			return false;
+		if (lodgement_temp != other.lodgement_temp)
+			return false;
+		if (lodgement_userNumber != other.lodgement_userNumber)
+			return false;
+		if (roomInfo_articleNumber != other.roomInfo_articleNumber)
+			return false;
+		if (roomInfo_extraPrice != other.roomInfo_extraPrice)
+			return false;
+		if (roomInfo_img == null) {
+			if (other.roomInfo_img != null)
+				return false;
+		} else if (!roomInfo_img.equals(other.roomInfo_img))
+			return false;
+		if (roomInfo_maxPeople != other.roomInfo_maxPeople)
+			return false;
+		if (roomInfo_minPeople != other.roomInfo_minPeople)
+			return false;
+		if (roomInfo_name == null) {
+			if (other.roomInfo_name != null)
+				return false;
+		} else if (!roomInfo_name.equals(other.roomInfo_name))
+			return false;
+		if (roomInfo_offPeakPrice != other.roomInfo_offPeakPrice)
+			return false;
+		if (roomInfo_peakEndDate == null) {
+			if (other.roomInfo_peakEndDate != null)
+				return false;
+		} else if (!roomInfo_peakEndDate.equals(other.roomInfo_peakEndDate))
+			return false;
+		if (roomInfo_peakPrice != other.roomInfo_peakPrice)
+			return false;
+		if (roomInfo_peakStartDate == null) {
+			if (other.roomInfo_peakStartDate != null)
+				return false;
+		} else if (!roomInfo_peakStartDate.equals(other.roomInfo_peakStartDate))
+			return false;
+		if (roomInfo_roomNumber != other.roomInfo_roomNumber)
+			return false;
+		return true;
 	}
 
 	public int getLodgement_number() {
@@ -65,19 +239,19 @@ public class LodgementDetailPageDto {
 		this.lodgement_location = lodgement_location;
 	}
 
-	public String getLodgement_Lat() {
+	public double getLodgement_Lat() {
 		return lodgement_Lat;
 	}
 
-	public void setLodgement_Lat(String lodgement_Lat) {
+	public void setLodgement_Lat(double lodgement_Lat) {
 		this.lodgement_Lat = lodgement_Lat;
 	}
 
-	public String getLodgement_Lng() {
+	public double getLodgement_Lng() {
 		return lodgement_Lng;
 	}
 
-	public void setLodgement_Lng(String lodgement_Lng) {
+	public void setLodgement_Lng(double lodgement_Lng) {
 		this.lodgement_Lng = lodgement_Lng;
 	}
 
@@ -225,185 +399,5 @@ public class LodgementDetailPageDto {
 		this.roomInfo_img = roomInfo_img;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((lodgement_Lat == null) ? 0 : lodgement_Lat.hashCode());
-		result = prime * result + ((lodgement_Lng == null) ? 0 : lodgement_Lng.hashCode());
-		result = prime * result + ((lodgement_category == null) ? 0 : lodgement_category.hashCode());
-		result = prime * result + ((lodgement_companyName == null) ? 0 : lodgement_companyName.hashCode());
-		result = prime * result + lodgement_goodCount;
-		result = prime * result + ((lodgement_hashTag == null) ? 0 : lodgement_hashTag.hashCode());
-		result = prime * result + ((lodgement_img == null) ? 0 : lodgement_img.hashCode());
-		result = prime * result + ((lodgement_location == null) ? 0 : lodgement_location.hashCode());
-		result = prime * result + lodgement_number;
-		result = prime * result + lodgement_reviewCount;
-		long temp;
-		temp = Double.doubleToLongBits(lodgement_reviewGradeRate);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + lodgement_temp;
-		result = prime * result + lodgement_userNumber;
-		result = prime * result + roomInfo_articleNumber;
-		result = prime * result + roomInfo_extraPrice;
-		result = prime * result + ((roomInfo_img == null) ? 0 : roomInfo_img.hashCode());
-		result = prime * result + roomInfo_maxPeople;
-		result = prime * result + roomInfo_minPeople;
-		result = prime * result + ((roomInfo_name == null) ? 0 : roomInfo_name.hashCode());
-		result = prime * result + roomInfo_offPeakPrice;
-		result = prime * result + ((roomInfo_peakEndDate == null) ? 0 : roomInfo_peakEndDate.hashCode());
-		result = prime * result + roomInfo_peakPrice;
-		result = prime * result + ((roomInfo_peakStartDate == null) ? 0 : roomInfo_peakStartDate.hashCode());
-		result = prime * result + roomInfo_roomNumber;
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		LodgementDetailPageDto other = (LodgementDetailPageDto) obj;
-		if (lodgement_Lat == null) {
-			if (other.lodgement_Lat != null)
-				return false;
-		} else if (!lodgement_Lat.equals(other.lodgement_Lat))
-			return false;
-		if (lodgement_Lng == null) {
-			if (other.lodgement_Lng != null)
-				return false;
-		} else if (!lodgement_Lng.equals(other.lodgement_Lng))
-			return false;
-		if (lodgement_category == null) {
-			if (other.lodgement_category != null)
-				return false;
-		} else if (!lodgement_category.equals(other.lodgement_category))
-			return false;
-		if (lodgement_companyName == null) {
-			if (other.lodgement_companyName != null)
-				return false;
-		} else if (!lodgement_companyName.equals(other.lodgement_companyName))
-			return false;
-		if (lodgement_goodCount != other.lodgement_goodCount)
-			return false;
-		if (lodgement_hashTag == null) {
-			if (other.lodgement_hashTag != null)
-				return false;
-		} else if (!lodgement_hashTag.equals(other.lodgement_hashTag))
-			return false;
-		if (lodgement_img == null) {
-			if (other.lodgement_img != null)
-				return false;
-		} else if (!lodgement_img.equals(other.lodgement_img))
-			return false;
-		if (lodgement_location == null) {
-			if (other.lodgement_location != null)
-				return false;
-		} else if (!lodgement_location.equals(other.lodgement_location))
-			return false;
-		if (lodgement_number != other.lodgement_number)
-			return false;
-		if (lodgement_reviewCount != other.lodgement_reviewCount)
-			return false;
-		if (Double.doubleToLongBits(lodgement_reviewGradeRate) != Double
-				.doubleToLongBits(other.lodgement_reviewGradeRate))
-			return false;
-		if (lodgement_temp != other.lodgement_temp)
-			return false;
-		if (lodgement_userNumber != other.lodgement_userNumber)
-			return false;
-		if (roomInfo_articleNumber != other.roomInfo_articleNumber)
-			return false;
-		if (roomInfo_extraPrice != other.roomInfo_extraPrice)
-			return false;
-		if (roomInfo_img == null) {
-			if (other.roomInfo_img != null)
-				return false;
-		} else if (!roomInfo_img.equals(other.roomInfo_img))
-			return false;
-		if (roomInfo_maxPeople != other.roomInfo_maxPeople)
-			return false;
-		if (roomInfo_minPeople != other.roomInfo_minPeople)
-			return false;
-		if (roomInfo_name == null) {
-			if (other.roomInfo_name != null)
-				return false;
-		} else if (!roomInfo_name.equals(other.roomInfo_name))
-			return false;
-		if (roomInfo_offPeakPrice != other.roomInfo_offPeakPrice)
-			return false;
-		if (roomInfo_peakEndDate == null) {
-			if (other.roomInfo_peakEndDate != null)
-				return false;
-		} else if (!roomInfo_peakEndDate.equals(other.roomInfo_peakEndDate))
-			return false;
-		if (roomInfo_peakPrice != other.roomInfo_peakPrice)
-			return false;
-		if (roomInfo_peakStartDate == null) {
-			if (other.roomInfo_peakStartDate != null)
-				return false;
-		} else if (!roomInfo_peakStartDate.equals(other.roomInfo_peakStartDate))
-			return false;
-		if (roomInfo_roomNumber != other.roomInfo_roomNumber)
-			return false;
-		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "LodgementDetailPageDto [lodgement_number=" + lodgement_number + ", lodgement_userNumber="
-				+ lodgement_userNumber + ", lodgement_companyName=" + lodgement_companyName + ", lodgement_location="
-				+ lodgement_location + ", lodgement_Lat=" + lodgement_Lat + ", lodgement_Lng=" + lodgement_Lng
-				+ ", lodgement_category=" + lodgement_category + ", lodgement_hashTag=" + lodgement_hashTag
-				+ ", lodgement_goodCount=" + lodgement_goodCount + ", lodgement_reviewGradeRate="
-				+ lodgement_reviewGradeRate + ", lodgement_reviewCount=" + lodgement_reviewCount + ", lodgement_img="
-				+ lodgement_img + ", lodgement_temp=" + lodgement_temp + ", roomInfo_roomNumber=" + roomInfo_roomNumber
-				+ ", roomInfo_articleNumber=" + roomInfo_articleNumber + ", roomInfo_name=" + roomInfo_name
-				+ ", roomInfo_peakPrice=" + roomInfo_peakPrice + ", roomInfo_offPeakPrice=" + roomInfo_offPeakPrice
-				+ ", roomInfo_peakStartDate=" + roomInfo_peakStartDate + ", roomInfo_peakEndDate="
-				+ roomInfo_peakEndDate + ", roomInfo_minPeople=" + roomInfo_minPeople + ", roomInfo_maxPeople="
-				+ roomInfo_maxPeople + ", roomInfo_extraPrice=" + roomInfo_extraPrice + ", roomInfo_img=" + roomInfo_img
-				+ "]";
-	}
-
-	public LodgementDetailPageDto(int lodgement_number, int lodgement_userNumber, String lodgement_companyName,
-			String lodgement_location, String lodgement_Lat, String lodgement_Lng, String lodgement_category,
-			String lodgement_hashTag, int lodgement_goodCount, double lodgement_reviewGradeRate,
-			int lodgement_reviewCount, String lodgement_img, int lodgement_temp, int roomInfo_roomNumber,
-			int roomInfo_articleNumber, String roomInfo_name, int roomInfo_peakPrice, int roomInfo_offPeakPrice,
-			Date roomInfo_peakStartDate, Date roomInfo_peakEndDate, int roomInfo_minPeople, int roomInfo_maxPeople,
-			int roomInfo_extraPrice, String roomInfo_img) {
-		super();
-		this.lodgement_number = lodgement_number;
-		this.lodgement_userNumber = lodgement_userNumber;
-		this.lodgement_companyName = lodgement_companyName;
-		this.lodgement_location = lodgement_location;
-		this.lodgement_Lat = lodgement_Lat;
-		this.lodgement_Lng = lodgement_Lng;
-		this.lodgement_category = lodgement_category;
-		this.lodgement_hashTag = lodgement_hashTag;
-		this.lodgement_goodCount = lodgement_goodCount;
-		this.lodgement_reviewGradeRate = lodgement_reviewGradeRate;
-		this.lodgement_reviewCount = lodgement_reviewCount;
-		this.lodgement_img = lodgement_img;
-		this.lodgement_temp = lodgement_temp;
-		this.roomInfo_roomNumber = roomInfo_roomNumber;
-		this.roomInfo_articleNumber = roomInfo_articleNumber;
-		this.roomInfo_name = roomInfo_name;
-		this.roomInfo_peakPrice = roomInfo_peakPrice;
-		this.roomInfo_offPeakPrice = roomInfo_offPeakPrice;
-		this.roomInfo_peakStartDate = roomInfo_peakStartDate;
-		this.roomInfo_peakEndDate = roomInfo_peakEndDate;
-		this.roomInfo_minPeople = roomInfo_minPeople;
-		this.roomInfo_maxPeople = roomInfo_maxPeople;
-		this.roomInfo_extraPrice = roomInfo_extraPrice;
-		this.roomInfo_img = roomInfo_img;
-	}
-
-	
-	
 	
 }

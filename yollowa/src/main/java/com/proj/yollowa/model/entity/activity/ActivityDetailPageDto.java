@@ -6,8 +6,8 @@ public class ActivityDetailPageDto {
 	private int activity_userNumber;
 	private String activity_title;
 	private String activity_location;
-	private String activity_Lat;
-	private String activity_Lng;
+	private double activity_Lat;
+	private double activity_Lng;
 	private String activity_category;
 	private String activity_hashTag;
 	private int activity_goodCount;
@@ -24,6 +24,145 @@ public class ActivityDetailPageDto {
 	
 	public ActivityDetailPageDto() {
 		// TODO Auto-generated constructor stub
+	}
+
+	public ActivityDetailPageDto(int activity_number, int activity_userNumber, String activity_title,
+			String activity_location, double activity_Lat, double activity_Lng, String activity_category,
+			String activity_hashTag, int activity_goodCount, double activity_reviewGradeRate, int activity_reviewCount,
+			String activity_img, int activity_temp, int activityOption_optionNumber, int activityOption_articleNumber,
+			String activityOption_name, String activityOption_subName, int activityOption_price) {
+		super();
+		this.activity_number = activity_number;
+		this.activity_userNumber = activity_userNumber;
+		this.activity_title = activity_title;
+		this.activity_location = activity_location;
+		this.activity_Lat = activity_Lat;
+		this.activity_Lng = activity_Lng;
+		this.activity_category = activity_category;
+		this.activity_hashTag = activity_hashTag;
+		this.activity_goodCount = activity_goodCount;
+		this.activity_reviewGradeRate = activity_reviewGradeRate;
+		this.activity_reviewCount = activity_reviewCount;
+		this.activity_img = activity_img;
+		this.activity_temp = activity_temp;
+		this.activityOption_optionNumber = activityOption_optionNumber;
+		this.activityOption_articleNumber = activityOption_articleNumber;
+		this.activityOption_name = activityOption_name;
+		this.activityOption_subName = activityOption_subName;
+		this.activityOption_price = activityOption_price;
+	}
+
+	@Override
+	public String toString() {
+		return "ActivityDetailPageDto [activity_number=" + activity_number + ", activity_userNumber="
+				+ activity_userNumber + ", activity_title=" + activity_title + ", activity_location="
+				+ activity_location + ", activity_Lat=" + activity_Lat + ", activity_Lng=" + activity_Lng
+				+ ", activity_category=" + activity_category + ", activity_hashTag=" + activity_hashTag
+				+ ", activity_goodCount=" + activity_goodCount + ", activity_reviewGradeRate="
+				+ activity_reviewGradeRate + ", activity_reviewCount=" + activity_reviewCount + ", activity_img="
+				+ activity_img + ", activity_temp=" + activity_temp + ", activityOption_optionNumber="
+				+ activityOption_optionNumber + ", activityOption_articleNumber=" + activityOption_articleNumber
+				+ ", activityOption_name=" + activityOption_name + ", activityOption_subName=" + activityOption_subName
+				+ ", activityOption_price=" + activityOption_price + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + activityOption_articleNumber;
+		result = prime * result + ((activityOption_name == null) ? 0 : activityOption_name.hashCode());
+		result = prime * result + activityOption_optionNumber;
+		result = prime * result + activityOption_price;
+		result = prime * result + ((activityOption_subName == null) ? 0 : activityOption_subName.hashCode());
+		long temp;
+		temp = Double.doubleToLongBits(activity_Lat);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(activity_Lng);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((activity_category == null) ? 0 : activity_category.hashCode());
+		result = prime * result + activity_goodCount;
+		result = prime * result + ((activity_hashTag == null) ? 0 : activity_hashTag.hashCode());
+		result = prime * result + ((activity_img == null) ? 0 : activity_img.hashCode());
+		result = prime * result + ((activity_location == null) ? 0 : activity_location.hashCode());
+		result = prime * result + activity_number;
+		result = prime * result + activity_reviewCount;
+		temp = Double.doubleToLongBits(activity_reviewGradeRate);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + activity_temp;
+		result = prime * result + ((activity_title == null) ? 0 : activity_title.hashCode());
+		result = prime * result + activity_userNumber;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ActivityDetailPageDto other = (ActivityDetailPageDto) obj;
+		if (activityOption_articleNumber != other.activityOption_articleNumber)
+			return false;
+		if (activityOption_name == null) {
+			if (other.activityOption_name != null)
+				return false;
+		} else if (!activityOption_name.equals(other.activityOption_name))
+			return false;
+		if (activityOption_optionNumber != other.activityOption_optionNumber)
+			return false;
+		if (activityOption_price != other.activityOption_price)
+			return false;
+		if (activityOption_subName == null) {
+			if (other.activityOption_subName != null)
+				return false;
+		} else if (!activityOption_subName.equals(other.activityOption_subName))
+			return false;
+		if (Double.doubleToLongBits(activity_Lat) != Double.doubleToLongBits(other.activity_Lat))
+			return false;
+		if (Double.doubleToLongBits(activity_Lng) != Double.doubleToLongBits(other.activity_Lng))
+			return false;
+		if (activity_category == null) {
+			if (other.activity_category != null)
+				return false;
+		} else if (!activity_category.equals(other.activity_category))
+			return false;
+		if (activity_goodCount != other.activity_goodCount)
+			return false;
+		if (activity_hashTag == null) {
+			if (other.activity_hashTag != null)
+				return false;
+		} else if (!activity_hashTag.equals(other.activity_hashTag))
+			return false;
+		if (activity_img == null) {
+			if (other.activity_img != null)
+				return false;
+		} else if (!activity_img.equals(other.activity_img))
+			return false;
+		if (activity_location == null) {
+			if (other.activity_location != null)
+				return false;
+		} else if (!activity_location.equals(other.activity_location))
+			return false;
+		if (activity_number != other.activity_number)
+			return false;
+		if (activity_reviewCount != other.activity_reviewCount)
+			return false;
+		if (Double.doubleToLongBits(activity_reviewGradeRate) != Double
+				.doubleToLongBits(other.activity_reviewGradeRate))
+			return false;
+		if (activity_temp != other.activity_temp)
+			return false;
+		if (activity_title == null) {
+			if (other.activity_title != null)
+				return false;
+		} else if (!activity_title.equals(other.activity_title))
+			return false;
+		if (activity_userNumber != other.activity_userNumber)
+			return false;
+		return true;
 	}
 
 	public int getActivity_number() {
@@ -58,19 +197,19 @@ public class ActivityDetailPageDto {
 		this.activity_location = activity_location;
 	}
 
-	public String getActivity_Lat() {
+	public double getActivity_Lat() {
 		return activity_Lat;
 	}
 
-	public void setActivity_Lat(String activity_Lat) {
+	public void setActivity_Lat(double activity_Lat) {
 		this.activity_Lat = activity_Lat;
 	}
 
-	public String getActivity_Lng() {
+	public double getActivity_Lng() {
 		return activity_Lng;
 	}
 
-	public void setActivity_Lng(String activity_Lng) {
+	public void setActivity_Lng(double activity_Lng) {
 		this.activity_Lng = activity_Lng;
 	}
 
@@ -170,148 +309,5 @@ public class ActivityDetailPageDto {
 		this.activityOption_price = activityOption_price;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + activityOption_articleNumber;
-		result = prime * result + ((activityOption_name == null) ? 0 : activityOption_name.hashCode());
-		result = prime * result + activityOption_optionNumber;
-		result = prime * result + activityOption_price;
-		result = prime * result + ((activityOption_subName == null) ? 0 : activityOption_subName.hashCode());
-		result = prime * result + ((activity_Lat == null) ? 0 : activity_Lat.hashCode());
-		result = prime * result + ((activity_Lng == null) ? 0 : activity_Lng.hashCode());
-		result = prime * result + ((activity_category == null) ? 0 : activity_category.hashCode());
-		result = prime * result + activity_goodCount;
-		result = prime * result + ((activity_hashTag == null) ? 0 : activity_hashTag.hashCode());
-		result = prime * result + ((activity_img == null) ? 0 : activity_img.hashCode());
-		result = prime * result + ((activity_location == null) ? 0 : activity_location.hashCode());
-		result = prime * result + activity_number;
-		result = prime * result + activity_reviewCount;
-		long temp;
-		temp = Double.doubleToLongBits(activity_reviewGradeRate);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + activity_temp;
-		result = prime * result + ((activity_title == null) ? 0 : activity_title.hashCode());
-		result = prime * result + activity_userNumber;
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		ActivityDetailPageDto other = (ActivityDetailPageDto) obj;
-		if (activityOption_articleNumber != other.activityOption_articleNumber)
-			return false;
-		if (activityOption_name == null) {
-			if (other.activityOption_name != null)
-				return false;
-		} else if (!activityOption_name.equals(other.activityOption_name))
-			return false;
-		if (activityOption_optionNumber != other.activityOption_optionNumber)
-			return false;
-		if (activityOption_price != other.activityOption_price)
-			return false;
-		if (activityOption_subName == null) {
-			if (other.activityOption_subName != null)
-				return false;
-		} else if (!activityOption_subName.equals(other.activityOption_subName))
-			return false;
-		if (activity_Lat == null) {
-			if (other.activity_Lat != null)
-				return false;
-		} else if (!activity_Lat.equals(other.activity_Lat))
-			return false;
-		if (activity_Lng == null) {
-			if (other.activity_Lng != null)
-				return false;
-		} else if (!activity_Lng.equals(other.activity_Lng))
-			return false;
-		if (activity_category == null) {
-			if (other.activity_category != null)
-				return false;
-		} else if (!activity_category.equals(other.activity_category))
-			return false;
-		if (activity_goodCount != other.activity_goodCount)
-			return false;
-		if (activity_hashTag == null) {
-			if (other.activity_hashTag != null)
-				return false;
-		} else if (!activity_hashTag.equals(other.activity_hashTag))
-			return false;
-		if (activity_img == null) {
-			if (other.activity_img != null)
-				return false;
-		} else if (!activity_img.equals(other.activity_img))
-			return false;
-		if (activity_location == null) {
-			if (other.activity_location != null)
-				return false;
-		} else if (!activity_location.equals(other.activity_location))
-			return false;
-		if (activity_number != other.activity_number)
-			return false;
-		if (activity_reviewCount != other.activity_reviewCount)
-			return false;
-		if (Double.doubleToLongBits(activity_reviewGradeRate) != Double
-				.doubleToLongBits(other.activity_reviewGradeRate))
-			return false;
-		if (activity_temp != other.activity_temp)
-			return false;
-		if (activity_title == null) {
-			if (other.activity_title != null)
-				return false;
-		} else if (!activity_title.equals(other.activity_title))
-			return false;
-		if (activity_userNumber != other.activity_userNumber)
-			return false;
-		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "ActivityDetailPageDto [activity_number=" + activity_number + ", activity_userNumber="
-				+ activity_userNumber + ", activity_title=" + activity_title + ", activity_location="
-				+ activity_location + ", activity_Lat=" + activity_Lat + ", activity_Lng=" + activity_Lng
-				+ ", activity_category=" + activity_category + ", activity_hashTag=" + activity_hashTag
-				+ ", activity_goodCount=" + activity_goodCount + ", activity_reviewGradeRate="
-				+ activity_reviewGradeRate + ", activity_reviewCount=" + activity_reviewCount + ", activity_img="
-				+ activity_img + ", activity_temp=" + activity_temp + ", activityOption_optionNumber="
-				+ activityOption_optionNumber + ", activityOption_articleNumber=" + activityOption_articleNumber
-				+ ", activityOption_name=" + activityOption_name + ", activityOption_subName=" + activityOption_subName
-				+ ", activityOption_price=" + activityOption_price + "]";
-	}
-
-	public ActivityDetailPageDto(int activity_number, int activity_userNumber, String activity_title,
-			String activity_location, String activity_Lat, String activity_Lng, String activity_category,
-			String activity_hashTag, int activity_goodCount, double activity_reviewGradeRate, int activity_reviewCount,
-			String activity_img, int activity_temp, int activityOption_optionNumber, int activityOption_articleNumber,
-			String activityOption_name, String activityOption_subName, int activityOption_price) {
-		super();
-		this.activity_number = activity_number;
-		this.activity_userNumber = activity_userNumber;
-		this.activity_title = activity_title;
-		this.activity_location = activity_location;
-		this.activity_Lat = activity_Lat;
-		this.activity_Lng = activity_Lng;
-		this.activity_category = activity_category;
-		this.activity_hashTag = activity_hashTag;
-		this.activity_goodCount = activity_goodCount;
-		this.activity_reviewGradeRate = activity_reviewGradeRate;
-		this.activity_reviewCount = activity_reviewCount;
-		this.activity_img = activity_img;
-		this.activity_temp = activity_temp;
-		this.activityOption_optionNumber = activityOption_optionNumber;
-		this.activityOption_articleNumber = activityOption_articleNumber;
-		this.activityOption_name = activityOption_name;
-		this.activityOption_subName = activityOption_subName;
-		this.activityOption_price = activityOption_price;
-	}
-	
 	
 }

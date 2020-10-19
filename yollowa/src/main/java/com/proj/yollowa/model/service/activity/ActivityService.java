@@ -42,4 +42,7 @@ public interface ActivityService {
 	
 	// 액티비티 예약페이지 이동 - articleNumber로 등록된 옵션들 전부 select
 	List<ActivityOptionVo> selectOptions(int articleNumber);
+	
+	// 주변 숙박 추천
+	List<LodgementVo> selectLodgementRecommend(double activityLat, double activityLng, Model model);
 }

@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.proj.yollowa.interceptor.Auth;
 import com.proj.yollowa.interceptor.AuthUser;
 import com.proj.yollowa.model.entity.UserVo;
+import com.proj.yollowa.model.entity.activity.ActivityDetailPageDto;
+import com.proj.yollowa.model.entity.activity.ActivityVo;
 import com.proj.yollowa.model.entity.lodgement.InformationVo;
 import com.proj.yollowa.model.entity.lodgement.LodgementDetailPageDto;
 import com.proj.yollowa.model.entity.lodgement.LodgementRoomInfoVo;
@@ -76,9 +78,18 @@ public class LodgementDetailController {
 		model.addAttribute("companyName", name);
 		model.addAttribute("startEndDay", list.get(0));
 		model.addAttribute("article", number);
-		
 		model.addAttribute("reviewRate", list.get(0).getLodgement_reviewGradeRate());
 		model.addAttribute("reviewCount", list.get(0).getLodgement_reviewCount());
+		
+		
+		/* 주변 액티비티 추천 start */
+		double lodgeLat = list.get(0).getLodgement_Lat();
+		double lodgeLng = list.get(0).getLodgement_Lng();
+		
+		List<ActivityVo> recommendList = lodgementService.selectActivityRecommend(lodgeLat, lodgeLng, model); 
+		
+		
+		/* 주변 액티비티 추천 end */
 		
 		return "lodgement/lodgementDetail";
 	}

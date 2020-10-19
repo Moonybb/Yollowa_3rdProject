@@ -3,7 +3,9 @@ package com.proj.yollowa.model.service.lodgement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -12,6 +14,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.proj.yollowa.model.entity.UserVo;
+import com.proj.yollowa.model.entity.activity.ActivityDetailPageDto;
+import com.proj.yollowa.model.entity.activity.ActivityVo;
 import com.proj.yollowa.model.entity.lodgement.InformationVo;
 import com.proj.yollowa.model.entity.lodgement.LodgementDetailPageDto;
 import com.proj.yollowa.model.entity.lodgement.LodgementRoomInfoVo;
@@ -307,4 +311,33 @@ public class LodgementServiceImpl implements LodgementService {
 		
 	}
 
+	
+	// 주변 액티비티 추천
+	@Override
+	public List<ActivityVo> selectActivityRecommend(double lodgeLat, double lodgeLng, Model model) {
+		LodgementDao dao = sqlSession.getMapper(LodgementDao.class);
+		
+		Map<String, Double> map = new HashMap<String, Double>();
+		
+		System.out.println("디테일 숙박업소 위도 :: "+lodgeLat);
+		System.out.println("디테일 숙박업소 경도 :: "+lodgeLng);
+		
+		double minLat = lodgeLat-0.04;
+		double maxLat = lodgeLat+0.04;
+		
+		double minLng = lodgeLng-0.04;
+		double maxLng = lodgeLng+0.04;
+		
+		map.put("minLat", minLat);
+		map.put("maxLat", maxLat);
+		
+		map.put("minLng", minLng);
+		map.put("maxLng", maxLng);
+		
+		List<ActivityVo> list = dao.selectActivityRecommend(map);
+		
+		model.addAttribute("recommendList", list);
+		System.out.println("추천 액티비티 list :: "+list);
+		return null;
+	}
 }

@@ -7,6 +7,8 @@ import java.util.List;
 import org.springframework.ui.Model;
 
 import com.proj.yollowa.model.entity.UserVo;
+import com.proj.yollowa.model.entity.activity.ActivityDetailPageDto;
+import com.proj.yollowa.model.entity.activity.ActivityVo;
 import com.proj.yollowa.model.entity.lodgement.InformationVo;
 import com.proj.yollowa.model.entity.lodgement.LodgementDetailPageDto;
 import com.proj.yollowa.model.entity.lodgement.LodgementRoomInfoVo;
@@ -70,5 +72,8 @@ public interface LodgementService {
 	
 	//결제 성공시 예약정보 update (장바구니결제)
 	void LReservInfoUpdate(int c);
+	
+	// 주변 액티비티 추천
+	List<ActivityVo> selectActivityRecommend(double lodgeLat, double lodgeLng,Model model);
 
 }
