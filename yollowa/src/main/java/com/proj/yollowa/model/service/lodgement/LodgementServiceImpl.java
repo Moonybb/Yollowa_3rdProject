@@ -336,6 +336,13 @@ public class LodgementServiceImpl implements LodgementService {
 		
 		List<ActivityVo> list = dao.selectActivityRecommend(map);
 		
+		for(int i=0; i<list.size(); i++) {
+			int su = list.get(i).getActivity_img().indexOf("&");
+			String imgName = list.get(i).getActivity_img().substring(0, su);
+			list.get(i).setActivity_img(imgName);
+		}
+		
+		
 		model.addAttribute("recommendList", list);
 		System.out.println("추천 액티비티 list :: "+list);
 		return null;
