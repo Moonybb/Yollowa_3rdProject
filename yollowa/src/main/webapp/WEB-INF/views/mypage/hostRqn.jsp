@@ -92,7 +92,7 @@ $("link[rel='shortcut icon']").attr("href", "${pageContext.request.contextPath}/
 					if(result){
 						$('.sub').attr('type','submit');
 						$('.sub').trigger("click");
-						window.location.href="../mypage/2";
+					
 					}
 				});
 			}

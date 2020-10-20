@@ -199,7 +199,7 @@ public class MypageController {
 		}
 		System.out.println("@@@@@@@@@@@@"+paramVo);
 		mypageService.insertHostrqnServise(paramVo);
-		return "redirect:../hostRqn";
+		return "redirect:../mypage/2";
 	}
 	//사용자가 작성한 리뷰를 표시한다
 	@Auth

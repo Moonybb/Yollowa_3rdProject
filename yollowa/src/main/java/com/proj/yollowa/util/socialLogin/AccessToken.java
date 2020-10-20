@@ -35,7 +35,7 @@ public class AccessToken {
 		RequestUrl = "https://kauth.kakao.com/oauth/token"; // Host
 		postParams.add(new BasicNameValuePair("grant_type", "authorization_code"));
 		postParams.add(new BasicNameValuePair("client_id", "65ddf9c4a57ddf27e0cf2ac5eaac8af5")); // REST API KEY
-		postParams.add(new BasicNameValuePair("redirect_uri", "http://192.168.0.209:8080/yollowa/login/kakao/callback")); // 리다이렉트 URI
+		postParams.add(new BasicNameValuePair("redirect_uri", "http://112.169.196.125/yollowa/login/kakao/callback")); // 리다이렉트 URI
 
 		/*https://accounts.google.com/o/oauth2/v2/auth?redirect_uri=http://localhost:8080/yollowa/login/google/callback&response_type=code&client_id=183141477636-5vabtlolvogrdtv3r2rg8graq5c96fk2.apps.googleusercontent.com&scope=https://www.googleapis.com/auth/userinfo.email&access_type=offline
 		 */	        
