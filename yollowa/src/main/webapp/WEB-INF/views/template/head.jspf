@@ -11,8 +11,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 	
 	<!-- 지도 api -->
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2a25c7b7725e0d15c5a618bc931661e3&libraries=services"></script>
-	
+	<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fa35eb82229572bc8cf2286b68bcac70&libraries=services"></script>	
 	<!-- favicon -->
 	<link rel="shortcut icon" href="${pageContext.request.contextPath }/resouces/img/icons/favicon.png"/>
 	<link rel="icon" href="${pageContext.request.contextPath }/resouces/img/icons/favicon.png"/>

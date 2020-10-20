@@ -94,7 +94,7 @@
 	</beans:bean>
 	<beans:bean id="naverRedirectUrl" class="java.lang.String">
 		<beans:constructor-arg
-			value="http://localhost:8080/yollowa/login/naver/callback"></beans:constructor-arg>
+			value="http://112.169.196.125/yollowa/login/naver/callback"></beans:constructor-arg>
 	</beans:bean>
 
 	<beans:bean id="naverSns"
