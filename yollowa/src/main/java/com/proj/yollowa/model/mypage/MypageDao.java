@@ -6,12 +6,16 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.proj.yollowa.model.entity.ReviewVo;
+import com.proj.yollowa.model.entity.SearchVo;
 import com.proj.yollowa.model.entity.UserVo;
 import com.proj.yollowa.model.entity.activity.ActivityVo;
+import com.proj.yollowa.model.entity.admin.HostrqnApprovalVo;
 import com.proj.yollowa.model.entity.lodgement.LodgementVo;
 import com.proj.yollowa.model.entity.mypage.AReservInfoDto;
+import com.proj.yollowa.model.entity.mypage.ActivityReviewVo;
 import com.proj.yollowa.model.entity.mypage.LReservInfoDto;
 import com.proj.yollowa.model.entity.mypage.LReviewDto;
+import com.proj.yollowa.model.entity.mypage.LodgementReviewVo;
 
 public interface MypageDao {
 	public UserVo userDetail(int user_number) throws SQLException;
@@ -57,5 +61,16 @@ public interface MypageDao {
 	public int deleteUser(int user_number) throws SQLException;
 	public List<ActivityVo> getSortAcitivity() throws SQLException;
 	public List<LodgementVo> getSortLodgement() throws SQLException;
+	public List<Integer> getAprice(int activityOption_articleNumber) throws SQLException;
+	public List<Integer> getLprice(int roomInfo_articleNumber) throws SQLException;
+	void insertHostrqn(HostrqnApprovalVo hostrqnApprovalVo) throws SQLException;
+	int getReviewCount(SearchVo searchVo) throws SQLException;
+	List<ReviewVo> getReviewList(SearchVo searchVo) throws SQLException;
+	LodgementReviewVo getLodgementReview(int reviewno) throws SQLException;
+	ActivityReviewVo getActivityReview(int reviewno) throws SQLException;
+	
+	//현재 사용되지 않음
+	List<LodgementReviewVo> getLodgementReviewList(SearchVo searchVo) throws SQLException;
+	List<ActivityReviewVo> getActivityReviewList(SearchVo searchVo) throws SQLException;
 }
 
