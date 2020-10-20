@@ -332,7 +332,29 @@ pointer-events:auto;
 	width: 200px;
 }
 /* 위치 Filter end */
+/* top 버튼 */
 
+    .btn_top {
+        position:absolute;
+        right:330px;
+        top:0;
+        display:none;
+        padding:5px 10px;
+        z-index:6;
+        
+        z-index: 10;
+        border: none;
+        outline: none;
+        font-family: 'Impact';
+        font-size: 24px;
+        cursor: pointer;
+        border-radius: 10px;
+        
+        background-color: transparent !important;
+        background-image: none !important;
+        border-color: transparent;
+        border: none;
+    }
 
 </style>
 
@@ -348,14 +370,15 @@ $("link[rel='shortcut icon']").attr("href", "${pageContext.request.contextPath}/
 			$(window).scroll(function(){  //스크롤이 발생할 경우
 					console.log("스크롤");
 			       var num = $(this).scrollTop();  // 스크롤 값
-			       if( num > 0){
-			          $('.navbar2').css("position","fixed");
-		 	          $(".container").attr('style', 'padding-top:80px;');
+		 	         
+			       if( num > 900){
+			          $(".navbar").css("position","fixed");
 			       }else{
-			    	  $('.navbar2').css("position","absolute");
+			    	  $(".container").attr('style', 'padding-top:80px;');
+			    	  $(".navbar").css("position","absolute");
 			       } 
 			  });
-			});
+		});
 		
 		var filterCnt = $('#filterCnt').val();
 		
@@ -860,6 +883,13 @@ $("link[rel='shortcut icon']").attr("href", "${pageContext.request.contextPath}/
 		}
 	}; */
 	
+	// 탑 버튼
+	$(document).scroll(function() {
+		 btn_mv_up('.btn_top');
+	}).on('click', '.btn_top', function() {
+	 	 $("html, body").animate({scrollTop:0}, 'slow');
+	});
+	
 </script>
 <meta charset="UTF-8">
 <title>액티비티</title>
@@ -1125,6 +1155,7 @@ $("link[rel='shortcut icon']").attr("href", "${pageContext.request.contextPath}/
 			</div>
 		</div>
 	</div>
+	<button type="button" class="btn_top">top</button>
 	<%@ include file="../template/footer.jspf"%>
 </body>
 </html>

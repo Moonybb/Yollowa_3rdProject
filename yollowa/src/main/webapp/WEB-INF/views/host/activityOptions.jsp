@@ -244,7 +244,7 @@ function Confirm(articleNumber, optionNumber) {
 			</div>
 			<div class="col-md-9">
 			<div id="host">
-				<h2>숙박 게시글 등록</h2>
+				<h2>액티비티 게시글 등록</h2>
 				<%-- <p id="sub">${lodgement_companyName }에 등록 된 방 현황입니다.<p> --%>
 				
 				<h4 class="infoTitle">${activity_title }에 등록된 옵션 목록</h4>

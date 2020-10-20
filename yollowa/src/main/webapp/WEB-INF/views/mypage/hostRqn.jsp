@@ -43,6 +43,9 @@ ul {
 	    display: inline-block;
 	}
 </style>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
 <script type="text/javascript">
 $("link[rel='shortcut icon']").attr("href", "${pageContext.request.contextPath}/resources/img/icons/favicon.png");
 	$(function() {
@@ -51,7 +54,51 @@ $("link[rel='shortcut icon']").attr("href", "${pageContext.request.contextPath}/
 		}).on('mouseleave', function() {
 			$(this).css('color', '#433387');
 		});
-
+		$('.sub').click(function(){
+			var companyNumber=$('#hostrqn_companyNumber').val();
+			var companyName=$('#hostrqn_companyName').val();
+			
+			if(companyNumber==''||companyName==''){
+				swal({
+					 	title:'실패',
+					    text: '사업자 번호 또는 업소명이 비었습니다.',
+					    icon:'error',
+				    	buttons :{
+					    	confirm:{
+					    		text:'확인',
+					    		value:true,
+					    		className:'btn btn-primary'
+					    	}
+					    }
+					}).then((result) =>{
+						if(result){
+						}
+					});
+				
+			}
+			if(companyNumber!=''&&companyName!=''){
+				swal({
+				 	title:'성공',
+				    text: '신청이 완료 되었습니다',
+				    icon:'success',
+			    	buttons :{
+				    	confirm:{
+				    		text:'확인',
+				    		value:true,
+				    		className:'btn btn-primary'
+				    	}
+				    }
+				}).then((result) =>{
+					if(result){
+						$('.sub').attr('type','submit');
+						$('.sub').trigger("click");
+						window.location.href="../mypage/2";
+					}
+				});
+			}
+			
+		
+		})
 	});
 </script>
 </head>
@@ -108,7 +155,7 @@ $("link[rel='shortcut icon']").attr("href", "${pageContext.request.contextPath}/
 						  <label class="col-form-label" for="hostrqn_companyName">업소명</label>
 						  <input type="text" name="hostrqn_companyName" class="form-control" placeholder="영업소 이름을 입력하세요" id="hostrqn_companyName">
 						</div>
-						<button type="submit" class="btn btn-primary btn-lg">신청하기</button>
+						<button type="button" class="btn btn-primary btn-lg sub">신청하기</button>
 					</form>
 				</div>
 			</div>
