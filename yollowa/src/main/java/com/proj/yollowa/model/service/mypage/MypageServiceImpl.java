@@ -419,7 +419,7 @@ public class MypageServiceImpl implements MypageService{
 		List<AllReviewViewVo> resulReviewList = new ArrayList<AllReviewViewVo>();
 		List<ReviewVo> reviewList = getReviewListService(searchVo);
 		for (int i = 0; i < reviewList.size(); i++) {
-			if(reviewList.get(i).getReview_category() ==1) {
+			if(reviewList.get(i).getReview_category() == 2) {
 				LodgementReviewVo temp= getLodgementReviewService(reviewList.get(i).getReview_reviewNumber());
 				company = temp.getLodgement_companyName();
 				img = temp.getLodgement_img();

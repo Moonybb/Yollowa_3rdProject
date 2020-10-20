@@ -102,8 +102,8 @@ $("link[rel='shortcut icon']").attr("href", "${pageContext.request.contextPath}/
 <%@ include file="../template/menu.jspf" %>
 <div class="container">
 	<div class="page-header">
-		<p> <a href="../">메인 페이지</a> > 관리자 페이지 > 액티비티 게시글 관리 </p>
-		<h1>액티비티 게시글 관리 <small></small></h1>
+		<p> <a href="../">메인 페이지</a> > 파트너 관리 > 액티비티 게시글 관리 </p>
+		<h1> 파트너 관리 <small>액티비티 게시글 관리</small></h1>
 	</div>
 	<div class="row">
 		<div id="category" class="col-md-3">

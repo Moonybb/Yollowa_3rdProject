@@ -223,7 +223,7 @@
 		FROM 
 			LODGEMENT, REVIEW 
 		WHERE REVIEW_WRITER=#{keyword}
-			AND REVIEW_CATEGORY = 1 
+			AND REVIEW_CATEGORY = 2 
 			AND REVIEW_ARTICLENUMBER = LODGEMENT_NUMBER
 	</select>
 	<select id="getActivityReviewList" resultType="com.proj.yollowa.model.entity.mypage.ActivityReviewVo">
@@ -231,7 +231,7 @@
 		FROM 
 			ACTIVITY, REVIEW 
 		WHERE REVIEW_WRITER=#{keyword}
-			AND REVIEW_CATEGORY = 2 
+			AND REVIEW_CATEGORY = 1 
 			AND REVIEW_ARTICLENUMBER = ACTIVITY_NUMBER
 	</select>
 </mapper>
