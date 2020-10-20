@@ -84,7 +84,7 @@
 	}
 	#btn-long {
 	    margin: 5px auto 5px auto;
-	    width: 120%;
+	    width: 100%;
 	    height: 33px;
 	    padding-top: 1px;
 	    padding-bottom: 1px;
@@ -101,8 +101,8 @@ $("link[rel='shortcut icon']").attr("href", "${pageContext.request.contextPath}/
 <%@ include file="../template/menu.jspf" %>
 <div class="container">
 	<div class="page-header">
-		<p> <a href="../">메인 페이지</a> > 관리자 페이지 > 임시 </p>
-		<h1>관리자 <small>임시페이지</small></h1>
+		<p> <a href="../">메인 페이지</a> > 관리자 > 관리자 관리 </p>
+		<h1>관리자 <small>관리자 관리</small></h1>
 	</div>
 	<div class="row">
 		<div id="category" class="col-md-3">
@@ -145,7 +145,7 @@ $("link[rel='shortcut icon']").attr("href", "${pageContext.request.contextPath}/
 					    </tr>
 					  </tbody>
 				</table>
-				<input type="submit" id="btn-long" value="수정" class="btn btn-primary" onClick="location.href='../update/${bean.manager_number }'" />
+			<input type="submit" id="btn-long" value="수정" class="btn btn-primary" onClick="location.href='../update/${bean.manager_number }'" />
 			</form>
 			<div class="btnGroup">
 			</div>

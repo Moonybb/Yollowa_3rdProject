@@ -64,18 +64,18 @@ public class AdminpageServiceImpl implements AdminpageService{
 					hostrqnApprovalVo.getHostrqn_companyNumber();
 			userVo.setUser_companyNumber(args);
 		}
-		if(hostrqnApprovalVo.getHostrqn_info()==1 && StringUtils.isEmpty(userVo.getUser_companyName())) {
+		if(hostrqnApprovalVo.getHostrqn_info() == 2 && StringUtils.isEmpty(userVo.getUser_companyName())) {
 			System.out.println("숙박 사업장을 등록하신 적이 없습니다");
 			userVo.setUser_companyName(hostrqnApprovalVo.getHostrqn_companyName());
-		}else if(hostrqnApprovalVo.getHostrqn_info()==1 && StringUtils.isEmpty(userVo.getUser_companyName())==false) {
+		}else if(hostrqnApprovalVo.getHostrqn_info() == 2 && StringUtils.isEmpty(userVo.getUser_companyName())==false) {
 			System.out.println("숙박 사업장을 등록하신 적이 있습니다");
 			String args = userVo.getUser_companyName() + "&" +
 					hostrqnApprovalVo.getHostrqn_companyName();
 			userVo.setUser_companyName(args);
-		}else if(hostrqnApprovalVo.getHostrqn_info()==2 && StringUtils.isEmpty(userVo.getUser_activityCompanyName())) {
+		}else if(hostrqnApprovalVo.getHostrqn_info() == 1 && StringUtils.isEmpty(userVo.getUser_activityCompanyName())) {
 			System.out.println("액티비티 사업장을 등록하신적이 없습니다");
 			userVo.setUser_activityCompanyName(hostrqnApprovalVo.getHostrqn_companyName());
-		}else if(hostrqnApprovalVo.getHostrqn_info()==2 && StringUtils.isEmpty(userVo.getUser_activityCompanyName())==false) {
+		}else if(hostrqnApprovalVo.getHostrqn_info() == 1 && StringUtils.isEmpty(userVo.getUser_activityCompanyName())==false) {
 			System.out.println("액티비티 사업장을 등록하신적이 있습니다");
 			String args = userVo.getUser_activityCompanyName() + "&" +
 					hostrqnApprovalVo.getHostrqn_companyName();
