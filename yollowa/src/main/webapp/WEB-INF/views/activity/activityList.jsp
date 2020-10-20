@@ -6,6 +6,25 @@
 <head>
 <%@ include file="../template/head.jspf"%>
 <style type="text/css">
+/* 페이지 로더 */
+.loader {
+	border: 10px solid #f3f3f3;
+	border-top: 10px solid #593196;
+	border-radius: 50%;
+	width: 60px;
+	height: 60px;
+	animation: spin 2s linear infinite;
+	position:fixed;
+	top: 50%;
+	left: 50%;
+	z-index: 6;
+/*   transform:translate(-50%,-50%); */
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
 /* category start */
 .page-header{
 	border-bottom: 1px solid lightgray;
@@ -319,6 +338,10 @@ pointer-events:auto;
 
 <script type="text/javascript">
 $("link[rel='shortcut icon']").attr("href", "${pageContext.request.contextPath}/resources/img/icons/favicon.png");
+	$(window).load(function(){
+		$('.loader').fadeOut();
+		$('.locSelect').attr('style', 'display:block;');
+	});
 	$(document).ready(function(){
 		
 		$(function(){
@@ -845,6 +868,7 @@ $("link[rel='shortcut icon']").attr("href", "${pageContext.request.contextPath}/
 	<%@ include file="../template/header.jspf"%>
 	<%@ include file="../template/menu.jspf"%>
 	<div class="container">
+		<div class="loader"></div>
 		<div id="headerUp" class="page-header">
 			<p>
 				<a href="../">메인 페이지</a> > <a href="list"> 액티비티 페이지</a>

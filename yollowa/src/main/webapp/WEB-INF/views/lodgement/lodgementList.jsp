@@ -60,16 +60,16 @@ h2{
 /* category end */
 /* 페이지 로더 */
 .loader {
-  border: 16px solid #f3f3f3; /* Light grey */
-  border-top: 16px solid #3498db; /* Blue */
-  border-radius: 50%;
-  width: 120px;
-  height: 120px;
-  animation: spin 2s linear infinite;
-  position:fixed;
-  top: 50%;
-  left: 50%;
-  z-index: 6;
+	border: 10px solid #f3f3f3;
+	border-top: 10px solid #593196;
+	border-radius: 50%;
+	width: 60px;
+	height: 60px;
+	animation: spin 2s linear infinite;
+	position:fixed;
+	top: 50%;
+	left: 50%;
+	z-index: 6;
 /*   transform:translate(-50%,-50%); */
 }
 
@@ -831,8 +831,8 @@ $("link[rel='shortcut icon']").attr("href", "${pageContext.request.contextPath}/
 <title>숙박</title>
 </head>
 <body>
-	<%@ include file="../template/lodgeHeader.jspf"%>
-	<%@ include file="../template/lodgeMenu.jspf"%>
+	<%@ include file="../template/header.jspf"%>
+	<%@ include file="../template/menu.jspf"%>
 	<div class="container">
 		<div class="loader"></div>
 		<div id="headerUp" class="page-header">

@@ -84,10 +84,13 @@
 	}
 	#btn-long {
 	    margin: 5px auto 5px auto;
-	    width: 120%;
+	    width: 50px;
 	    height: 33px;
 	    padding-top: 1px;
 	    padding-bottom: 1px;
+	}
+	.btnGroup {
+    text-align: right;
 	}
 	/* content end */
 		
@@ -146,8 +149,6 @@ $("link[rel='shortcut icon']").attr("href", "${pageContext.request.contextPath}/
 			</table>
 			<div class="btnGroup">
 				<input type="button" id="btn-long" value="수정" class="btn btn-primary" onClick="location.href='../update/${bean.manager_number }'" />
-			</div>
-			<div class="btnGroup">
 				<input type="button" id="btn-long" value="삭제" class="btn btn-primary" onClick="location.href='../delete/${bean.manager_number }'" />
 			</div>
 		</div>
