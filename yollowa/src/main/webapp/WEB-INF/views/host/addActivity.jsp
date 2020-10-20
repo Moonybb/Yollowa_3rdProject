@@ -146,7 +146,7 @@
 
 <!-- map -->
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d3d2ea55cf19b317302dd07f8c2c3117&libraries=services"></script>
+
 
 <script type="text/javascript">
 $("link[rel='shortcut icon']").attr("href", "${pageContext.request.contextPath}/resources/img/icons/favicon.png");
