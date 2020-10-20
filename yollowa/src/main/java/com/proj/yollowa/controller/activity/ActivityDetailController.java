@@ -312,6 +312,7 @@ public class ActivityDetailController {
 	}
 	
 	// 예약완료 페이지
+	@Auth
 	@RequestMapping(value = "detail/ReservationResult/")
 	public String lodgementReservationResult(Model model,HttpServletRequest req) throws SQLException{
 		

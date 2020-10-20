@@ -711,8 +711,8 @@ $("link[rel='shortcut icon']").attr("href", "${pageContext.request.contextPath}/
 <title>숙박</title>
 </head>
 <body>
-	<%@ include file="../template/lodgeHeader.jspf"%>
-	<%@ include file="../template/lodgeMenu.jspf"%>
+	<%@ include file="../template/header.jspf"%>
+	<%@ include file="../template/menu.jspf"%>
 	<div class="container">
 	
 	
