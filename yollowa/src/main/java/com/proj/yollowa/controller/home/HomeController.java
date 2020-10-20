@@ -33,7 +33,8 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Model model) {
+	public String home(Model model) throws SQLException {
+		myPageService.homeList(model);
 		return "home";
 	}
 	

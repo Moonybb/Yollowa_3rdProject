@@ -14,6 +14,7 @@
 		and ai.AReservInfo_cartStatus=0
 		and DATE(now())<=DATE(ai.areservInfo_checkOut)
 		and ai.AReservInfo_userNumber=#{user_number}
+		order by AReservInfo_reservDate desc
 		]]>
 	</select>
 	<select id="getOverHistory" resultType="com.proj.yollowa.model.entity.mypage.AReservInfoDto">
@@ -24,6 +25,7 @@
 		and ai.AReservInfo_cartStatus=0
 		and DATE(now())>DATE(ai.areservInfo_checkOut)
 		and ai.AReservInfo_userNumber=#{user_number}
+		order by AReservInfo_reservDate desc
 		]]>
 	</select>
 	<select id="getAuserCartInfo" resultType="com.proj.yollowa.model.entity.mypage.AReservInfoDto">
@@ -33,7 +35,8 @@
 		where ai.areservinfo_reservStatus=0
 		and ai.AReservInfo_cartStatus=1
 		and DATE(now())<DATE(ai.areservInfo_checkOut)
-		and ai.AReservInfo_userNumber=#{user_number};
+		and ai.AReservInfo_userNumber=#{user_number}
+		order by AReservInfo_reservDate desc
 		]]>
 	</select>
 	<select id="getLreservationInfo" resultType="com.proj.yollowa.model.entity.mypage.LReservInfoDto">
@@ -166,4 +169,69 @@
 	<delete id="deleteUser">
 		DELETE FROM user WHERE user_number = #{user_number}
 	</delete>
+	<select id="getSortAcitivity" resultType="com.proj.yollowa.model.entity.activity.ActivityVo">
+		select * from activity order by activity_reviewCount desc, activity_reviewGradeRate desc
+	</select>
+	<select id="getSortLodgement" resultType="com.proj.yollowa.model.entity.lodgement.LodgementVo">
+		select * from lodgement order by lodgement_reviewCount desc,lodgement_reviewGradeRate desc
+	</select>
+	<select id="getAprice" resultType="int">
+		select activityOption_price from activityOption where activityoption_articleNumber=#{activityOption_articleNumber}
+	</select>
+	<select id="getLprice" resultType="int">
+		select roomInfo_offpeakPrice from roominfo where roomInfo_articleNumber=#{roomInfo_articleNumber}
+	</select>
+	<!-- hostrqn 삽입 -->
+	<insert id="insertHostrqn">
+	INSERT INTO HOSTRQN 
+		(HOSTRQN_USERNO, HOSTRQN_COMPANYNUMBER, HOSTRQN_COMPANYNAME, HOSTRQN_INFO) 
+	VALUES 
+		(#{hostrqn_userNo}, #{hostrqn_companyNumber}, #{hostrqn_companyName}, #{hostrqn_info})
+	</insert>
+	
+	
+	<!-- 사용자의 모든 리뷰 개수를 반환한다 -->
+	<select id="getReviewCount" resultType="int">
+		SELECT COUNT(REVIEW_USERNUMBER) FROM REVIEW WHERE REVIEW_WRITER = #{keyword}
+	</select>
+	
+	<!-- 사용자가 작성한 리뷰에 대한 정보를 가져온다 -->
+	<select id="getReviewList" resultType="com.proj.yollowa.model.entity.ReviewVo">
+		SELECT * FROM REVIEW WHERE REVIEW_WRITER = #{keyword} ORDER BY REVIEW_WRITEDDATE DESC
+	</select>
+	
+	<!-- 하나의 숙박 리뷰 정보와 리뷰 대상 업체 정보를 함께 가져온다 -->
+	<select id="getLodgementReview" resultType="com.proj.yollowa.model.entity.mypage.LodgementReviewVo">
+		SELECT * 
+		FROM LODGEMENT, REVIEW 
+		WHERE 
+			REVIEW_ARTICLENUMBER = LODGEMENT_NUMBER AND 
+			review_reviewNumber like #{reviewno}
+	</select>
+	<!-- 하나의 액티비티 리뷰 정보와 리뷰 대상 업체 정보를 함께 가져온다 -->
+	<select id="getActivityReview" resultType="com.proj.yollowa.model.entity.mypage.ActivityReviewVo">
+		SELECT * 
+		FROM ACTIVITY, REVIEW 
+		WHERE 
+			REVIEW_ARTICLENUMBER = ACTIVITY_NUMBER AND 
+			REVIEW_REVIEWNUMBER like #{reviewno};
+	</select>
+	
+	<!-- 현재 사용되지 않음  -->
+	<select id="getLodgementReviewList" resultType="com.proj.yollowa.model.entity.mypage.LodgementReviewVo">
+		SELECT *  
+		FROM 
+			LODGEMENT, REVIEW 
+		WHERE REVIEW_WRITER=#{keyword}
+			AND REVIEW_CATEGORY = 1 
+			AND REVIEW_ARTICLENUMBER = LODGEMENT_NUMBER
+	</select>
+	<select id="getActivityReviewList" resultType="com.proj.yollowa.model.entity.mypage.ActivityReviewVo">
+		SELECT *  
+		FROM 
+			ACTIVITY, REVIEW 
+		WHERE REVIEW_WRITER=#{keyword}
+			AND REVIEW_CATEGORY = 2 
+			AND REVIEW_ARTICLENUMBER = ACTIVITY_NUMBER
+	</select>
 </mapper>

@@ -8,19 +8,19 @@
 
   <div class="collapse navbar-collapse" id="navbarColor01">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="font-size: 20px;font-family: 'MapoPeacefull';">숙&nbsp;&nbsp;박</a>
-        <div class="dropdown-menu">
+      <li class="nav-item">
+        <a class="nav-link" href="${pageContext.request.contextPath}/lodgement/list" aria-haspopup="true" aria-expanded="false" style="font-size: 20px;font-family: 'MapoPeacefull';">숙&nbsp;&nbsp;박</a>
+        <%-- <div class="dropdown-menu">
           <a class="dropdown-item" style="font-size: 18px;font-family: 'MapoPeacefull';" href="${pageContext.request.contextPath}/lodgement/list">숙박 모아보기</a>
           <a class="dropdown-item" style="font-size: 18px;font-family: 'MapoPeacefull';" href="${pageContext.request.contextPath}/" >인기 숙박</a>
-        </div>
+        </div> --%>
       </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="font-size: 20px;font-family: 'MapoPeacefull';">액티비티</a>
-        <div class="dropdown-menu">
+      <li class="nav-item">
+        <a class="nav-link" href="${pageContext.request.contextPath}/activity/list" aria-haspopup="true" aria-expanded="false" style="font-size: 20px;font-family: 'MapoPeacefull';">액티비티</a>
+        <%-- <div class="dropdown-menu">
           <a class="dropdown-item" style="font-size: 18px;font-family: 'MapoPeacefull';" href="${pageContext.request.contextPath}/activity/list">액티비티 모아보기</a>
           <a class="dropdown-item" style="font-size: 18px;font-family: 'MapoPeacefull';" href="${pageContext.request.contextPath}/">인기 액티비티</a>
-        </div>
+        </div> --%>
       </li> 
        
     </ul>
@@ -48,6 +48,11 @@
           <a class="dropdown-item" href="${pageContext.request.contextPath }/mypage/myqna">내가 쓴 Q&A</a>
           <a class="dropdown-item" href="${pageContext.request.contextPath }/mypage/userinfo">계정 설정</a>
            <div class="dropdown-divider"></div>
+           <c:if test="${user.user_level ne 0}">
+							<a class="dropdown-item"
+								href="${pageContext.request.contextPath }/host/">사업자 페이지</a>
+						</c:if>
+						 <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="${pageContext.request.contextPath }/logout/">로그아웃</a>
         </div>
       </li>

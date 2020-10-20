@@ -263,6 +263,12 @@ public class ActivityServiceImpl implements ActivityService {
 
 		List<LodgementVo> list = dao.selectLodgementRecommend(map);
 		
+		for(int i=0; i<list.size(); i++) {
+			int su = list.get(i).getLodgement_img().indexOf("&");
+			String imgName = list.get(i).getLodgement_img().substring(0, su);
+			list.get(i).setLodgement_img(imgName);
+		}
+		
 		model.addAttribute("recommendList", list);
 		System.out.println("추천 숙박 list :: "+list);
 		return null;
