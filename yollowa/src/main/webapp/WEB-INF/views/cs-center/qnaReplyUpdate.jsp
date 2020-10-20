@@ -152,9 +152,6 @@ $("link[rel='shortcut icon']").attr("href", "${pageContext.request.contextPath}/
 						<div class="col-md-6">
 						<span id="date">작성일 | ${bean.writeddate }</span>
 						</div>
-						<div class="col-md-2">
-						<span id="cnt">조회수 | ${bean.cnt }</span>
-						</div>
 					</div>
 				</div>
 				<div class="card-body">
