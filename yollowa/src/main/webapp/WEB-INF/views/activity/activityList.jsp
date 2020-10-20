@@ -6,6 +6,25 @@
 <head>
 <%@ include file="../template/head.jspf"%>
 <style type="text/css">
+/* 페이지 로더 */
+.loader {
+	border: 10px solid #f3f3f3;
+	border-top: 10px solid #593196;
+	border-radius: 50%;
+	width: 60px;
+	height: 60px;
+	animation: spin 2s linear infinite;
+	position:fixed;
+	top: 50%;
+	left: 50%;
+	z-index: 6;
+/*   transform:translate(-50%,-50%); */
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
 /* category start */
 .page-header{
 	border-bottom: 1px solid lightgray;
@@ -313,26 +332,53 @@ pointer-events:auto;
 	width: 200px;
 }
 /* 위치 Filter end */
+/* top 버튼 */
 
+    .btn_top {
+        position:absolute;
+        right:330px;
+        top:0;
+        display:none;
+        padding:5px 10px;
+        z-index:6;
+        
+        z-index: 10;
+        border: none;
+        outline: none;
+        font-family: 'Impact';
+        font-size: 24px;
+        cursor: pointer;
+        border-radius: 10px;
+        
+        background-color: transparent !important;
+        background-image: none !important;
+        border-color: transparent;
+        border: none;
+    }
 
 </style>
 
 <script type="text/javascript">
 $("link[rel='shortcut icon']").attr("href", "${pageContext.request.contextPath}/resources/img/icons/favicon.png");
+	$(window).load(function(){
+		$('.loader').fadeOut();
+		$('.locSelect').attr('style', 'display:block;');
+	});
 	$(document).ready(function(){
 		
 		$(function(){
 			$(window).scroll(function(){  //스크롤이 발생할 경우
 					console.log("스크롤");
 			       var num = $(this).scrollTop();  // 스크롤 값
-			       if( num > 0){
-			          $('.navbar2').css("position","fixed");
-		 	          $(".container").attr('style', 'padding-top:80px;');
+		 	         
+			       if( num > 900){
+			          $(".navbar").css("position","fixed");
 			       }else{
-			    	  $('.navbar2').css("position","absolute");
+			    	  $(".container").attr('style', 'padding-top:80px;');
+			    	  $(".navbar").css("position","absolute");
 			       } 
 			  });
-			});
+		});
 		
 		var filterCnt = $('#filterCnt').val();
 		
@@ -837,6 +883,13 @@ $("link[rel='shortcut icon']").attr("href", "${pageContext.request.contextPath}/
 		}
 	}; */
 	
+	// 탑 버튼
+	$(document).scroll(function() {
+		 btn_mv_up('.btn_top');
+	}).on('click', '.btn_top', function() {
+	 	 $("html, body").animate({scrollTop:0}, 'slow');
+	});
+	
 </script>
 <meta charset="UTF-8">
 <title>액티비티</title>
@@ -845,6 +898,7 @@ $("link[rel='shortcut icon']").attr("href", "${pageContext.request.contextPath}/
 	<%@ include file="../template/header.jspf"%>
 	<%@ include file="../template/menu.jspf"%>
 	<div class="container">
+		<div class="loader"></div>
 		<div id="headerUp" class="page-header">
 			<p>
 				<a href="../">메인 페이지</a> > <a href="list"> 액티비티 페이지</a>
@@ -1101,6 +1155,7 @@ $("link[rel='shortcut icon']").attr("href", "${pageContext.request.contextPath}/
 			</div>
 		</div>
 	</div>
+	<button type="button" class="btn_top">top</button>
 	<%@ include file="../template/footer.jspf"%>
 </body>
 </html>

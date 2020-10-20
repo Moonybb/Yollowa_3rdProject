@@ -60,16 +60,16 @@ h2{
 /* category end */
 /* 페이지 로더 */
 .loader {
-  border: 16px solid #f3f3f3; /* Light grey */
-  border-top: 16px solid #3498db; /* Blue */
-  border-radius: 50%;
-  width: 120px;
-  height: 120px;
-  animation: spin 2s linear infinite;
-  position:fixed;
-  top: 50%;
-  left: 50%;
-  z-index: 6;
+	border: 10px solid #f3f3f3;
+	border-top: 10px solid #593196;
+	border-radius: 50%;
+	width: 60px;
+	height: 60px;
+	animation: spin 2s linear infinite;
+	position:fixed;
+	top: 50%;
+	left: 50%;
+	z-index: 6;
 /*   transform:translate(-50%,-50%); */
 }
 
@@ -333,14 +333,29 @@ pointer-events:auto;
 }
 /* 위치 Filter end */
 /* top 버튼 */
+
 	.btn_top {
 		position:absolute;
 		right:330px;
 		top:0;
 		display:none;
 		padding:5px 10px;
-		z-index:6;
+		
+	    z-index: 10;
+	    border: none;
+	    outline: none;
+	    font-family: 'Impact';
+	    font-size: 24px;
+	    cursor: pointer;
+	    border-radius: 10px;
+	    
+	    background-color: transparent !important;
+	    background-image: none !important;
+	    border-color: transparent;
+	    border: none;
 	}
+
+
 
 </style>
 
@@ -356,11 +371,12 @@ $("link[rel='shortcut icon']").attr("href", "${pageContext.request.contextPath}/
 			$(window).scroll(function(){  //스크롤이 발생할 경우
 					console.log("스크롤");
 			       var num = $(this).scrollTop();  // 스크롤 값
-			       if( num > 0){
-			          $("#navbar2").css("position","fixed");
-		 	          $(".container").attr('style', 'padding-top:80px;');
+		 	         
+			       if( num > 900){
+			          $(".navbar").css("position","fixed");
 			       }else{
-			    	  $("#navbar2").css("position","absolute");
+			    	  $(".container").attr('style', 'padding-top:80px;');
+			    	  $(".navbar").css("position","absolute");
 			       } 
 			  });
 		});
@@ -831,8 +847,8 @@ $("link[rel='shortcut icon']").attr("href", "${pageContext.request.contextPath}/
 <title>숙박</title>
 </head>
 <body>
-	<%@ include file="../template/lodgeHeader.jspf"%>
-	<%@ include file="../template/lodgeMenu.jspf"%>
+	<%@ include file="../template/header.jspf"%>
+	<%@ include file="../template/menu.jspf"%>
 	<div class="container">
 		<div class="loader"></div>
 		<div id="headerUp" class="page-header">

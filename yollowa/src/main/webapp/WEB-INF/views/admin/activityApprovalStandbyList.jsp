@@ -149,7 +149,7 @@ $("link[rel='shortcut icon']").attr("href", "${pageContext.request.contextPath}/
 			  <c:forEach items="${list }" var="list">
 			    <tr>
 					<td>${list.activity_number }</td>
-					<td><img alt="" src="../../${list.activity_img }" width="100px" height="100px"></td>
+					<td><img alt="" src="/activity/titleImg/${list.activity_img }" width="100px" height="100px"></td>
 					<td>${list.activity_title }</td>
 					<td>${list.user_name }</td>
 					<td>대기중</td>

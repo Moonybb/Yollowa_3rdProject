@@ -103,7 +103,15 @@ public class AdminpageServiceImpl implements AdminpageService{
 	public List<ActivityApprovalVo> getActivityApprovalStandbyListService(SearchVo searchVo) throws SQLException {
 		AdminDao adminpageDao = sqlsession.getMapper(AdminDao.class);
 		
-		return adminpageDao.getActivityApprovalStandbyList(searchVo);
+		List<ActivityApprovalVo> list = adminpageDao.getActivityApprovalStandbyList(searchVo);
+		
+		for(int i=0; i<list.size(); i++) {
+			int su = list.get(i).getActivity_img().indexOf("&");
+			String imgName = list.get(i).getActivity_img().substring(0, su);
+			list.get(i).setActivity_img(imgName);
+		}
+		
+		return list;
 	}
 	@Override
 	public int countActivityApprovalStandbyListService(SearchVo searchVo) throws SQLException {
@@ -121,8 +129,13 @@ public class AdminpageServiceImpl implements AdminpageService{
 	@Override
 	public List<LodgementApprovalVo> getLodgementApprovalStandbyListService(SearchVo searchVo) throws SQLException {
 		AdminDao adminpageDao = sqlsession.getMapper(AdminDao.class);
-		
-		return adminpageDao.getLodgementApprovalStandbyList(searchVo);
+		List<LodgementApprovalVo> list = adminpageDao.getLodgementApprovalStandbyList(searchVo);
+		for(int i=0; i<list.size(); i++) {
+			int su = list.get(i).getLodgement_img().indexOf("&");
+			String imgName = list.get(i).getLodgement_img().substring(0, su);
+			list.get(i).setLodgement_img(imgName);
+		}	
+		return list;
 	}
 	
 	@Override
