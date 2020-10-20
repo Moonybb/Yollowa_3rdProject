@@ -947,11 +947,19 @@ $("link[rel='shortcut icon']").attr("href", "${pageContext.request.contextPath}/
 												<div>차로 20분 내외</div>
 												<div>액티비티</div>
 											</div>
+											<script type="text/javascript">
+												function recommendClick(me){
+													var activityNumber = $(me).find('.hiddenNumber').val();
+													console.log(activityNumber);
+													window.location.href="../../activity/detail/"+activityNumber;
+												}
+											</script>
 											<div class="col-md-10 appendMent">
 												<div class="row">
 												
 												<c:forEach items="${recommendList }" end="3" var="list">
-													<div class="col-md-3 cardBox">
+													<div class="col-md-3 cardBox" onclick="recommendClick(this);">
+														<input type="hidden" class="hiddenNumber" value="${list.activity_number }" />
 														<div class="card">
 															<div class="recommendImgBox">
 																<div class="recommendType">${list.activity_category }</div>
