@@ -70,14 +70,28 @@ $("link[rel='shortcut icon']").attr("href", "${pageContext.request.contextPath}/
       </div>
     </div>
     <div class="carousel-item">
-      <img src="${pageContext.request.contextPath }/resources/img/surffing.jpg" class="d-block w-100" alt="...">
+      <img src="${pageContext.request.contextPath }/resources/img/main2camping.jpg" class="d-block w-100" alt="...">
     	<div class="carousel-caption d-none d-md-block" style="margin-bottom: 75px;">
     	<h1 style="font-weight: bold;">NEW EXPERIENCE AND FEELING</h1>
 		<img style="width:123px;height: 35px;"alt="" src="${pageContext.request.contextPath}/resources/img/icons/headLogo.png">
       </div>
     </div>
     <div class="carousel-item">
-      <img src="${pageContext.request.contextPath }/resources/img/youth.jpg" class="d-block w-100" alt="...">
+      <img src="${pageContext.request.contextPath }/resources/img/main3mountain.jpg" class="d-block w-100" alt="...">
+    	<div class="carousel-caption d-none d-md-block" style="margin-bottom: 75px;">
+    	<h1 style="font-weight: bold;">NEW EXPERIENCE AND FEELING</h1>
+		<img style="width:123px;height: 35px;"alt="" src="${pageContext.request.contextPath}/resources/img/icons/headLogo.png">
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="${pageContext.request.contextPath }/resources/img/main4hotel.jpg" class="d-block w-100" alt="...">
+    	<div class="carousel-caption d-none d-md-block" style="margin-bottom: 75px;">
+    	<h1 style="font-weight: bold;">NEW EXPERIENCE AND FEELING</h1>
+		<img style="width:123px;height: 35px;"alt="" src="${pageContext.request.contextPath}/resources/img/icons/headLogo.png">
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="${pageContext.request.contextPath }/resources/img/main5rafting.jpg" class="d-block w-100" alt="...">
     	<div class="carousel-caption d-none d-md-block" style="margin-bottom: 75px;">
     	<h1 style="font-weight: bold;">NEW EXPERIENCE AND FEELING</h1>
 		<img style="width:123px;height: 35px;"alt="" src="${pageContext.request.contextPath}/resources/img/icons/headLogo.png">
