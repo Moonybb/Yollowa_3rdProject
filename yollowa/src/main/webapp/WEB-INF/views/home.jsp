@@ -115,18 +115,21 @@ $("link[rel='shortcut icon']").attr("href", "${pageContext.request.contextPath}/
 	<c:forEach items="${alist }" var="activity" end="3"> 
 
   <div class="col mb-3">
-   <a href="#">
+   <a href="${pageContext.request.contextPath }/activity/detail/${activity.activity_number}">
     <div class="card h-100" style="border-radius: 10px;">
       <img src="/activity/titleImg/${activity.activity_img }" class="card-img-top" alt="...">
       <div class="card-body">
         <h5 class="card-title">${activity.activity_title }</h5>
-        <c:if test="${activity.hashTag ne null }">
         <p class="card-text hashtag">
+        <c:if test="${activity.hashTag ne null }">
         <c:forEach var="hash" items="${activity.hashTag }">
         ${hash }
         </c:forEach>
-        </p>
         </c:if>
+        <c:if test="${activity.hashTag eq null }">
+        ${activity.activity_hashTag }
+        </c:if>
+        </p>
         <p class="card-text" style="color: #DCA60A;"><svg width="1em" height="1em" viewBox="0 0 16 16"
 										class="bi bi-star-fill" fill="currentColor"
 										xmlns="http://www.w3.org/2000/svg">
@@ -148,19 +151,22 @@ $("link[rel='shortcut icon']").attr("href", "${pageContext.request.contextPath}/
 	<c:forEach items="${llist }" var="lodgement" end="3"> 
 	
   <div class="col mb-3">
-  <a href="#">
+  <a href="${pageContext.request.contextPath }/lodgement/detail/${lodgement.lodgement_number}">
  
     <div class="card h-100" style="border-radius: 10px;">
       <img src="/lodgement/titleImg/${lodgement.lodgement_img }" class="card-img-top" alt="...">
       <div class="card-body">
         <h5 class="card-title">${lodgement.lodgement_companyName }</h5>
-        <c:if test="${lodgement.hashTag ne null }">
         <p class="card-text hashtag">
+        <c:if test="${lodgement.hashTag ne null }">
         <c:forEach var="hash" items="${lodgement.hashTag }">
         ${hash }
         </c:forEach>
-        </p>
         </c:if>
+        <c:if test="${lodgement.hashTag eq null }">
+        ${lodgement.lodgement_hashTag }
+        </c:if>
+        </p>
         <p class="card-text" style="color: #DCA60A;"><svg width="1em" height="1em" viewBox="0 0 16 16"
 										class="bi bi-star-fill" fill="currentColor"
 										xmlns="http://www.w3.org/2000/svg">
