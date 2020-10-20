@@ -95,6 +95,9 @@ $("link[rel='shortcut icon']").attr("href", "${pageContext.request.contextPath}/
 								<c:if test="${userwish.hashTag ne null }">
 									<c:forEach items="${userwish.hashTag }" var="hash">
 							 ${hash }
+							 <script type="text/javascript">
+							 	
+							 </script>
 							 </c:forEach>
 								</c:if>
 								
