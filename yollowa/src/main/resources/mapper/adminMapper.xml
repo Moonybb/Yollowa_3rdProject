@@ -38,10 +38,10 @@
 		UPDATE USER SET 
 			USER_COMPANYNUMBER = #{user.user_companyNumber}, 
 		]]>
-			<if test="hostrqn_info == 1">
+			<if test="hostrqn_info == 2">
 				USER_COMPANYNAME = #{user.user_companyName}, 
 			</if>
-			<if test="hostrqn_info == 2">
+			<if test="hostrqn_info == 1">
 				USER_ACTIVITYCOMPANYNAME = #{user.user_activityCompanyName}, 
 			</if>
 		<![CDATA[

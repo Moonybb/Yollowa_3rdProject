@@ -137,11 +137,11 @@ $("link[rel='shortcut icon']").attr("href", "${pageContext.request.contextPath}/
 							 <label class="control-label" for="disabledInput">유형</label>
 							 <div class="custom-control custom-radio" id="radios">
 							 	<span>
-								   <input type="radio" id="customRadio1" name="hostrqn_info" class="custom-control-input" checked="checked" value="1">
+								   <input type="radio" id="customRadio1" name="hostrqn_info" class="custom-control-input" checked="checked" value="2">
 								   <label class="custom-control-label" for="customRadio1">숙박</label>
 							    </span>
 							 	<span>
-								   <input type="radio" id="customRadio2" name="hostrqn_info" class="custom-control-input" value="2">
+								   <input type="radio" id="customRadio2" name="hostrqn_info" class="custom-control-input" value="1">
 								   <label class="custom-control-label" for="customRadio2">액티비티</label>
 							    </span>
 							 </div>

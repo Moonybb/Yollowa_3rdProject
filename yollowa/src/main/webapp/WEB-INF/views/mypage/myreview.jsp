@@ -113,7 +113,6 @@ $("link[rel='shortcut icon']").attr("href", "${pageContext.request.contextPath}/
 						</thead>
 						<tbody>
 						<tr class="table-default">
-							<td class="tImg" rowspan="1" colspan="1"><img alt="" src="../${list.img }" width="146px" height="146px"></td>
 							<td class="tContent" rowspan="1" colspan="3">${list.content }</td>
 						</tr>
 						<tr>
