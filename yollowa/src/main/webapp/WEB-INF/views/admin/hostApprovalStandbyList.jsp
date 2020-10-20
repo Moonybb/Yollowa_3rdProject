@@ -121,8 +121,8 @@ $(document).ready(function() {
 <%@ include file="../template/menu.jspf" %>
 <div class="container">
 	<div class="page-header">
-		<p> <a href="../">메인 페이지</a> > 관리자 > 사업자 승인 </p>
-		<h1>관리자 <small>사업자 승인</small></h1>
+		<p> <a href="../">메인 페이지</a> > 파트너 관리 > 사업자 승인 </p>
+		<h1>파트너 관리 <small>사업자 승인</small></h1>
 	</div>
 	<div class="row">
 		<div id="category" class="col-md-3">
