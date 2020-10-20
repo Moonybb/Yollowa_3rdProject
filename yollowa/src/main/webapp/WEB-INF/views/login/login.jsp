@@ -143,12 +143,12 @@ $("link[rel='shortcut icon']").attr("href", "${pageContext.request.contextPath}/
 					</div>
 
 					<div class="flex-c-m">
-						<a
+						<a 
 							href="https://kauth.kakao.com/oauth/authorize?client_id=65ddf9c4a57ddf27e0cf2ac5eaac8af5&redirect_uri=http://localhost:8080/yollowa/login/kakao/callback&response_type=code">
-							<img style="width: 40px; height: 40px;"
+							<img style="width: 40px; height: 40px;margin: 10px;"
 							src="${pageContext.request.contextPath}/resources/img/kakao.png">
 						</a> <a href="${naver_url }" class=""> <img
-							style="width: 40px; height: 40px;"
+							style="width: 40px; height: 40px;margin: 10px;"
 							src="${pageContext.request.contextPath}/resources/img/naver.PNG">
 						</a>
 					</div>

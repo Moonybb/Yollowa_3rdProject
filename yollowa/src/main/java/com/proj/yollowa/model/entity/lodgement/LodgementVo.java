@@ -18,7 +18,17 @@ public class LodgementVo {
 	private String lodgement_img;
 	private int lodgement_temp;
 	private String[] hashTag;
+	private int price;
 	
+	
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
 	public LodgementVo() {
 		// TODO Auto-generated constructor stub
 	}
