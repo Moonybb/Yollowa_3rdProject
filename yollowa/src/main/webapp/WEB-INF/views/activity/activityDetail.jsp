@@ -858,7 +858,7 @@ $("link[rel='shortcut icon']").attr("href", "${pageContext.request.contextPath}/
 							<div class="row">
 								<div class="col-md-2 recomment">
 									<div>차로 20분 내외</div>
-									<div>액티비티</div>
+									<div>숙박업소</div>
 								</div>
 										<script type="text/javascript">
 										function recommendClick(me){
