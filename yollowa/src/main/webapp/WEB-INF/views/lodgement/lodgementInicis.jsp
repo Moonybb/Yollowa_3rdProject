@@ -61,7 +61,7 @@ IMP.request_pay({
         	    	dataType:"json",
         	    	url:"${pageContext.request.contextPath}/lodgement/detail/InicisAjax",
         	    });
-        	    window.location.href='http://localhost:8080/yollowa/lodgement/detail/ReservationResult/';
+        	    window.location.href='http://112.169.196.125/yollowa/lodgement/detail/ReservationResult/';
         	}
         });
 	    
@@ -83,7 +83,7 @@ IMP.request_pay({
         	}
         }).then((result)=>{
         	if(result){
-			    window.location.href='http://localhost:8080/yollowa/lodgement/list';
+			    window.location.href='http://112.169.196.125/yollowa/lodgement/list';
         	}
         });
     	
