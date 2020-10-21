@@ -124,7 +124,7 @@ $("link[rel='shortcut icon']").attr("href", "${pageContext.request.contextPath}/
 				<a class="link" href="userinfo/deleteuser">></a>
 			</div>
 			<div class="card-body">
-				<p class="card-text">욜로와 계정 및 개인정보를 삭제 합니다.</p>
+				<p class="card-text">욜로와 계정 및 개인정보를 <a class="link" href="userinfo/deleteuser">삭제</a> 합니다.</p>
 			</div>
 		</div>
 
