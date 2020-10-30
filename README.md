@@ -48,7 +48,7 @@
 + 게시글 관리 - 호스트의 업소 등록을 검토하고 승인 여부 결정 (결정 시 리스트 페이지에 등록)
 + 매니저 관리 - 등록된 매니저들의 권한 및 아이디, 비밀번호 수정 및 삭제 가능
 
-> 사용 기술
+### 사용 기술
 -----
 Front-End: HTML5, CSS, Javascript, Jquery, jspServlet, BootStrap
 Back-End: Spring, MySql, Mybatis, commons-dbcp, Jackson, jstl, junit4, log4j, maven, aspectj, log4j2
